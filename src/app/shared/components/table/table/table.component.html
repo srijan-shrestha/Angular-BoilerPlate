@@ -1,0 +1,21 @@
+<div class="table-wrapper" [style.height]="height" [class.table-wrapper--border]="border">
+  <table
+    class="table"
+    [class.table-lg]="size==='lg'"
+    [class.small]="size==='sm'"
+    >
+    <ng-content select="caption"></ng-content>
+    <thead>
+      <ng-container headerRowOutlet></ng-container>
+    </thead>
+    <tbody>
+      <ng-container rowOutlet></ng-container>
+      <tr *ngIf="!dataSource">
+        <td [colSpan]="_contentColumnDefs.length">{{noData}}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <ng-container footerRowOutlet></ng-container>
+    </tfoot>
+  </table>
+</div>

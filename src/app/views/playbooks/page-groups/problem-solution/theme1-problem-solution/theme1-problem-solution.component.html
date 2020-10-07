@@ -1,0 +1,139 @@
+<div class="ps-container">
+  <div class="page-tag">STRATEGY</div>
+  <div class="ps">
+    <div class="header-wrapper">
+      <div class="ps-header" (click)="loadForm('single-line-text', 'title')">
+        <span *ngIf="page?.data?.title?.text; else titleSuffix">{{ page?.data?.title?.text }}</span>
+      </div>
+      <div class="ps-header-large" (click)="loadForm('single-line-text', 'largeTitle')">
+        <span *ngIf="page?.data?.largeTitle?.text; else largeTitle">{{ page?.data?.largeTitle?.text }}</span>
+      </div>
+    </div>
+    <div class="body-wrapper">
+      <div class="body-row">
+        <div class="body-content-left">
+          <div class="title-wrapper" (click)="loadForm('single-line-text', 'title1')">
+            <span *ngIf="page?.data?.title1?.text; else newTitle">{{ page?.data?.title1?.text }}</span>
+          </div>
+          <div class="text-wrapper" (click)="loadForm('multi-line-text', 'text1')">
+            <span *ngIf="page?.data?.text1?.text; else newText">{{ page?.data?.text1?.text }}</span>
+          </div>
+        </div>
+
+        <div class="body-content-right">
+          <div class="title-wrapper" (click)="loadForm('single-line-text', 'title2')">
+            <span *ngIf="page?.data?.title2?.text; else newTitle">{{ page?.data?.title2?.text }}</span>
+          </div>
+          <div class="text-wrapper" (click)="loadForm('multi-line-text', 'text2')">
+            <span *ngIf="page?.data?.text2?.text; else newText">{{ page?.data?.text2?.text }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="body-row">
+        <div class="body-content-left">
+          <div class="title-wrapper" (click)="loadForm('single-line-text', 'title3')">
+            <span *ngIf="page?.data?.title3?.text; else newTitle">{{ page?.data?.title3?.text }}</span>
+          </div>
+          <div class="text-wrapper" (click)="loadForm('multi-line-text', 'text3')">
+            <span *ngIf="page?.data?.text3?.text; else newText">{{ page?.data?.text3?.text }}</span>
+          </div>
+        </div>
+
+        <div class="body-content-right">
+          <div class="title-wrapper" (click)="loadForm('single-line-text', 'title4')">
+            <span *ngIf="page?.data?.title4?.text; else newTitle">{{ page?.data?.title4?.text }}</span>
+          </div>
+          <div class="text-wrapper" (click)="loadForm('multi-line-text', 'text4')">
+            <span *ngIf="page?.data?.text4?.text; else newText">{{ page?.data?.text4?.text }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="body-row">
+        <div class="body-content-left">
+          <div class="title-wrapper" (click)="loadForm('single-line-text', 'title5')">
+            <span *ngIf="page?.data?.title5?.text; else newTitle">{{ page?.data?.title5?.text }}</span>
+          </div>
+          <div class="text-wrapper" (click)="loadForm('multi-line-text', 'text5')">
+            <span *ngIf="page?.data?.text5?.text; else newText">{{ page?.data?.text5?.text }}</span>
+          </div>
+        </div>
+
+        <div class="body-content-right">
+          <div class="title-wrapper" (click)="loadForm('single-line-text', 'title6')">
+            <span *ngIf="page?.data?.title6?.text; else newTitle">{{ page?.data?.title6?.text }}</span>
+          </div>
+          <div class="text-wrapper" (click)="loadForm('multi-line-text', 'text6')">
+            <span *ngIf="page?.data?.text6?.text; else newText">{{ page?.data?.text6?.text }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ps-bg-container" (click)="loadForm('image-form', 'backgroundImage')">
+    <div class="ps-bg" *ngIf="page?.data?.backgroundImage; else newBgText"
+         [style.backgroundImage]="page?.data?.backgroundImage?.imageurl ? 'url(' + page?.data?.backgroundImage?.imageurl  + ')' : ''">
+    </div>
+    <div class="image-content-wrapper">
+      <div class="moto" (click)="loadForm('multi-line-text', 'moto', $event)">
+        <span *ngIf="page?.data?.moto?.text; else moto">{{ page?.data?.moto?.text }}</span>
+      </div>
+      <div class="moto-text" (click)="loadForm('multi-line-text', 'text7' , $event)">
+        <span *ngIf="page?.data?.text7?.text; else motoText">{{ page?.data?.text7?.text }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="border-overlay"></div>
+</div>
+
+
+<ng-template #newBgText>
+  <div class="ps-bg" style="background-image: url('app/assets/images/playbook/problemsolution.jpg')">
+  </div>
+</ng-template>
+
+<ng-template #titleSuffix>
+  LEARNING FROM OUR MISTAKES
+</ng-template>
+
+<ng-template #newTitle>The Problem Headline</ng-template>
+
+<ng-template #moto>
+  <div class="moto">
+    Fail.
+    Fast.
+    Win.
+  </div>
+</ng-template>
+
+<ng-template #motoText>
+  <div class="moto-text">
+    Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est
+    at lobortis. Donec id elit non mi porta gravida at eget metus. Vivamus sagittis
+    lacus vel augue laoreet rutrum faucibus dolor auctor.
+  </div>
+</ng-template>
+
+<ng-template #newText>
+  <div class="text-wrapper">Lmquam, con et am, sequunt aliqui blant.Dus dolor sapiet
+    rehent delest qui nobitatem quodi cones essuntiones
+    ped moloreperrum que quiat laudignimpos min pro
+  </div>
+</ng-template>
+
+<ng-template #newletter>Click to add Letter</ng-template>
+<ng-template #largeTitle>
+  <div class="ps-header-large">Journey</div>
+</ng-template>
+
+<div class="psolution-footer">
+  <div class="psolution-footer-left">
+    <span> <b>{{pageNumber * 2 }} </b> | {{playBook.title}} | Q{{playBook.quarter}}-{{playBook.year}}</span>
+  </div>
+  <div class="psolution-footer-right">
+    <span>Q{{playBook.quarter}}-{{playBook.year}} | {{playBook.title}} | <b>{{pageNumber * 2 + 1 }}</b></span>
+  </div>
+</div>
+

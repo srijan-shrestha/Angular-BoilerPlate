@@ -1,0 +1,133 @@
+.journey1-container {
+  font-family: 'Heebo', sans-serif;
+}
+
+.bg-img {
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+}
+
+.title {
+  font-family: 'Poppins', sans-serif;
+  position: absolute;
+  top: 9%;
+  left: 7%;
+  font-size: 117pt;
+  color: transparent;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1pt black;
+  letter-spacing: 3pt;
+  font-weight: bold;
+
+}
+
+.subtitle {
+  position: absolute;
+  top: 10%;
+  left: 14%;
+  font-size: 15pt;
+  letter-spacing: 9pt;
+  color: black;
+  text-transform: uppercase;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.j-first {
+  position: absolute;
+  left: 65%;
+  top: 13%;
+  width: 20%;
+}
+
+.j-title {
+  font-size: 14pt;
+  font-weight: bold
+}
+
+.j-description {
+  font-size: 12pt;
+  padding-top: 2pt;
+}
+
+.j-second {
+  position: absolute;
+  top: 59%;
+  width: 19%;
+  left: 7%;
+}
+
+.j-third {
+  position: absolute;
+  top: 54%;
+  width: 19%;
+  left: 30%;
+}
+
+.j-fourth {
+  position: absolute;
+  top: 48%;
+  width: 19%;
+  left: 53%;
+}
+
+.j-fifth {
+  position: absolute;
+  top: 42%;
+  width: 19%;
+  left: 76%;
+}
+
+.j-icon {
+  border-radius: 50%;
+  width: 15mm;
+  height: -6mm;
+  position: absolute;
+  padding-top: 38pt;
+  margin-top: 4pt
+}
+
+.page-tag {
+  background: darkolivegreen;
+  color: #fff;
+  position: absolute;
+  right: 40pt;
+  top: 0;
+  font-size: 9pt;
+  padding: 20pt 4pt;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 4pt;
+}
+
+.journey1-footer {
+  position: absolute;
+  display: flex;
+  flex-flow: row nowrap;
+  bottom: 0;
+  width: 100%;
+  height: 40pt;
+  z-index: 3;
+  font-size: 9pt;
+
+  .journey1-footer-left {
+    height: 100%;
+    width: 50%;
+    padding: 1% 3%;
+    text-transform: uppercase;
+    color: #1b1818;
+  }
+
+  .journey1-footer-right {
+    height: 100%;
+    width: 50%;
+    padding: 1% 3%;
+    text-transform: uppercase;
+    text-align: right;
+  }
+}

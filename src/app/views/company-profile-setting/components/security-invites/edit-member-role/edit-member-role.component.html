@@ -1,0 +1,28 @@
+<form [formGroup]="memberDetailForm">
+  <div class="modal-header">
+    <h4>Update Role</h4>
+    <button type="button" class="close" aria-label="Close"
+            (click)="activeModal.dismiss('close')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="form-group">
+      <div class="form-row align-items-center mt-2">
+        <div class="col-md-12">
+          <app-select formControlName="role" id="role" [placeholder]="'Select Role'">
+            <option *ngFor="let role of roles"
+                    [value]="role.id">
+              {{role.name}}
+            </option>
+          </app-select>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <app-button (click)="updateRole()" [loading]="this.loading" [disabled]="memberDetailForm.invalid"> UPDATE</app-button>
+  </div>
+</form>

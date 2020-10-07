@@ -1,0 +1,89 @@
+<div class="journey1-container" (click)="loadForm('image-form', 'backgroundImage')">
+  <div class="bg-img" *ngIf="page?.data?.backgroundImage; else newBgText"
+       [style.backgroundImage]="page?.data?.backgroundImage?.imageurl ? 'url(' + page?.data?.backgroundImage?.imageurl  + ')' : ''">
+  </div>
+  <div class="page-tag">STRATEGY</div>
+  <div class="subtitle" (click)="loadForm('single-line-text', 'subtitle' , $event)">
+    <span *ngIf="page?.data?.subtitle?.text; else newTitle6">{{ page?.data?.subtitle?.text }}</span>
+  </div>
+  <div class="title" (click)="loadForm('single-line-text', 'title' , $event)">
+    <span *ngIf="page?.data?.title?.text; else newTitle">{{ page?.data?.title?.text }}</span>
+  </div>
+  <div class="j-first">
+    <div class="j-title" (click)="loadForm('single-line-text', 'title1' , $event)">
+      <span *ngIf="page?.data?.title1?.text; else newTitle5">{{ page?.data?.title1?.text }}</span>
+    </div>
+    <div class="j-description" (click)="loadForm('single-line-text', 'text' , $event)">
+      <span *ngIf="page?.data?.text?.text; else newText">{{ page?.data?.text?.text }}</span>
+    </div>
+  </div>
+  <div class="j-second">
+    <div class="j-title" (click)="loadForm('single-line-text', 'title2' , $event)">
+      <span *ngIf="page?.data?.title2?.text; else newTitle1">{{ page?.data?.title2?.text }}</span>
+    </div>
+    <div class="j-description" (click)="loadForm('single-line-text', 'text1' , $event)">
+      <span *ngIf="page?.data?.text1?.text; else newText">{{ page?.data?.text1?.text }}</span>
+    </div>
+    <div class="j-icon" style="background-image: url('app/assets/images/initiative.jpg')"></div>
+  </div>
+  <div class="j-third">
+    <div class="j-title" (click)="loadForm('single-line-text', 'title3' , $event)">
+      <span *ngIf="page?.data?.title3?.text; else newTitle2">{{ page?.data?.title3?.text }}</span>
+    </div>
+    <div class="j-description" (click)="loadForm('single-line-text', 'text2' , $event)">
+      <span *ngIf="page?.data?.text2?.text; else newText">{{ page?.data?.text2?.text }}</span>
+    </div>
+    <div class="j-icon" style="background-image: url('app/assets/images/initiative.jpg')"></div>
+
+  </div>
+
+  <div class="j-fourth">
+    <div class="j-title" (click)="loadForm('single-line-text', 'title4' , $event)">
+      <span *ngIf="page?.data?.title4?.text; else newTitle3">{{ page?.data?.title4?.text }}</span>
+    </div>
+    <div class="j-description" (click)="loadForm('single-line-text', 'text3' , $event)">
+      <span *ngIf="page?.data?.text3?.text; else newText">{{ page?.data?.text3?.text }}</span>
+    </div>
+    <div class="j-icon" style="background-image: url('app/assets/images/initiative.jpg')"></div>
+
+  </div>
+
+  <div class="j-fifth">
+    <div class="j-title" (click)="loadForm('single-line-text', 'title5' , $event)">
+      <span *ngIf="page?.data?.title5?.text; else newTitle4">{{ page?.data?.title5?.text }}</span>
+    </div>
+    <div class="j-description" (click)="loadForm('single-line-text', 'text4' , $event)">
+      <span *ngIf="page?.data?.text4?.text; else newText">{{ page?.data?.text4?.text }}</span>
+    </div>
+    <div class="j-icon" style="background-image: url('app/assets/images/initiative.jpg')"></div>
+  </div>
+
+  <div class="journey1-footer">
+    <div class="journey1-footer-left">
+      <span><b>{{pageNumber * 2 }} </b> | {{playBook.title}} | Q{{playBook.quarter}}-{{playBook.year}}</span>
+    </div>
+    <div class="journey1-footer-right">
+      <span>Q{{playBook.quarter}}-{{playBook.year}} | {{playBook.title}} | <b>{{pageNumber * 2 + 1 }}</b></span>
+    </div>
+  </div>
+  <div class="border-overlay"></div>
+</div>
+
+<ng-template #newBgText>
+  <div class="bg-img" style="background-image: url('app/assets/images/playbook/journey.jpeg')"></div>
+</ng-template>
+<ng-template #newTitle>Journey</ng-template>
+<ng-template #newTitle6>The sky is the limit</ng-template>
+<ng-template #newTitle5>HEADLINE GOES HERE</ng-template>
+<ng-template #newTitle1>Ligula Elit Etiam diocum</ng-template>
+<ng-template #newTitle2>Ligula Elit Etiam diocum</ng-template>
+<ng-template #newTitle3>Ligula Elit Etiam diocum</ng-template>
+<ng-template #newTitle4>Ligula Elit Etiam diocum</ng-template>
+<ng-template #newauthorpost>Click to add Author Post</ng-template>
+<ng-template #newauthorname>Click to add Author Name</ng-template>
+<ng-template #newText>
+  que et velestist que non nonseque nim nis inis
+  aut qui corem volesti dolore cumque ab id
+  eum re re dolorio nserrum aut.
+</ng-template>
+<ng-template #newletter>Click to add Letter</ng-template>

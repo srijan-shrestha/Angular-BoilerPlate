@@ -1,0 +1,117 @@
+<div class="ce-page-tag">OVERVIEW</div>
+<div class="ce-container">
+  <div class="title-top">
+    <div class="title1">
+      <div class="title-name" (click)="loadForm('single-line-text', 'title1', $event)">
+      <span *ngIf="page?.data?.title1?.text; else newTitle">{{page?.data?.title1?.text}}
+      </span>
+      </div>
+      <div class="title-description" (click)="loadForm('multi-line-text', 'description1', $event)">
+        <span *ngIf="page?.data?.description1?.text; else newDescription">{{page?.data?.description1?.text}}</span>
+      </div>
+    </div>
+    <div class="title2">
+      <div class="title-name" (click)="loadForm('single-line-text', 'title2', $event)">
+      <span *ngIf="page?.data?.title2?.text; else newTitle">{{page?.data?.title2?.text}}
+      </span>
+      </div>
+      <div class="title-description" (click)="loadForm('multi-line-text', 'description2', $event)">
+        <span *ngIf="page?.data?.description2?.text; else newDescription">{{page?.data?.description2?.text}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ce-image-wrapper1">
+    <div class="img1-container" (click)="loadForm('image-form', 'backgroundImage1')">
+      <div class="image1" *ngIf="page?.data?.backgroundImage1; else newBgImage"
+           [style.backgroundImage]="page?.data?.backgroundImage1?.imageurl ? 'url(' + page?.data?.backgroundImage1?.imageurl  + ')' : ''"></div>
+    </div>
+    <div class="img2-container" (click)="loadForm('image-form', 'backgroundImage2')">
+      <div class="image2" *ngIf="page?.data?.backgroundImage2; else newBgImage2"
+           [style.backgroundImage]="page?.data?.backgroundImage2?.imageurl ? 'url(' + page?.data?.backgroundImage2?.imageurl  + ')' : ''"></div>
+    </div>
+  </div>
+
+  <div class="ce-image-wrapper2">
+    <div class="img3-container" (click)="loadForm('image-form', 'backgroundImage3')">
+      <div class="image3" *ngIf="page?.data?.backgroundImage3; else newBgImage3"
+           [style.backgroundImage]="page?.data?.backgroundImage3?.imageurl ? 'url(' + page?.data?.backgroundImage3?.imageurl  + ')' : ''"></div>
+    </div>
+    <div class="img4-container" (click)="loadForm('image-form', 'backgroundImage4')">
+      <div class="image4" *ngIf="page?.data?.backgroundImage4; else newBgImage4"
+           [style.backgroundImage]="page?.data?.backgroundImage4?.imageurl ? 'url(' + page?.data?.backgroundImage4?.imageurl  + ')' : ''"></div>
+    </div>
+    <div class="ce-wrapper-right">
+      <div class="ce-title" (click)="loadForm('single-line-text', 'title', $event)">
+        <span *ngIf="page?.data?.title?.text; else newCeTitle">{{page?.data?.title?.text}}</span>
+      </div>
+      <div class="ce-line"></div>
+      <div class="ce-highlights" (click)="loadForm('multi-line-text', 'description', $event)">
+        <span *ngIf="page?.data?.description; else newHighlights">{{page?.data?.description?.text}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="title-bottom">
+    <div class="title1">
+      <div class="title-name" (click)="loadForm('single-line-text', 'title3', $event)">
+      <span *ngIf="page?.data?.title3?.text; else newTitle">{{page?.data?.title3?.text}}
+      </span>
+      </div>
+      <div class="title-description" (click)="loadForm('multi-line-text', 'description3', $event)">
+        <span *ngIf="page?.data?.description3?.text; else newDescription">{{page?.data?.description3?.text}}</span>
+      </div>
+    </div>
+    <div class="title2">
+      <div class="title-name" (click)="loadForm('single-line-text', 'title4', $event)">
+      <span *ngIf="page?.data?.title4?.text; else newTitle">{{page?.data?.title4?.text}}
+      </span>
+      </div>
+      <div class="title-description" (click)="loadForm('multi-line-text', 'description4', $event)">
+        <span *ngIf="page?.data?.description4?.text; else newDescription">{{page?.data?.description4?.text}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ce1-footer">
+    <div class="ce1-footer-left">
+      <span><b>{{pageNumber * 2 }}</b> | {{playBook.title}} | Q{{playBook.quarter}}-{{playBook.year}} </span>
+    </div>
+    <div class="ce1-footer-right">
+      <span>Q{{playBook.quarter}}-{{playBook.year}} | {{playBook.title}} | <b>{{pageNumber * 2 + 1 }}</b></span>
+    </div>
+  </div>
+  <div class="border-overlay"></div>
+</div>
+
+<ng-template #newTitle>TITLE HERE</ng-template>
+<ng-template #newCeTitle>CORPORATE EVENTS</ng-template>
+<ng-template #newHighlights>
+  Almost nothing works the first time it's attempted. Just because
+  what you're doing does not seem to be working, doesn't mean
+  it won't work. It just means that it might not work the way you're
+  doing it. You can't live your life for others.
+</ng-template>
+<ng-template #newDescription>
+  Et aut rempore vit hitatur
+  estrum quostrumet, idis del
+  maximi consequi.
+</ng-template>
+<ng-template #newBgImage>
+  <div class="image1" style="background-image: url('app/assets/images/playbooks/corporateevent1.jpg')"></div>
+</ng-template>
+
+<ng-template #newBgImage2>
+  <div class="image2" style="background-image: url('app/assets/images/playbooks/corporate_event_2.jpg')"></div>
+</ng-template>
+
+<ng-template #newBgImage3>
+  <div class=" image3 " style="background-image: url('app/assets/images/playbooks/corpotate_event_3.jpg')"></div>
+</ng-template>
+
+<ng-template #newBgImage4>
+  <div class="image4 " style="background-image: url('app/assets/images/playbooks/corporate_event_4.jpg')"></div>
+</ng-template>
+
+
+

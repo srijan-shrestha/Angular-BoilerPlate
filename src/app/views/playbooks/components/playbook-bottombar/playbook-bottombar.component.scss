@@ -1,0 +1,143 @@
+$pageWidth: 336mm;
+$pageHeight: 436mm;
+// $pageWidth: 235mm;
+// $pageHeight: 252mm;
+
+::ng-deep .playbookpreview-model-size .modal-content {
+  //width: 100%;
+  border: none;
+  //left: 10%;
+}
+
+//
+::ng-deep .playbookpreview-model-size .modal-body {
+  padding: 0;
+}
+
+//::ng-deep .playbookpreview-model-size .playbook__page {
+//  border: none;
+//  height: 297mm * .70;
+//  width: 215mm * 2 * .70;
+//}
+
+// ::ng-deep .playbookpreview-model-size .playbook__page {
+//   // $scale: .65;
+//   // $pageWidth: 235mm;
+//   // $pageHeight: 252mm;
+//   $scale: .5;
+//   $pageWidth: 336mm;
+//   $pageHeight: 436mm;
+//   height: $pageHeight*$scale;
+//   width: $pageWidth*2*$scale;
+//   border: none;
+
+//   &--single {
+//     width: $pageWidth*1*$scale;
+
+//     .playbook__page-inner {
+//       width: $pageWidth;
+//     }
+
+//   }
+
+//   &-scale {
+//     transform: scale($scale);
+//     transform-origin: 0 0;
+//   }
+
+//   &-inner {
+//     height: $pageHeight;
+//     width: $pageWidth*2;
+//   }
+// }
+
+@media only screen and (max-width: 1200px) and (min-width: 992px) {
+  ::ng-deep .playbookpreview-model-size .playbook__page {
+    // $scale: .65;
+    // $pageWidth: 235mm;
+    // $pageHeight: 252mm;
+    $scale: .50;
+    $pageWidth: 336mm;
+    $pageHeight: 436mm;
+    height: $pageHeight*$scale;
+    width: $pageWidth*1*$scale;
+    border: none;
+
+    &--single {
+      width: $pageWidth*1*$scale;
+
+      .playbook__page-inner {
+        width: $pageWidth*$scale;
+      }
+
+    }
+
+    &-scale {
+      transform: scale($scale);
+      transform-origin: 0 0;
+    }
+
+    &-inner {
+      height: $pageHeight;
+      width: $pageWidth;
+    }
+  }
+}
+@media only screen and (min-width: 1200px) {
+  ::ng-deep .playbookpreview-model-size .playbook__page {
+    // $scale: .65;
+    // $pageWidth: 235mm;
+    // $pageHeight: 252mm;
+    $scale: .5;
+    $pageWidth: 336mm;
+    $pageHeight: 436mm;
+    height: $pageHeight*$scale;
+    width: $pageWidth*2*$scale;
+    border: none;
+
+    &--single {
+      width: $pageWidth*1*$scale;
+
+      .playbook__page-inner {
+        width: $pageWidth;
+      }
+
+    }
+
+    &-scale {
+      transform: scale($scale);
+      transform-origin: 0 0;
+    }
+
+    &-inner {
+      height: $pageHeight;
+      width: $pageWidth*1.8;
+    }
+  }
+}
+
+
+::ng-deep .playbookpreview-model-size .playbook__page-container {
+  overflow: hidden;
+}
+
+//::ng-deep .playbookpreview-model-size .playbook__page-inner {
+//  width: 403mm;
+//}
+
+//::ng-deep .playbookpreview-model-size .playbook__page--single .playbook__page-inner {
+//  width: 210mm;
+//}
+::ng-deep .cultural-photos__upload-container {
+  margin: 1rem auto;
+}
+
+.hide-show {
+  color: #fff;
+  letter-spacing: 0.636364px;
+  font-weight: bold;
+  font-size: 13px;
+  position: relative;
+  top: 3px;
+  left: -9px;
+}

@@ -1,0 +1,51 @@
+.rating-box{
+  width: 100%;
+  padding-top: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  &__rounded-answer-box{
+    background-color: rgb(233, 218, 218);
+    border-radius: 5px;
+    padding: 0.9rem;
+  }
+}
+
+.circle{
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(99, 99, 99);
+  border-radius: 50%;
+  height: 34px;
+  width: 34px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__selected{
+    background-color: rgb(243, 146, 0);
+    color: white;
+    border: none;
+  }
+}
+
+.rating-text{
+  color: #A19FAC;
+}
+
+@media screen and (max-width: 1566px) {
+  .rating-box{
+    // justify-content: flex-start;
+  }
+  .circle{
+    height: 24px;
+    width: 24px;
+  }
+
+}
+
+@media screen and (max-width: 1166px) {
+  .rating-box{
+    justify-content: flex-start;
+  }
+}

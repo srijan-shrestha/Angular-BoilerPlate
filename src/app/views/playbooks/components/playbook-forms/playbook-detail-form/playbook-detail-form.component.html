@@ -1,0 +1,16 @@
+<div [formGroup]="form">
+  <div class="container">
+    <div class="my-2">
+      <label for="title">
+        Playbook Title
+      </label>
+      <app-input id="title" formControlName="title"></app-input>
+    </div>
+
+    <div class="my-2 text-right ">
+      <app-button type="link" (click)="cancel()" class="cancel-btn">Cancel</app-button>
+      <app-button (click)="save()" class="save-btn">Save</app-button>
+    </div>
+  </div>
+
+</div>

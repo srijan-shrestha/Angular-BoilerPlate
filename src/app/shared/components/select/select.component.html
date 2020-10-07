@@ -1,0 +1,19 @@
+<select 
+    [(ngModel)]="inputValue"
+    [class.form-control--invalid]="control.invalid && control.touched"
+    [ngClass]="'custom-select-'+ size"
+    (blur)="onBlur()"
+    (change)="onChange($event)"
+    [attr.disabled]="disabled ? '' : null"
+    class="custom-select" >
+    <option value=""> {{placeholder}}</option>
+   <ng-content></ng-content>
+</select>
+<div *ngIf="control.invalid" class="invalid-feedback text-left">
+    <span *ngIf="control.errors?.required">
+        This field is required.
+    </span>
+    <span *ngIf="control.errors?.fieldError && !(control.errors?.required || control.errors?.minlength)">
+        {{control.errors.fieldError}}
+    </span>
+</div>

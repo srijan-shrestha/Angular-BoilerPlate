@@ -1,0 +1,8 @@
+<div class="progress-bar">
+  <ng-container [ngSwitch]="true">
+    <div *ngSwitchCase="password !== undefined" class="progress-bar__slider"
+         [style.width]="(value * 25 || (password.length && 1) * 25) + '%'"
+         [style.background]="getMeterFillColor(prevPasswordStrength)"></div>
+    <div *ngSwitchDefault class="progress-bar__slider" [style.width]="value + '%'"></div>
+  </ng-container>
+</div>

@@ -1,0 +1,155 @@
+<div class="grw-bg-container" (click)="loadForm('image-form', 'backgroundImage2')">
+  <div class="bg-img"
+       [style.backgroundImage]="page?.data?.backgroundImage2?.imageurl ? 'url(' + page?.data?.backgroundImage2?.imageurl  + ')' : ''">
+  </div>
+  <div class="page-tag">STRATEGY</div>
+  <div class="title" (click)="loadForm('single-line-text', 'title', $event)">
+    <span class="newTitle" *ngIf="page?.data?.title?.text; else newTitle">{{ page?.data?.title?.text }}</span>
+  </div>
+
+  <div class="g-first">
+    <div class="g-title" (click)="loadForm('single-line-text', 'future', $event)">
+      <span *ngIf="page?.data?.future?.text; else newTitle1">{{ page?.data?.future?.text }}</span>
+    </div>
+    <div class="g-description" (click)="loadForm('multi-line-text', 'fdescription', $event)">
+      <span *ngIf="page?.data?.fdescription?.text; else futureDescription">{{ page?.data?.fdescription?.text }}</span>
+    </div>
+  </div>
+
+  <div class="g-second">
+    <div class="g-title" (click)="loadForm('single-line-text', 'existing', $event)">
+      <span *ngIf="page?.data?.existing?.text; else newTitle2">{{ page?.data?.existing?.text }}</span>
+    </div>
+    <div class="g-description" (click)="loadForm('multi-line-text', 'edescription', $event)">
+      <span *ngIf="page?.data?.edescription?.text; else futureDescription">{{ page?.data?.edescription?.text }}</span>
+    </div>
+  </div>
+
+  <div class="img1-container">
+    <div class="g-img1" style="background-image: url('app/assets/images/playbook/growth_graph.svg')"></div>
+    <div class="graph-title gt-1" (click)="loadForm('single-line-text', 'gt1', $event)">
+      <span *ngIf="page?.data?.gt1?.text; else newGraphTitle">{{page?.data?.gt1?.text}}</span>
+    </div>
+    <div class="graph-title gt-2" (click)="loadForm('single-line-text', 'gt2', $event)">
+      <span *ngIf="page?.data?.gt2?.text; else newGraphTitle">{{page?.data?.gt2?.text}}</span>
+    </div>
+    <div class="graph-title gt-3" (click)="loadForm('single-line-text', 'gt3', $event)">
+      <span *ngIf="page?.data?.gt3?.text; else newGraphTitle">{{page?.data?.gt3?.text}}</span>
+    </div>
+    <div class="graph-title gt-4" (click)="loadForm('single-line-text', 'gt4', $event)">
+      <span *ngIf="page?.data?.gt4?.text; else newGraphTitle">{{page?.data?.gt4?.text}}</span>
+    </div>
+    <div class="graph-title gt-5" (click)="loadForm('single-line-text', 'gt5', $event)">
+      <span *ngIf="page?.data?.gt5?.text; else newGraphTitle">{{page?.data?.gt5?.text}}</span>
+    </div>
+    <div class="graph-number graph-num-1" (click)="loadForm('single-line-text', 'gn1', $event)">
+      <span *ngIf="page?.data?.gn1?.text; else newGraphNumber">{{page?.data?.gn1?.text}}</span>
+    </div>
+    <div class="graph-number graph-num-2" (click)="loadForm('single-line-text', 'gn2', $event)">
+      <span *ngIf="page?.data?.gn2?.text; else newGraphNumber">{{page?.data?.gn2?.text}}</span>
+    </div>
+    <div class="graph-number graph-num-3" (click)="loadForm('single-line-text', 'gn3', $event)">
+      <span *ngIf="page?.data?.gn3?.text; else newGraphNumber">{{page?.data?.gn3?.text}}</span>
+    </div>
+    <div class="graph-number graph-num-4" (click)="loadForm('single-line-text', 'gn4', $event)">
+      <span *ngIf="page?.data?.gn4?.text; else newGraphNumber">{{page?.data?.gn4?.text}}</span>
+    </div>
+    <div class="graph-number graph-num-5" (click)="loadForm('single-line-text', 'gn5', $event)">
+      <span *ngIf="page?.data?.gn5?.text; else newGraphNumber">{{page?.data?.gn5?.text}}</span>
+    </div>
+  </div>
+
+  <div class="img2-container">
+    <div class="g-img2" style="background-image: url('app/assets/images/playbook/growthchart1.png')"></div>
+    <div class="future-graph-tag tag1">A</div>
+    <div class="future-graph-tag tag2">B</div>
+    <div class="future-graph-tag tag3">C</div>
+    <div class="future-graph-tag tag4">D</div>
+    <div class="future-graph-tag tag5">E</div>
+
+    <div class="future-chart-info chart-info1">
+      <div class="future-chart-info-title" (click)="loadForm('single-line-text', 'fcTitle1', $event)">
+        <span *ngIf="page?.data?.fcTitle1?.text; else newGraphTitle">{{page?.data?.fcTitle1?.text}}</span>
+      </div>
+      <div class="future-chart-info-content" (click)="loadForm('multi-line-text', 'fcInfo1', $event)">
+        <span *ngIf="page?.data?.fcInfo1?.text; else newGraphInfo">{{page?.data?.fcInfo1?.text}}</span>
+      </div>
+    </div>
+
+    <div class="future-chart-info chart-info2">
+      <div class="future-chart-info-title" (click)="loadForm('single-line-text', 'fcTitle2', $event)">
+        <span *ngIf="page?.data?.fcTitle2?.text; else newGraphTitle">{{page?.data?.fcTitle2?.text}}</span>
+      </div>
+      <div class="future-chart-info-content" (click)="loadForm('multi-line-text', 'fcInfo2', $event)">
+        <span *ngIf="page?.data?.fcInfo2?.text; else newGraphInfo">{{page?.data?.fcInfo2?.text}}</span>
+      </div>
+    </div>
+
+    <div class="future-chart-info chart-info3">
+      <div class="future-chart-info-title" (click)="loadForm('single-line-text', 'fcTitle3', $event)">
+        <span *ngIf="page?.data?.fcTitle3?.text; else newGraphTitle">{{page?.data?.fcTitle3?.text}}</span>
+      </div>
+      <div class="future-chart-info-content" (click)="loadForm('multi-line-text', 'fcInfo3', $event)">
+        <span *ngIf="page?.data?.fcInfo3?.text; else newGraphInfo">{{page?.data?.fcInfo3?.text}}</span>
+      </div>
+    </div>
+
+    <div class="future-chart-info chart-info4">
+      <div class="future-chart-info-title" (click)="loadForm('single-line-text', 'fcTitle4', $event)">
+        <span *ngIf="page?.data?.fcTitle4?.text; else newGraphTitle">{{page?.data?.fcTitle4?.text}}</span>
+      </div>
+      <div class="future-chart-info-content" (click)="loadForm('multi-line-text', 'fcInfo4', $event)">
+        <span *ngIf="page?.data?.fcInfo4?.text; else newGraphInfo">{{page?.data?.fcInfo4?.text}}</span>
+      </div>
+    </div>
+
+    <div class="future-chart-info chart-info5">
+      <div class="future-chart-info-title" (click)="loadForm('single-line-text', 'fcTitle5', $event)">
+        <span *ngIf="page?.data?.fcTitle5?.text; else newGraphTitle">{{page?.data?.fcTitle5?.text}}</span>
+      </div>
+      <div class="future-chart-info-content" (click)="loadForm('multi-line-text', 'fcInfo5', $event)">
+        <span *ngIf="page?.data?.fcInfo5?.text; else newGraphInfo">{{page?.data?.fcInfo5?.text}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="growth-footer">
+    <div class="growth-footer-left">
+      <span><b>{{pageNumber * 2 }}</b> | {{playBook.title}} | Q{{playBook.quarter}}-{{playBook.year}}</span>
+    </div>
+    <div class="growth-footer-right">
+      <span>Q{{playBook.quarter}}-{{playBook.year}} | {{playBook.title}} | <b>{{pageNumber * 2 + 1 }}</b></span>
+    </div>
+  </div>
+  <div class="border-overlay"></div>
+</div>
+
+<ng-template #newGraphTitle>LIGULA ELIT ETIAM</ng-template>
+<ng-template #newGraphNumber>2,000</ng-template>
+<ng-template #newGraphInfo>
+  que et velestist que
+  non nonseque nim
+  nis inis aut qui corem
+  volesti dolore cumque
+  ab id eum re re dolorio
+  nserrum aut.
+</ng-template>
+
+<ng-template #newTitle>
+  <span class="newTitle">growth</span>
+</ng-template>
+<ng-template #newTitle1>
+  <div class="newTitle1">future</div>
+</ng-template>
+<ng-template #newTitle2>
+  <div class="newTitle1">existing</div>
+</ng-template>
+<ng-template #futureDescription>
+  Lmquam, con et am, sequunt aliqui blant.Dus dolor sapiet
+  rehent delest qui nobitatem quodi cones essuntiones ped
+  moloreperrum que quiat laudignimpos min pro modigen
+  imoluptat. Ecero explici magnimp eriasimus mosanda num
+  laboreic te voluptat audae delessi nvent.
+</ng-template>
+
+

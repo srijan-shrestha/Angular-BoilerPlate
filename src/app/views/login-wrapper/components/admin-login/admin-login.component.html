@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row page-login">
+    <div class="col p-3">
+      <a routerLink="/" class="page-login__logo">Logo</a>
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-4 col-xl-4">
+          <div class="">
+            <h1 class="h2 text-center">Sign into your account</h1>
+
+            <form class="my-4" [formGroup]="adminLoginForm" (ngSubmit)="adminLoginFormSubmit()">
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col">
+                    <app-input type="email" formControlName="email" placeholder="you@company.com" size="lg"></app-input>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col">
+                    <app-input type="password" formControlName="password" placeholder="password" size="lg" [disableValidation]="true"></app-input>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <app-button type="primary" [block]="true" size="lg" [disabled]="adminLoginForm.invalid">Sign In</app-button>
+              </div>
+
+              <div class="form-group">
+                <div class="custom-control custom-checkbox checkbox-left">
+                  <input type="checkbox" class="custom-control-input" id="userLoginRememberMe" [formControl]="rememberMe">
+                  <label class="custom-control-label" for="userLoginRememberMe">Remember Me</label>
+                </div>
+              </div>
+    
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

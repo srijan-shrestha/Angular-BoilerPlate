@@ -1,0 +1,114 @@
+<div class="structure-column"
+  [class.structure-column--light]="background==='light'"
+  [class.structure-column--dark]="background==='dark'"
+>
+  <div class="structure-column__header mb-2">Team Manager</div>
+  <div class="structure-column__content" *ngIf="departmentLeader" id="team-leader-content">
+    <div class="structure-column__hline1" *ngIf="parentY && currentHeaderY" [style.top]="(parentY-1) + 'px'"></div>
+    <div class="structure-column__vline1" *ngIf="parentY && currentHeaderY" [style.top]="((parentY > currentHeaderY ? currentHeaderY : parentY) - 1) + 'px'" [style.height]="((parentY > currentHeaderY ? parentY - currentHeaderY : currentHeaderY - parentY) + 1) + 'px'"></div>
+    <div class="structure-column__hline2" *ngIf="parentY && currentHeaderY" [style.top]="(currentHeaderY-1) + 'px'"></div>
+    <div *ngIf="parentY" [style.paddingTop]="(parentY-120) + 'px'" >
+      <div class="my-2" *ngFor="let team of teamAndTeamLeaders"
+           (drop)="dropped(team.team, team.teamLeaders, null)"
+           (dragover)="allowDrop($event, team.team.id)"
+           (dragleave)="dragLeft($event, team.team.id)"
+      >
+        <div class="user-card__btn">
+          <button #groupHeader (click)="toggle(team.team.id, groupHeader)"
+                  [attr.data-id]="team.team.id" [class.structure-column__card-header--open]="open[team.team.id]"
+                  class="structure-column__card-header py-2 mb-4"
+                  type="button">
+            {{ team.team.name }}
+            <span (click)="OnOrgUnitDeleteBtnClick($event, team.team.id)" *ngIf="open[team.team.id]" class="structure-column__delete">
+                 <div class="btn btn-light text-uppercase edit-btn structure-column__delete-btn"> Remove</div>
+            </span>
+          </button>
+        </div>
+        <div [ngbCollapse]="!open[team.team.id]">
+          <div class="my-1" *ngFor="let teamLeader of team.teamLeaders">
+            <div class="position-relative">
+              <div class="user-card-line user-card--right" *ngIf="teamLeader.id === selected?.id && showNextArrow"></div>
+              <div class="user-card-cross-icon user-card--right" *ngIf="teamLeader.id === selected?.id && showNextArrow">
+                <app-icon type="gray" icon="dodge-blue-circle-cross" (click)='onCardMemberDeleteBtnClick(teamLeader?.user?.id)'></app-icon>
+              </div>
+              <div #userCard [attr.data-id]="teamLeader?.id" class="user-card__items mb-4"
+                   draggable="true"
+                   (dragstart)="dragStartEvent($event, teamLeader)"
+                   (dragend)="dragEndEvent($event)">
+                <app-user-card [active]="teamLeader.id === selected?.id" [user]="teamLeader.user"
+                               (click)="onSelected(team.team, team.teamLeaders, teamLeader, userCard, groupHeader)"
+                               (onCardMemberDeleteBtnClicked)='onCardMemberDeleteBtnClick(teamLeader?.user?.id)'
+                               [dragging]="dragging"
+                               [draggedId] = 'draggedId'
+                ></app-user-card>
+              </div>
+            </div>
+          </div>
+          <div class="d-none move-here-text team-move-here-line pb-4" [id]="'team-' + team.team.id + '-move-here-line'"
+               style="pointer-events: none">
+            <div class="d-flex justify-content-center mt-5">
+              <div class="leadership-move-line move-here mr-3"></div>
+              <div class="text-primary">MOVE HERE</div>
+              <div class="leadership-move-line move-here ml-3"></div>
+            </div>
+          </div>
+          <div class="mb-4 user-card__btn">
+            <app-user-card #newUserCard (click)="allowAddUser(team.team, team.teamLeaders, newUserCard)"
+                           [active]="selectedNewUserCard===newUserCard"
+                           [emptyUser]="true"></app-user-card>
+          </div>
+          <!-- <div class="my-1" *ngIf="!team.teamLeaders?.length">No users found.</div> -->
+        </div>
+      </div>
+    </div>
+<!--
+    P > {{parentY}} <br>
+    C > {{currentHeaderY}}<br>
+    S > {{currentY}}<br> -->
+    <!-- {{selected | json}} -->
+
+    <div>
+      <!-- {{selectedNewUserCard | json}} -->
+    </div>
+
+
+    <!-- <div class="my-4" *ngFor="let departmentGroup of sortedDepartments">
+      <button #groupHeader type="button" class="structure-column__card-header" [class.structure-column__card-header--open]="!departmentGroup.collapse" (click)="departmentGroup.collapse = !departmentGroup.collapse">
+        {{ departmentGroup.department.name }}
+      </button>
+      <div [ngbCollapse]="departmentGroup.collapse">
+        <div class="my-1" *ngFor="let departmentLeader of departmentGroup.departmentLeaders">
+          <div class="position-relative" (mouseenter)="showCardHoverOptions(departmentLeader)" (mouseleave)="hideCardHoverOptions()">
+            <div class="user-card-line user-card--right" *ngIf="departmentLeader === selected"></div>
+            <app-user-card [active]="departmentLeader === selected" [user]="departmentLeader.user" (click)="onSelected(departmentLeader, $event, groupHeader)"></app-user-card>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="user-card__btn">
+      <app-button [block]="true" size='fullwidth' type="light" (click)="openModal()" *ngIf="departmentLeader">CREATE TEAM
+        <app-icon type="gray" icon="downArrow" class="float-right" size="sm"></app-icon>
+      </app-button>
+    </div>
+  </div>
+
+</div>
+<ng-template #addTeam let-modal>
+  <div>
+    <form [formGroup]="teamForm">
+      <div class="modal-header">
+        <h3 class="modal-title font-weight-normal"><strong> Add Team </strong> </h3>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body py-0">
+        <app-input class="form-group" formControlName="teamName" placeholder="Team Name"></app-input>
+      </div>
+      <div class="modal-footer d-block">
+        <app-button [block]="true" (click)="onSubmit()">Submit</app-button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+

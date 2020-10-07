@@ -1,0 +1,11 @@
+<div class="img-container" (click)="loadForm('image-form', 'backgroundImage')">
+  <div class="bg-image">
+    <div class="image-background"
+         [style.backgroundImage]="page?.data?.backgroundImage?.imageurl ? 'url(' + page?.data?.backgroundImage?.imageurl  + ')' : ''"
+         *ngIf="page?.data?.backgroundImage; else newBgImage"></div>
+  </div>
+</div>
+
+<ng-template #newBgImage>
+  <div class="image-background" style="background-image: url('app/assets/images/playbook/back_cover.jpg')"></div>
+</ng-template>

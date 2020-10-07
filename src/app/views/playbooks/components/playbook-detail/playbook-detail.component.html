@@ -1,0 +1,52 @@
+<div class="playbook-detail">
+  <div>
+    <div class="text-center cover-picture">
+      <div class="playbook-cover active" [style.backgroundImage]="'url(' + data?.image  + ')'"></div>
+      <h6>Q{{ data?.quarter }}-{{ data?.year }}</h6>
+    </div>
+    <div>
+      <div class="small">
+        <div class="divider"></div>
+        <dl class="mb-0">
+          <div class="status-text-box">
+            <dt>
+              <span class="status-text">Status</span>
+              <p class="mt-0 status-percentage">{{ data?.completedPercentage || 50 }}%</p>
+              <app-progress-bar
+                value="{{ data?.completedPercentage || 50 }}"
+              ></app-progress-bar>
+            </dt>
+          </div>
+          <div class="status-tag">
+            <span *ngIf="data?.completedPercentage !== 100" class="text-uppercase">Draft</span>
+          </div>
+        </dl>
+        <div class="divider mt-0"></div>
+        <dl>
+          <dt class="pb-2">Title</dt>
+          <dd>{{ data?.title || 'Untitled'}}</dd>
+        </dl>
+        <div class="divider"></div>
+        <dl>
+          <dt class="pb-2">Theme</dt>
+          <dd>{{ data?.theme }}</dd>
+        </dl>
+        <div class="divider"></div>
+        <dl>
+          <dt class="pb-2">Creation Date</dt>
+          <dd>{{ data?.createdAt | date: 'MMM dd, yyyy' }}</dd>
+        </dl>
+        <div class="divider"></div>
+        <dl>
+          <dt class="pb-2">Date Published</dt>
+          <dd>{{ data?.publishedAt | date:'MMM d, y  h:mm a' || "--" }}</dd>
+        </dl>
+        <div class="divider mb-0"></div>
+      </div>
+      <div class="float-right mt-2">
+        <app-button type="primary" size="md" (click)="updatePlaybook($event)">EDIT</app-button>
+        <!-- <app-button type="primary">PUBLISH</app-button> -->
+      </div>
+    </div>
+  </div>
+</div>

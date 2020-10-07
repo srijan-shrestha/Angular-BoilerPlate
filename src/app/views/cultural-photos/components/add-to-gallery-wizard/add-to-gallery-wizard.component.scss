@@ -1,0 +1,43 @@
+input[type="text"],
+select.form-control {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #FFFFFF;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0;
+  width: 80%;
+  color: white;
+}
+
+input[type="text"]:focus,
+select.form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.title {
+  margin-left: 38%;
+  padding-top: 2%;
+  font-weight: 300;
+}
+
+.btn-wizard{
+  border: 1px solid #FFFFFF;
+  height: 63px;
+  width: 71%;
+  background: transparent;
+  color: #FFFFFF;
+  font-weight: bold;
+  left: 17.64%;
+  right: 51.21%;
+  top: 29.8%;
+  bottom: 39.59%;
+  box-sizing: border-box;
+}
+
+
+
+.button-text{
+  margin-right: 67px;
+}

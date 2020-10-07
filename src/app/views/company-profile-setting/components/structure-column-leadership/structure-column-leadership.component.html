@@ -1,0 +1,54 @@
+<div class="structure-column"
+     [class.structure-column--light]="background==='light'"
+     [class.structure-column--dark]="background==='dark'"
+     (drop)="dropped()"
+     (dragover)="allowDrop($event)"
+>
+  <div class="structure-column__header">Leadership</div>
+  <div class="structure-column__content" id="leadership-content">
+    <div class="my-4" *ngFor="let leadership of leadershipList">
+      <div class="position-relative"
+           (mouseenter)="showCardHoverOptions(leadership)"
+           (mouseleave)="hideCardHoverOptions()"
+      >
+        <div class="user-card-line user-card--right" *ngIf="leadership?.id === selected?.id && showNextArrow"></div>
+        <div class="user-card-cross-icon user-card--right" *ngIf="leadership?.id === selected?.id && showNextArrow">
+          <app-icon type="gray" icon="dodge-blue-circle-cross" (click)='onCardMemberDeleteBtnClick(leadership?.leader?.id)'></app-icon>
+        </div>
+        <div #cardElem [attr.data-id]="leadership?.id" class="user-card__items"
+             draggable="true"
+             (dragstart)="dragStartEvent($event, leadership)"
+             (dragend)="dragEndEvent($event)">
+          <app-user-card [active]="leadership?.id === selected?.id" [user]="leadership.leader"
+                         (click)="onLeadershipSelected(leadership, cardElem)"
+                         [dragging]="dragging"
+                         [draggedId] = 'draggedId'
+                         (onCardMemberDeleteBtnClicked)="onCardMemberDeleteBtnClick(leadership?.leader?.id)"
+          ></app-user-card>
+        </div>
+      </div>
+      <div *ngFor="let assistant of leadership.assistants">
+        <div class="ml-4 mr-n4 my-3 user-card__items">
+          <app-user-card [user]="assistant.user" *ngIf="assistant.user" (click)="allowAddAssistant(null, leadership)">
+          </app-user-card>
+          <!-- <app-user-card [emptyUser]="true" *ngIf="!assistant.user"></app-user-card> -->
+        </div>
+      </div>
+      <div class="ml-4 mr-n4 my-3 user-card__btn" *ngIf="addAssistantPlaceholder[leadership.id]">
+        <app-user-card #newAssistantCard [emptyUser]="true" (click)="allowAddAssistant(newAssistantCard, leadership)"
+                       [active]="selectedNewUserCard===newAssistantCard"></app-user-card>
+      </div>
+    </div>
+    <div class="d-none move-here-text pb-4" id="leadership-move-here-line" style="pointer-events:none;">
+      <div class="d-flex justify-content-center mt-5">
+        <div class="leadership-move-line move-here mr-3"></div>
+        <div class="text-primary">MOVE HERE</div>
+        <div class="leadership-move-line move-here ml-3"></div>
+      </div>
+    </div>
+    <div class="user-card__btn">
+      <app-user-card #newUserCard [emptyUser]="true" (click)="allowAddUser(newUserCard)"
+                     [active]="selectedNewUserCard===newUserCard"></app-user-card>
+    </div>
+  </div>
+</div>

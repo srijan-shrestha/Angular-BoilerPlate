@@ -1,0 +1,115 @@
+<div class="img-container" (click)="loadForm('image-form', 'backgroundImage')">
+  <div class="bg-img" *ngIf="page?.data?.backgroundImage; else newBgImage"
+       [style.backgroundImage]="page?.data?.backgroundImage?.imageurl ? 'url(' + page?.data?.backgroundImage?.imageurl  + ')' : ''"></div>
+</div>
+<div class="subtitle" (click)="loadForm('single-line-text', 'subTitle')">
+  <span *ngIf="page?.data?.subTitle?.text; else newImageSubTitle">{{ page?.data?.subTitle?.text }}</span>
+</div>
+<div class="title" (click)="loadForm('single-line-text', 'title')">
+  <span *ngIf="title; else newImageTitle">{{ title }} ye rata makai</span>
+</div>
+<div class="initiative1">
+  <div class="icon1-container" (click)="loadForm('image-form', 'icon1')">
+    <div class="icon" *ngIf="page?.data?.icon1; else newIcon1"
+         [style.backgroundImage]="page?.data?.icon1?.imageurl ? 'url(' + page?.data?.icon1?.imageurl  + ')' : ''"></div>
+  </div>
+  <div class="title1" (click)="loadForm('single-line-text', 'title1')">
+    <span *ngIf="page?.data?.title; else newTitle">{{ page?.data?.title }}</span>
+  </div>
+  <div class="headline1" (click)="loadForm('single-line-text', 'headline1')">
+    <span *ngIf="page?.data?.headline1?.text; else newSubTitle">{{ page?.data?.headline1?.text }}</span>
+  </div>
+  <div class="description1" (click)="loadForm('multi-line-text', 'description1')">
+    <span *ngIf="page?.data?.bullet; else newDescription">{{ page?.data?.bullet}}</span>
+  </div>
+</div>
+<div class="initiative2">
+  <div class="icon2-container" (click)="loadForm('image-form', 'icon2')">
+    <div class="icon" *ngIf="page?.data?.icon2; else newIcon2"
+         [style.backgroundImage]="page?.data?.icon2?.imageurl ? 'url(' + page?.data?.icon2?.imageurl  + ')' : ''"></div>
+  </div>
+  <div class="title2" (click)="loadForm('single-line-text', 'title2')">
+    <span *ngIf="page?.data?.title; else newTitle">{{ page?.data?.title }}</span>
+  </div>
+  <div class="headline2" (click)="loadForm('single-line-text', 'headline2')">
+    <span *ngIf="page?.data?.headline2?.text; else newSubTitle">{{ page?.data?.headline2?.text }}</span>
+  </div>
+  <div class="description2" (click)="loadForm('multi-line-text', 'description2')">
+    <span *ngIf="page?.data?.description2?.text; else newDescription">{{ page?.data?.description2?.text }}</span>
+  </div>
+</div>
+
+<div class="initiative3">
+  <div class="icon3-container" (click)="loadForm('image-form', 'icon3')">
+    <div class="icon" *ngIf="page?.data?.icon3; else newIcon3"
+         [style.backgroundImage]="page?.data?.icon3?.imageurl ? 'url(' + page?.data?.icon3?.imageurl  + ')' : ''"></div>
+  </div>
+  <div class="title3" (click)="loadForm('single-line-text', 'title3')">
+    <span *ngIf="page?.data?.title; else newTitle">{{ page?.data?.title }}</span>
+  </div>
+  <div class="headline3" (click)="loadForm('single-line-text', 'headline3')">
+    <span *ngIf="page?.data?.headline3?.text; else newSubTitle">{{ page?.data?.headline3?.text }}</span>
+  </div>
+  <div class="description3" (click)="loadForm('multi-line-text', 'description3')">
+    <span *ngIf="page?.data?.description3?.text; else newDescription">{{ page?.data?.description3?.text }}</span>
+  </div>
+</div>
+<div class="initiative4">
+  <div class="title4" (click)="loadForm('single-line-text', 'title4')">
+    <span *ngIf="page?.data?.title; else newImageHeadline">{{ page?.data?.title }}</span>
+  </div>
+  <div class="description4" (click)="loadForm('multi-line-text', 'description4')">
+    <span *ngIf="page?.data?.description4?.text; else newImageHeadlineDesc">{{ page?.data?.description4?.text }}</span>
+  </div>
+</div>
+
+<div class="ti1-footer">
+  <div class="ti1-footer-left">
+    <span><b>{{pageNumber * 2 }}</b> | {{playBook.title}} | Q{{playBook.quarter}}-{{playBook.year}}</span>
+  </div>
+  <div class="ti1-footer-right">
+    <span>Q{{playBook.quarter}}-{{playBook.year}} | {{playBook.title}} | <b>{{pageNumber * 2 + 1 }}</b></span>
+  </div>
+</div>
+<div class="border-overlay"></div>
+
+<ng-template #newImageTitle>{{ title }}</ng-template>
+<ng-template #newImageSubTitle>TOP INITIATIVES</ng-template>
+
+<ng-template #newImageHeadline>HEADLINE GOES HERE</ng-template>
+<ng-template #newImageHeadlineDesc>
+  Nullam id dolor id nibh ultricies vehicula ut id elit. Sed
+  posuere consectetur est at lobortis. Donec id elit non mi
+  porta gravida at eget metus. Vivamus sagittis lacus vel
+  augue laoreet rutrum faucibus dolor auctor.
+</ng-template>
+
+<ng-template #newTitle>INITIATIVE TITLE</ng-template>
+<ng-template #newSubTitle>Ligula Elit Etiam diocum</ng-template>
+<ng-template #newDescription>
+  Lmquam, con et am, sequunt aliqui blant.Dus dolor sapiet rehent delest qui nobitatem quodi cones
+  essuntiones ped moloreperrum que quiat laudignimpos min pro modigen imoluptat. Ecero explici
+  magnimp eriasimus mosanda num laboreic te voluptat audae delessi nvent.
+  Invendae rumquosam atem es aliquos ex eum ipsapiciet explam asperi non rae. Nam net lam,
+  cullam uta nimpori orecepudit, omnis velit, net pe voluptaquos dolupid moluptati a cusam fugitiae.
+  Nam, estiand ernata doles destibus, te nam, simolendit et hiligendem eveliquis mincill anderae.
+</ng-template>
+
+<ng-template #newBgImage>
+  <div class="bg-img" style="background-image: url('app/assets/images/playbooks/background-ini.jpg')"></div>
+</ng-template>
+
+<ng-template #newIcon1>
+  <div class="icon" style="background-image: url('app/assets/images/playbooks/icon-image.jpg')"></div>
+</ng-template>
+
+<ng-template #newIcon2>
+  <div class="icon" style="background-image: url('app/assets/images/playbooks/icon-image.jpg')"></div>
+</ng-template>
+
+<ng-template #newIcon3>
+  <div class="icon" style="background-image: url('app/assets/images/playbooks/icon-image.jpg')"></div>
+</ng-template>
+
+
+

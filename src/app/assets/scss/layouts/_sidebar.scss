@@ -1,0 +1,147 @@
+.sidebar {
+  $sidebar-dark-bg: var(--secondary);
+
+  $self: &;
+
+  width: $sidebar-width;
+  position: fixed;
+  left: 0;
+  top: $header-height;
+  height: calc(100vh - #{$header-height});
+  z-index: 10;
+  background: $white;
+
+
+  &--sm {
+    width: $sidebar-width-sm;
+  }
+
+  &--lg {
+    width: $sidebar-width-lg;
+  }
+
+  &--dark {
+    background: $sidebar-dark-bg;
+    color: $white;
+    #{ $self }__toggle {
+      background: $sidebar-dark-bg;
+    }
+
+  }
+
+
+
+  &__toggle {
+    position: absolute;
+    height: 56px;
+    width: 18px;
+    background: $white;
+    top: 65px;
+    border-radius: 0px 8px 8px 0px;
+    left: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    &:before {
+      position: relative;
+      display: block;
+      content: "";
+      text-align: center;
+    }
+    ::ng-deep svg {
+      fill: #2F89FC;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #ececec;
+    box-sizing: border-box;
+    // box-shadow: 0 2px 10px rgba(0, 0, 0, 0.122651);
+    box-shadow: 4px 0px 20px rgba(153, 159, 183, 0.5);
+  }
+
+  &__scroller {
+    height: calc(100vh - #{$header-height});
+    overflow-y: auto;
+  }
+
+  &__nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+
+    li {
+      margin: 0;
+      line-height: $spacer*4;
+      font-size: $font-size-lg;
+
+      a {
+        color: $white;
+        display: block;
+        padding: 0 $spacer*2 0 $spacer*2;
+        font-weight: $font-weight-bold;
+        position: relative;
+
+        &:after {
+          position: absolute;
+          height: 60%;
+          top: 20%;
+          right: 0;
+          width: 5px;
+          content: '';
+          background: transparent;
+          transition: background-color 200ms;
+        }
+
+        &:hover {
+          text-decoration: none;
+          &:after {
+            background: $gray-500;
+          }
+
+        }
+
+        &.active {
+          &:after {
+            background: $gray-400;
+          }
+        }
+      }
+    }
+  }
+
+  &__nav-icon {
+    // width: 50px;
+    margin-right: $spacer;
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+  }
+
+
+  &--collapsed {
+     width: $sidebar-width-collapsed;
+    #{ $self }__toggle:before {
+      content: "";
+    }
+
+    .collapsed-d-none {
+      display: none;
+    }
+
+    #{ $self }__nav-text {
+      display: none;
+    }
+  }
+
+}
+
+@media only screen and (max-width: 850px) {
+  //.sidebar {
+  //  display: none;
+  //}
+}

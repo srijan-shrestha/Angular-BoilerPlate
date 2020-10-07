@@ -1,0 +1,21 @@
+
+// :host {
+//   background: blue;
+//   height: 100%;
+//   float: left;
+// }
+
+.dropdown-leadership{
+  float: right;
+  position: absolute;
+  top: 30%;
+  right: 5%;
+  margin-bottom: 5px !important;
+}
+
+.badge-light{
+  border-radius: 50%;
+}
+
+.dropdown-toggle:after { content: none }
+

@@ -1,0 +1,132 @@
+<div class="page-tag">OVERVIEW</div>
+<div class="mission-values-container">
+  <div class="mission">
+    <div class="logo-div">
+      <div class="image-wrapper" (click)="loadForm('image-form', 'missionStatementLogo')">
+        <div
+          [style.backgroundImage]="page?.data?.missionStatementLogo?.imageurl ? 'url(' + page?.data?.missionStatementLogo?.imageurl  + ')' : ''"
+          class="mv-image-background"
+          *ngIf="page?.data?.missionStatementLogo?.imageurl; else newMvLogo"></div>
+      </div>
+    </div>
+
+    <div class="mission-value-header">Mission Statement</div>
+
+    <div class="logo-div">
+      <div class="lineBreaker"></div>
+    </div>
+
+    <div (click)="loadForm('multi-line-text', 'missionStatement')" class="mission-text">
+      <div *ngIf="page?.data?.missionVision; else newMissionStatement">
+        <div [innerHTML]="page?.data?.missionVision"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="values">
+    <div class="logo-div">
+      <div class="image-wrapper"  (click)="loadForm('image-form', 'companyValuesLogo')">
+        <div
+          [style.backgroundImage]="page?.data?.companyValuesLogo?.imageurl ? 'url(' + page?.data?.companyValuesLogo?.imageurl  + ')' : ''"
+          class="mv-image-background"
+          *ngIf="page?.data?.companyValuesLogo?.imageurl; else newMvLogo"></div>
+      </div>
+    </div>
+    <div class="mission-value-header">COMPANY VALUES</div>
+
+    <div class="logo-div">
+      <div class="linebreaker"></div>
+    </div>
+    <!--    <div (click)="loadForm('values','companyValues')">Add company values</div>-->
+
+    <div class="values-data">
+      <div class="value-card">
+        <div class="value-card__image" (click)="loadForm('image-form','valueImg1')">
+          <div class="employee-image" [style.backgroundImage]="'url(' + page?.data?.valueImg1.imageurl  + ')'"
+               *ngIf="page?.data?.valueImg1; else newValuesImg"></div>
+        </div>
+        <div class="value-card__info">
+          <div class="info-title" (click)="loadForm('single-line-text','valueInfoTitle1')">
+            <span *ngIf="page?.data?.valueInfoTitle1; else newInfoTitle">{{page?.data?.valueInfoTitle1?.text}}</span>
+          </div>
+          <div class="info-content" (click)="loadForm('multi-line-text','valueInfoContent1')">
+            <span *ngIf="page?.data?.values; else newInfoContent" [innerHTML]="page?.data?.values"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="value-card">
+        <div class="value-card__image" (click)="loadForm('image-form','valueImg2')">
+          <div class="employee-image" [style.backgroundImage]="'url(' + page?.data?.valueImg2.imageurl  + ')'"
+               *ngIf="page?.data?.valueImg2; else newValuesImg"></div>
+        </div>
+        <div class="value-card__info">
+          <div class="info-title" (click)="loadForm('single-line-text','valueInfoTitle2')">
+            <span *ngIf="page?.data?.valueInfoTitle2; else newInfoTitle">{{page?.data?.valueInfoTitle2?.text}}</span>
+          </div>
+          <div class="info-content" (click)="loadForm('multi-line-text','valueInfoContent2')">
+            <span *ngIf="page?.data?.values; else newInfoContent" [innerHTML]="page?.data?.values"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="value-card">
+        <div class="value-card__image" (click)="loadForm('image-form','valueImg3')">
+          <div class="employee-image" [style.backgroundImage]="'url(' + page?.data?.valueImg3.imageurl  + ')'"
+               *ngIf="page?.data?.valueImg3; else newValuesImg"></div>
+        </div>
+        <div class="value-card__info">
+          <div class="info-title" (click)="loadForm('single-line-text','valueInfoTitle3')">
+            <span *ngIf="page?.data?.valueInfoTitle3; else newInfoTitle">{{page?.data?.valueInfoTitle3?.text}}</span>
+          </div>
+          <div class="info-content" (click)="loadForm('multi-line-text','valueInfoContent3')">
+            <span *ngIf="page?.data?.values; else newInfoContent" [innerHTML]="page?.data?.values"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="border-overlay"></div>
+</div>
+
+<div class="mission-statement-footer">
+  <div class="mission-statement-footer-left">
+    <span> <b> {{pageNumber * 2 }} </b>  | {{playBook.title}} | Q{{playBook.quarter}}-{{playBook.year}}</span>
+  </div>
+  <div class="mission-statement-footer-right">
+    <span>Q{{playBook.quarter}}-{{playBook.year}} | {{playBook.title}} | <b>{{pageNumber * 2 + 1 }}</b></span>
+  </div>
+</div>
+
+
+<ng-template #newMvLogo>
+  <div class="mv-image-background" style="background-image: url('app/assets/images/playbook/whatsnew4.png')"></div>
+</ng-template>
+
+<ng-template #newInfoTitle>Value Here</ng-template>
+
+<ng-template #newInfoContent>
+  Maecenas sed diam eget risus varius blandit sit amet non magna.
+</ng-template>
+
+<ng-template #newValuesImg>
+  <div class="employee-image" style="background-image: url('app/assets/images/playbooks/icon-image.jpg')"></div>
+</ng-template>
+
+<ng-template #newMissionStatement>
+  Nulla pellentesque nec nunc id commodo. Duis ultricies
+  auctor enim a cursus. Quisque venenatis, mi laoreet
+  pretium rhoncus, nulla libero laoreet ex, non efficitur eros
+  diam in nisi. Aliquam imperdiet nibh non varius tempor.
+  Fusce mattis pretium nulla a porttitor. Cras posuere
+  orci sed dui posuere vehicula. In hac habitasse platea
+  dictumst. Pellentesque habitant morbi tristique senectus
+  et netus et malesuada fames ac turpis egestas.
+  Quisque commodo lacinia magna. Nam turpis quam,
+  facilisis in ligula et, pretium fringilla libero. Pellentesque in
+
+  mauris a turpis consequat placerat.
+</ng-template>
+
+<ng-template #newCompanyValues>
+</ng-template>

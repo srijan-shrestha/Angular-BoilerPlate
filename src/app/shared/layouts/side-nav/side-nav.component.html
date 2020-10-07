@@ -1,0 +1,892 @@
+<div class="vertical-nav bg-white"
+    [ngClass]="(show)?'sideNav-show':'sideNav-hide'" id="sidebar"
+    (blur)="sidebarHide()">
+
+    <div class="sidenav-head" [ngClass]="this.employeeActive == true  ?
+        'head-height-auto' : 'head-height-fixed'">
+
+        <div class="sidenav-logo">
+            <div *ngIf="companyLogo || companyLogoMark" [class]="companyLogo ?
+                'header__brand__logo': 'header__brand__mark'"
+                [style.backgroundImage]="companyLogo
+                ? 'url(' + companyLogo + ')' : 'url(' + companyLogoMark + ')'"
+                style="width: 35px; height: 35px; margin-right: 10px;"></div>
+            <div class="company-name">{{this.companyName}}</div>
+        </div>
+
+        <div class="sidenav-close" (click)="sidebarToggle()">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                id="Layer_1" x="0px" y="0px" viewBox="0 0 512.001 512.001"
+                style="enable-background:new 0 0 512.001 512.001;"
+                xml:space="preserve" class="close-icon">
+                <g>
+                    <g>
+                        <path
+                            d="M294.111,256.001L504.109,46.003c10.523-10.524,10.523-27.586,0-38.109c-10.524-10.524-27.587-10.524-38.11,0L256,217.892
+                            L46.002,7.894c-10.524-10.524-27.586-10.524-38.109,0s-10.524,27.586,0,38.109l209.998,209.998L7.893,465.999
+                            c-10.524,10.524-10.524,27.586,0,38.109c10.524,10.524,27.586,10.523,38.109,0L256,294.11l209.997,209.998
+                            c10.524,10.524,27.587,10.523,38.11,0c10.523-10.524,10.523-27.586,0-38.109L294.111,256.001z"
+                            />
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <div *ngIf='this.managerActive === true || this.adminActive === true || this.employeeAdminActive === true' class="sidenav-body"
+                    [ngClass]="threeTab? 'three-tab' : 'two-tab'">
+        <ngb-tabset [destroyOnHide]="false">
+            <ngb-tab>
+                <ng-template ngbTabTitle>MY MENU</ng-template>
+                <ng-template ngbTabContent>
+                    <div class="menu-group">
+                        <p class="menu-group-title font-weight-bold
+                            text-uppercase px-3 small
+                            mb-0">PLAN & EXECUTE
+                        </p>
+
+                        <ul (click)="sidebarHide()" class="nav flex-column
+                            bg-white mb-0">
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/dashboard']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='dashboard' size='md'
+                                        class='mr-3'></app-icon>
+                                    My Dashboard
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/quarterly-goals/personal']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='team-goal' size='md'
+                                        class='mr-3'></app-icon>
+                                    My Plans
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/quarterly-goals/mydepartment']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='user-check' size='md'
+                                        class='mr-3'></app-icon>
+                                    My Department Plans
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/quarterly-goals/myteam']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='team'
+                                        size='md' class='mr-3'></app-icon>
+                                    My Team Plans
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/planning-execution/quarterly-contract']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='folder-minus' size='md'
+                                        class='mr-3'></app-icon>
+                                    My Quarterly Contracts
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/planning-execution/weekly-conversation']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='quarter-calender'
+                                        size='md' class='mr-3'></app-icon>
+                                    My Weekly Conversations
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/planning-execution/photos']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='photos' size='md'
+                                        class='mr-3'></app-icon>
+                                    My Photos
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company/celebrate']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='award' size='md' type="light-gray"
+                                        class='mr-3'></app-icon>
+                                    Celebrate
+                                </li>
+                            </a>
+
+                            <!-- <a [routerLinkActive]="['active']"
+                                [routerLink]="['/planning-execution/quarterly-contract']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='folder-minus' size='md'
+                                        class='mr-3'></app-icon>
+                                    Quarterly Contract
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/planning-execution/weekly-conversation']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='quarter-calender'
+                                        size='md' class='mr-3'></app-icon>
+                                    Weekly Conversations
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/planning-execution/reports']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='file-text'
+                                        size='md' class='mr-3'></app-icon>
+                                    Reports
+                                </li>
+                            </a> -->
+                        </ul>
+
+                        <div class="divider" style="border-color: #EDF1F6;
+                            width:85%; margin: auto;">
+                        </div>
+
+                        <p class="menu-group-title font-weight-bold
+                            text-uppercase px-3 small py-2
+                            mb-0">PLAYBOOK
+                        </p>
+
+                        <ul (click)="sidebarHide()" class="nav flex-column
+                            bg-white mb-0">
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/playbooks']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='book' size='md'
+                                        class='mr-3'></app-icon>
+                                    My Playbooks
+                                </li>
+                            </a>
+
+                            <!-- <a [routerLinkActive]="['active']"
+                                [routerLink]="['/playbooks']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='book' size='md'
+                                        class='mr-3'></app-icon>
+                                    Past Playbook</li>
+                            </a> -->
+
+                        </ul>
+
+                        <div class="divider" style="border-color: #EDF1F6;
+                            width:85%; margin: auto;">
+                        </div>
+
+                        <p class="menu-group-title font-weight-bold
+                            text-uppercase px-3 small py-2
+                            mb-0">COMPANY
+                        </p>
+
+                        <ul (click)="sidebarHide()" class="nav flex-column
+                            bg-white mb-0">
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company/annual-goals/employee/publish']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='date-calender' size='md'
+                                        class='mr-3'></app-icon>
+                                    Annual Goals </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company-settings/mission-values']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='compass' size='md'
+                                        class='mr-3'></app-icon>
+                                    Mission, Vision & Values </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company/annual/themes/preview-annual']"
+                               [queryParams]="{hdc: true}"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='paint-plate' size='md'
+                                        class='mr-3'></app-icon>
+                                    Annual Theme
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company/quarterly/themes/preview-quarterly']"
+                               [queryParams]="{hdc: true}"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='paint-plate' size='md'
+                                        class='mr-3'></app-icon>
+                                    Quarterly Themes
+                                </li>
+                            </a>
+
+                            <a
+                                [routerLink]="['/company/letter-from-editor']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='file-text' size='md'
+                                        class='mr-3'></app-icon>
+                                    Letter from the Editor
+                                </li>
+                            </a>
+
+
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company/employee-directories']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='user-icon' size='md'
+                                        class='mr-3'></app-icon>
+                                    Employee Directory
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/my-settings/my-profile']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='my-settings' size='md'
+                                        class='mr-3'></app-icon>
+                                    My Settings
+                                </li>
+                            </a>
+
+                        </ul>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+
+            <ngb-tab *ngIf='this.managerActive === true || this.adminActive === true'>
+                <ng-template ngbTabTitle>MANAGER</ng-template>
+                <ng-template ngbTabContent>
+                    <div class="menu-group">
+                        <p class="menu-group-title font-weight-bold
+                            text-uppercase px-3 small
+                            mb-0">Dashboard & Reports
+                        </p>
+
+                        <ul (click)="sidebarHide()" class="nav flex-column
+                            bg-white mb-0">
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/dashboard/department-dashboard']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='dashboard' size='md'
+                                        class='mr-3'></app-icon>
+                                    Dashboards
+                                </li>
+                            </a>
+<!--
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/dashboard/team-dashboard']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='team' size='md'
+                                        class='mr-3'></app-icon>
+                                    Team Dashboard
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/quarterly-goals/department']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='team-goal' size='md'
+                                        class='mr-3'></app-icon>
+                                    Department Goal
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/quarterly-goals/team']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='team-goal'
+                                        size='md' class='mr-3'></app-icon>
+                                    Team Goal
+                                </li>
+                            </a> -->
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/dashboard/reports']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='file-text'
+                                        size='md' class='mr-3'></app-icon>
+                                    Reports
+                                </li>
+                            </a>
+                        </ul>
+
+                        <div class="divider" style="border-color: #EDF1F6;
+                            width:85%; margin: auto;">
+                        </div>
+
+                        <p class="menu-group-title font-weight-bold
+                            text-uppercase px-3 small py-3
+                            mb-0">Department / Team Plans
+                        </p>
+
+                        <ul (click)="sidebarHide()" class="nav flex-column
+                            bg-white mb-0">
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/quarterly-goals/department']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='user-check' size='md'
+                                        class='mr-3'></app-icon>
+                                    My Department Plans
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/quarterly-goals/team']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='team'
+                                        size='md' class='mr-3'></app-icon>
+                                    My Team Plans
+                                </li>
+                            </a>
+
+                            <!-- <a [routerLinkActive]="['active']"
+                                [routerLink]="['/dashboard/add-team-member']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='user-plus'
+                                        size='md' class='mr-3'></app-icon>
+                                    Add team members
+                                </li>
+                            </a> -->
+                        </ul>
+                        <div class="divider" style="border-color: #EDF1F6;
+                        width:85%; margin: auto;">
+                    </div>
+
+                    <p class="menu-group-title font-weight-bold
+                        text-uppercase px-3 small py-3
+                        mb-0">Department / Team Execution
+                    </p>
+
+                    <ul (click)="sidebarHide()" class="nav flex-column
+                        bg-white mb-0">
+
+                        <a [routerLinkActive]="['active']"
+                            [routerLink]="['/department-team-execution/quarterly-contract']"
+                            class="nav-link text-dark">
+                            <li class="nav-item">
+                                <app-icon icon='user-check' size='md'
+                                    class='mr-3'></app-icon>
+                                Quarterly Contracts
+                            </li>
+                        </a>
+
+                        <a [routerLinkActive]="['active']"
+                            [routerLink]="['/department-team-execution/weekly-conversation']"
+                            class="nav-link text-dark">
+                            <li class="nav-item">
+                                <app-icon icon='team'
+                                    size='md' class='mr-3'></app-icon>
+                                Weekly Conversations
+                            </li>
+                        </a>
+
+                        <a [routerLinkActive]="['active']"
+                            [routerLink]="['/company/celebrate']"
+                            class="nav-link text-dark">
+                            <li class="nav-item">
+                                <app-icon icon='award' size='md' type="light-gray"
+                                    class='mr-3'></app-icon>
+                                Celebrate
+                            </li>
+                        </a>
+
+                        <a [routerLinkActive]="['active']"
+                            [routerLink]="['/department-team-execution/my-team-photos']"
+                            class="nav-link text-dark">
+                            <li class="nav-item">
+                                <app-icon icon='user-check' size='md'
+                                    class='mr-3'></app-icon>
+                                My Department Photos
+                            </li>
+                        </a>
+
+                        <a [routerLinkActive]="['active']"
+                            [routerLink]="['/department-team-execution/my-department-photos']"
+                            class="nav-link text-dark">
+                            <li class="nav-item">
+                                <app-icon icon='team'
+                                    size='md' class='mr-3'></app-icon>
+                                My Team Photos
+                            </li>
+                        </a>
+                    </ul>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+
+            <ngb-tab *ngIf='this.employeeAdminActive === true || this.adminActive === true'>
+                <ng-template ngbTabTitle>ADMIN</ng-template>
+                <ng-template ngbTabContent>
+                    <div class="menu-group">
+                        <p class="menu-group-title font-weight-bold
+                            text-uppercase px-3 small
+                            mb-0">Playbook Management
+                        </p>
+
+                        <ul (click)="sidebarHide()" class="nav flex-column
+                            bg-white mb-0">
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/playbooks/editor']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='paint-plate' size='md'
+                                        class='mr-3'></app-icon>
+                                    Playbook Editor
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company/photo-manager/blank']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='photos' size='md'
+                                        class='mr-3'></app-icon>
+                                    Photo Manager
+                                </li>
+                            </a>
+
+                            <!-- <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company/quarterly-goals']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='team-goal' size='md'
+                                        class='mr-3'></app-icon>
+                                    Quarterly Goal
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company/letter-to-editor']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='file-text'
+                                        size='md' class='mr-3'></app-icon>
+                                    Letter from the Editor
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company-settings/mission-values']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='bookmark' size='md'
+                                        class='mr-3'></app-icon>
+                                    Mission & Values
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company/celebrate']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='award' size='md'
+                                        class='mr-3'></app-icon>
+                                    Celebrate
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/cultural-photos/upload']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='photos' size='md'
+                                        class='mr-3'></app-icon>
+                                    Photos & Culture
+                                </li>
+                            </a> -->
+                        </ul>
+
+                        <div class="divider" style="border-color: #EDF1F6;
+                            width:85%; margin: auto;">
+                        </div>
+
+                        <p class="menu-group-title font-weight-bold
+                            text-uppercase px-3 small py-3
+                            mb-0">Platform Management
+                        </p>
+
+                        <ul (click)="sidebarHide()" class="nav flex-column
+                            bg-white mb-0">
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company/annual/themes/create']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='paint-plate' size='md'
+                                        class='mr-3'></app-icon>
+                                    Annual Theme
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company/quarterly/themes/create']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='paint-plate' size='md'
+                                        class='mr-3'></app-icon>
+                                    Quarterly Theme
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company/annual-goals/admin/create']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='date-calender' size='md'
+                                        class='mr-3'></app-icon>
+                                    Annual Goals
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company/letter-to-editor']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='file-text'
+                                        size='md' class='mr-3'></app-icon>
+                                    Letter from the Editor
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company-settings/mission-values']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='bookmark' size='md'
+                                        class='mr-3'></app-icon>
+                                    Mission & Values
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company/celebrate']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='award' size='md' type="light-gray"
+                                        class='mr-3'></app-icon>
+                                    Celebrate
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company-settings/company-profile']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='my-settings' size='md'
+                                        class='mr-3'></app-icon>
+                                    Company Settings
+                                </li>
+                            </a>
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company-settings/structure']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='chart' size='md'
+                                        class='mr-3'></app-icon>
+                                    Org Chart
+                                </li>
+                            </a>
+
+
+                            <a [routerLinkActive]="['active']"
+                                [routerLink]="['/company-settings/security-invites']"
+                                class="nav-link text-dark">
+                                <li class="nav-item">
+                                    <app-icon icon='clipboard' size='md'
+                                        class='mr-3'></app-icon>
+                                    Users & Passwords
+                                </li>
+                            </a>
+                        </ul>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+    </div>
+
+
+    <div *ngIf='this.employeeActive === true' class="sidenav-body sidenav-body-employee no-tab">
+        <div class="menu-group">
+            <p class="menu-group-title font-weight-bold
+                text-uppercase px-3 small
+                mb-0">PLAN & EXECUTE
+            </p>
+
+            <ul (click)="sidebarHide()" class="nav flex-column
+                bg-white mb-0">
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/dashboard']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='dashboard' size='md'
+                            class='mr-3'></app-icon>
+                        My Dashboard
+                    </li>
+                </a>
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/quarterly-goals/personal']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='team-goal' size='md'
+                            class='mr-3'></app-icon>
+                        My Plans
+                    </li>
+                </a>
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/quarterly-goals/mydepartment']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='user-check' size='md'
+                            class='mr-3'></app-icon>
+                        My Department Plans
+                    </li>
+                </a>
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/quarterly-goals/myteam']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='team'
+                            size='md' class='mr-3'></app-icon>
+                        My Team Plans
+                    </li>
+                </a>
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/planning-execution/quarterly-contract']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='folder-minus' size='md'
+                            class='mr-3'></app-icon>
+                        My Quarterly Contracts
+                    </li>
+                </a>
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/planning-execution/weekly-conversation']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='quarter-calender'
+                            size='md' class='mr-3'></app-icon>
+                        My Weekly Conversations
+                    </li>
+                </a>
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/planning-execution/photos']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='photos' size='md'
+                            class='mr-3'></app-icon>
+                        My Photos
+                    </li>
+                </a>
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/company/celebrate']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='award' size='md'
+                            class='mr-3'></app-icon>
+                        Celebrate
+                    </li>
+                </a>
+
+                <!-- <a [routerLinkActive]="['active']"
+                    [routerLink]="['/planning-execution/quarterly-contract']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='folder-minus' size='md'
+                            class='mr-3'></app-icon>
+                        Quarterly Contract
+                    </li>
+                </a>
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/planning-execution/weekly-conversation']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='quarter-calender'
+                            size='md' class='mr-3'></app-icon>
+                        Weekly Conversations
+                    </li>
+                </a>
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/planning-execution/reports']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='file-text'
+                            size='md' class='mr-3'></app-icon>
+                        Reports
+                    </li>
+                </a> -->
+            </ul>
+
+            <div class="divider" style="border-color: #EDF1F6;
+                width:85%; margin: auto;">
+            </div>
+
+            <p class="menu-group-title font-weight-bold
+                text-uppercase px-3 small py-2
+                mb-0">PLAYBOOK
+            </p>
+
+            <ul (click)="sidebarHide()" class="nav flex-column
+                bg-white mb-0">
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/playbooks']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='book' size='md'
+                            class='mr-3'></app-icon>
+                        My Playbooks
+                    </li>
+                </a>
+
+                <!-- <a [routerLinkActive]="['active']"
+                    [routerLink]="['/playbooks']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='book' size='md'
+                            class='mr-3'></app-icon>
+                        Past Playbook</li>
+                </a> -->
+
+            </ul>
+
+            <div class="divider" style="border-color: #EDF1F6;
+                width:85%; margin: auto;">
+            </div>
+
+            <p class="menu-group-title font-weight-bold
+                text-uppercase px-3 small py-2
+                mb-0">COMPANY
+            </p>
+
+            <ul (click)="sidebarHide()" class="nav flex-column
+                bg-white mb-0">
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/company/annual-goals/employee/publish']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='date-calender' size='md'
+                            class='mr-3'></app-icon>
+                        Annual Goals </li>
+                </a>
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/company-settings/mission-values']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='compass' size='md'
+                            class='mr-3'></app-icon>
+                        Mission, Vision & Values </li>
+                </a>
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/company/annual/themes/preview-annual']"
+                   [queryParams]="{hdc: true}"
+                   class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='paint-plate' size='md'
+                            class='mr-3'></app-icon>
+                        Annual Themes
+                    </li>
+                </a>
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/company/quarterly/themes/preview-quarterly']"
+                   [queryParams]="{hdc: true}"
+                   class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='paint-plate' size='md'
+                            class='mr-3'></app-icon>
+                        Quarterly Themes
+                    </li>
+                </a>
+
+                <a
+                    [routerLink]="['/company/letter-from-editor']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='file-text' size='md'
+                            class='mr-3'></app-icon>
+                        Letter from the Editor
+                    </li>
+                </a>
+
+
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/company/employee-directories']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='user-icon' size='md'
+                            class='mr-3'></app-icon>
+                        Employee Directory
+                    </li>
+                </a>
+
+                <a [routerLinkActive]="['active']"
+                    [routerLink]="['/my-settings/my-profile']"
+                    class="nav-link text-dark">
+                    <li class="nav-item">
+                        <app-icon icon='my-settings' size='md'
+                            class='mr-3'></app-icon>
+                        My Settings
+                    </li>
+                </a>
+            </ul>
+        </div>
+    </div>
+
+    <div class="sidenav-footer">
+        <div class="footer-img"></div>
+        <div class="copyright"> &copy; {{dateObj | date:'yyyy'}}. All rights
+            reserved</div>
+    </div>
+</div>
+<!-- End vertical navbar -->

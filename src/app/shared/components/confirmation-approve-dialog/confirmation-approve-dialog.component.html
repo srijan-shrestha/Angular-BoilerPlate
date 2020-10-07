@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <app-icon icon="success" type="success" size="xxxl"></app-icon>
+</div>
+<div class="modal-body text-center ">
+  <div class="font-weight-bold">
+    {{title}}
+  </div>
+  <div>
+    {{ body }}
+  </div>
+</div>
+<div class="modal-footer">
+  <app-button ngbAutofocus [type]="type === 'warn' ? 'danger': 'primary'" (click)="activeModal.close('accept')">{{ acceptText }}</app-button>
+</div>

@@ -1,0 +1,33 @@
+:root {
+  --primary-dark: #{darken($primary, 10%)};
+  --primary-darker: #{darken($primary, 20%)};
+  --primary-light: #{lighten($primary, 10%)};
+  --primary-lighter: #{lighten($primary, 50%)};
+  --primary-lightest: #{lighten($primary, 95%)};
+  --secondary-dark: #{darken($secondary, 10%)};
+  --secondary-darker: #{darken($secondary, 20%)};
+  --secondary-light: #{lighten($secondary, 10%)};
+  --secondary: #37474F;
+  --navSecondary: #202020;
+  --navPrimary: #350000;
+}
+
+.bg-secondary {
+  background: var(--secondary);
+}
+
+.bg-lightgrey {
+  background-color: #F7F8F8;
+}
+
+.bg-primary {
+  background: var(--primary);
+}
+
+.text-secondary {
+  color: var(--secondary);
+}
+
+.text-primary {
+  color: var(--primary);
+}

@@ -1,0 +1,14 @@
+<div [formGroup]="form">
+  <div class="container my-2">
+    <div class="row mb-2">
+      <div class="col">
+        <label>Multiline Text</label>
+        <app-input id="text" formControlName="text" type="textarea" placeholder=""></app-input>
+      </div>
+    </div>
+    <div class="my-2 text-right ">
+      <app-button type="link" (click)="cancel()" class="cancel-btn">Cancel</app-button>
+      <app-button (click)="save()" class="save-btn">Save</app-button>
+    </div>
+  </div>
+</div>

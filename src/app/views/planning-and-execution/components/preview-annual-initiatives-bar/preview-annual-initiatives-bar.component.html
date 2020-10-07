@@ -1,0 +1,21 @@
+<div id="top-content">
+  <div id="back-element" (click)="backBtnClick()">
+    <div class="icon">
+      <app-icon icon="backspace" size="md" type="white" class="back-icon"></app-icon>
+    </div>
+    <div id="back-button" class="back-text">BACK</div>
+  </div>
+  <div id="other-info">
+    <div id="question" class="pt15 header-text">{{titleText}}
+    </div>
+    <div id="action-buttons" class="d-flex">
+      <ng-container>
+        <div class="icon">
+          <app-icon icon="add" size="xs" class="icon-save"></app-icon>
+        </div>
+        <div class="mt-3">ADD TO PLAYBOOK</div>
+      </ng-container>
+
+    </div>
+  </div>
+</div>

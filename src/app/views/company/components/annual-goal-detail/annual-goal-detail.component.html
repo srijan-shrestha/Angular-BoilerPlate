@@ -1,0 +1,63 @@
+<div id="full-content">
+  <div class="col-md-12" >
+    <div class="initiative-card">
+      <form [formGroup]="initiativeForm">
+        <div class="row mb-3 mt-3">
+          <p class="initiative-card__header"> {{status===1?'Creating': 'Viewing'}} Annual Goals for
+          </p>
+          <div ngbDropdown class="initiative-card__header__dropdown mx-2 my-1">
+            <button type="button" class="btn initiative-card__header__dropdown__single-button" ngbDropdownToggle>
+              {{initiativeForm.value.year}}
+            </button>
+            <div ngbDropdownMenu class="initiative-card__header__dropdown__dropdown-menu">
+              <a ngbDropdownItem class="initiative-card__header__dropdown__dropdown-menu-item" *ngFor="let year of goalYearCollection"
+                 (click)="onYearChange(year)">
+                {{year}}
+              </a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="action !== 'publish'  && initiatives.length" class="d-flex justify-content-end">
+      <button (click)="saveData('edit')" class="btn goals-btn__sec-btn goals-btn__enabled-sec-btn mt-4" value="EDIT">BACK TO EDIT</button>
+      <button (click)="saveData('draft')" class="btn goals-btn__sec-btn goals-btn__enabled-sec-btn mt-4" value="DRAFT">SAVE AS DRAFT</button>
+      <button (click)="saveData('publish')" class="btn goals-btn__primary-btn goals-btn__enabled-primary-btn mt-4 ml-2" value="PUBLISH">PUBLISH</button>
+    </div>
+    <div id="printSectionId">
+      <div id="bottom-content">
+        <ng-container *ngIf="initiatives.length;else noGoalContent">
+          <div *ngIf="action !== 'publish'" class="d-flex justify-content-end ">
+            <button class="btn btn-gray mt-3 draft-btn mr-md-3" disabled>DRAFT</button>
+          </div>
+          <div class="initiative-heading">
+            <div class="initiative-title">{{ selectedYear || ''}} Company Goals</div>
+            <br>
+            <span class="company-name">{{ companyName || '-' }}</span>
+          </div>
+
+          <div id="initiatives">
+            <ul>
+              <li *ngFor="let initiative of initiatives">
+                <div class="icon">
+                  <app-icon [icon]="initiative.icon" class="icon-save" size="xxl" type="white"></app-icon>
+                </div>
+                <div class="info">
+                  <div class="title">{{ initiative.title }}</div>
+                  <br>
+                  <div class="description">{{ initiative.description }}</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noGoalContent>
+  <div class="initiative-heading">
+    <div class="company-name">No Annual Goals record found</div>
+  </div>
+</ng-template>

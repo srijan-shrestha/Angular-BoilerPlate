@@ -1,0 +1,71 @@
+<app-card class="review">
+  <div class="row align-items-center review__header">
+    <div class="col">
+      <b>Feedback</b>
+    </div>
+    <div class="col text-right">
+      Submitted: <b>18/21</b>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <app-table [dataSource]="review" [noData]="'No Feedback Available.'" height="300px" size="sm">
+        <ng-container cdkColumnDef="department">
+          <th appTableHeader cdk-header-cell *cdkHeaderCellDef>Department</th>
+          <td cdk-cell *cdkCellDef="let review">
+            <div>{{ review?.department }}</div>
+          </td>
+        </ng-container>
+        <ng-container cdkColumnDef="feedback">
+          <th appTableHeader cdk-header-cell *cdkHeaderCellDef>Feedback</th>
+          <td cdk-cell *cdkCellDef="let review">
+            <div [ngbPopover]="popContent" [popoverTitle]="popTitle"
+                 [autoClose]="false" triggers="manual" #popover="ngbPopover"
+                 (click)="openPopover(popover)">{{ review?.feedback }}</div>
+          </td>
+          <ng-template #popTitle>
+            <div class="container">
+              <div class="row text-right">
+                <div class="col">
+                  <app-icon size="sm" icon="circle-cross" type="gray" (click)="closePopover()"></app-icon>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #popContent>
+            <div class="container">
+              <div class="row p-2">
+                <div class="col">
+                  <div class="row">
+                    <div class="col-2">
+                      <div class="profile-image--sm"></div>
+                    </div>
+                    <div class="col-auto">
+                      dsafsdafa
+                    </div>
+                  </div>
+                </div>
+                <div class="col text-right">
+                  Submitted: August 20, 32323
+                </div>
+              </div>
+
+              <div class="row p-2">
+                <div class="col">
+                  Sed posuere consectetur est at lobortis. Vestibulum id ligula porta felis euismod semper. Maecenas
+                  faucibus mollis interdum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+                  Maecenas sed diam eget risus varius blandit sit amet non magna. Etiam porta sem malesuada magna mollis
+                  euismod. Cras mattis consectetur purus sit amet fermentum.
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+        <!-- Header and Row Declarations -->
+        <tr cdk-header-row *cdkHeaderRowDef="reviewColumns"></tr>
+        <tr cdk-row *cdkRowDef="let row; columns: reviewColumns"></tr>
+      </app-table>
+    </div>
+  </div>
+</app-card>

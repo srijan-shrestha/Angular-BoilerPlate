@@ -1,0 +1,23 @@
+<div [formGroup]="form" class="container">
+  <div class="my-1">
+    <div formArrayName="textInfo">
+      <div class="form-group py-1" *ngFor="let textInfo of texts.controls; let i=index" [formGroupName]="i">
+        <label>
+          Text {{i + 1}}:
+        </label>
+        <app-input formControlName="text1" type="text"></app-input>
+        <label>
+          Text Description:
+        </label>
+        <app-input formControlName="text2" type="text"></app-input>
+      </div>
+    </div>
+  </div>
+
+  <app-button [block]="true" (click)="addText()" type="gray" textTransform="uppercase">Add Texts</app-button>
+
+  <div class="my-2 text-right ">
+    <app-button type="link" (click)="cancel()" class="cancel-btn">Cancel</app-button>
+    <app-button (click)="save()" class="save-btn">Save</app-button>
+  </div>
+</div>

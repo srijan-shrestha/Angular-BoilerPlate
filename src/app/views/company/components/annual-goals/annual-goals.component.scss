@@ -1,0 +1,143 @@
+#main-content{
+  max-width: 79.55%;
+  margin: auto;
+  @media screen and (max-width: 767.98px) {
+    max-width: 100%
+  }
+}
+
+.nav-link {
+  border: none;
+  font-weight: 500;
+  color: #252733;
+  cursor: pointer;
+  padding: 16px 24px;
+
+  &:hover {
+    color: #6d6d6d !important;
+  }
+}
+
+.nav-link.active {
+  color: var(--primary) !important;
+  box-shadow: inset 0px -2px 0px var(--primary);
+  background-color: transparent;
+}
+
+.nav-link, .nav-link.active {
+  line-height: 18px;
+  font-family: Heebo;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.top-icon {
+  margin-right: 6px;
+  cursor: pointer;
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+  margin-bottom: 3px;
+}
+
+a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
+  color: unset;
+  text-decoration: none;
+}
+
+.navbar-right-nav {
+  top: -1px;
+  right: -4px;
+}
+.right-section {
+  position: absolute;
+  right: 5%;
+  top: 14%;
+  li{
+    display: inline;
+    margin-left: 10px;
+  }
+}
+
+
+.score-button {
+  font-size: 12px;
+  width: 103px;
+  margin-right: 3rem;
+  padding: 2px;
+  border-radius: 25px;
+  background: white;
+  color: black;
+  text-transform: capitalize;
+  font-weight: 800;
+  height: 2.3rem;
+  border: 1px solid transparent;
+
+  &:focus {
+    outline: 0 dotted;
+  }
+}
+
+.score-logo {
+  height: 23px;
+  width: 24px;
+  margin-left: 10px;
+  margin-top: 3px;
+  background-size: cover;
+  background-position: center center;
+}
+
+.score-text {
+  padding-top: 6px;
+  padding-right: 12px;
+}
+
+.score-button1 {
+  position: absolute;
+  width: 103px;
+  height: 40px;
+  right: 1%;
+  top: 5.5rem;
+  background: #ffffff;
+  box-shadow: 0 0 20px rgba(58, 71, 89, 0.15);
+  border-radius: 42px;
+  z-index: 100;
+
+  &:focus {
+    box-shadow: 0 0 20px rgba(58, 71, 89, 0.15);
+  }
+
+  .score-logo {
+      background-image: url(src/app/assets/images/blaastlogo-only.svg);
+  }
+
+  .score-text {
+      padding: 0 0.5rem;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 10px;
+      line-height: 15px;
+      letter-spacing: 0.75px;
+      text-transform: uppercase;
+      color: #000000;
+  }
+}
+
+.print-icon {
+  cursor: pointer;
+}
+@media screen and (max-width: 767.98px) {
+  #main-content{
+    max-width: 100%
+  }
+  .visual-mark-container {
+    padding: 0;
+  }
+  .score-button1 {
+    top: 4rem;
+  }
+}
+

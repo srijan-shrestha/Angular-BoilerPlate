@@ -1,0 +1,11 @@
+<!-- [checked]="switchChecked" -->
+<label class="switch">
+  <input
+    class="custom-control-input"
+    type="checkbox"
+    [(ngModel)]="inputValue"
+    (change)="onChange($event)"
+    [disabled]="disableInput"
+    >
+  <span class="slider round"></span>
+</label>

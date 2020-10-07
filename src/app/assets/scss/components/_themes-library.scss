@@ -1,0 +1,74 @@
+.header-select {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  &__dropdown {
+    display: inline-block;
+    vertical-align: middle;
+
+    @media screen and (min-width: 768px) {
+      &__single-button {
+      border-bottom: 1.3px solid #40465E;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #40465E;
+      width: 12.5rem;
+      text-align: left;
+
+
+      &:after{
+        float: right;
+        margin-top: 0.5em;
+        border-right-width: 0.4em;
+        border-top-width: 0.4em;
+        border-left-width: 0.4em;
+
+        }
+      }
+    }
+
+    &-menu {
+      border-radius: 0;
+      padding: 0;
+      background: $gray-700;
+      color: $white;
+    }
+
+    .dropdown-item {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+  }
+}
+
+.theme {
+  &__top-nav{
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    text-transform: uppercase;
+    &__content-right {
+      display: flex;
+      justify-content: flex-end;
+      cursor: pointer;
+    }
+  }
+
+  &__library-title {
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.375rem;
+    letter-spacing: 0.3px;
+    color: #252733;
+  }
+
+  &-padding {
+    padding: 3.125vw 9.167vw;
+    background-color: $white;
+  }
+
+}

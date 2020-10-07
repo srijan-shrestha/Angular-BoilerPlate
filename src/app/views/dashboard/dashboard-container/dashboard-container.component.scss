@@ -1,0 +1,14 @@
+@media only screen and (max-width: 850px) {
+    app-sidebar {
+        display: none;
+    }
+    .page-dashboard .content--sidebar-collapsed {
+        margin: 0;
+    }
+
+    .col-md-7 {
+        .text-white.float-right {
+            float: left !important;
+        }
+    }
+}

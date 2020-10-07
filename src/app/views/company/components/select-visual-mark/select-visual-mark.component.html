@@ -1,0 +1,209 @@
+<main class="pt-2 web-main">
+  <div (click)="submitBtnClicked('cancel')" class="back-button d-flex pl-3">
+    <app-icon class="back-icon" icon="backspace" size="md" type="white"></app-icon>
+    <div class="back-text pl-2 pt-1 back-button">BACK</div>
+  </div>
+
+  <div class="bottom-content">
+    <p class="pt-3 text-center font-weight-normal visual-mark__heading">Add Visual Marks</p>
+    <p class="pt-3 text-center font-weight-normal visual-mark__sub-heading">A few of your {{selectedYear}} goals don't
+      have graphic marks.
+      <span
+        [ngbTooltip]="iconInfo"
+        tooltipClass="info-tooltip"
+        placement="bottom">
+          <app-icon icon='info-blue' size="sm"></app-icon>
+        </span>
+    </p>
+
+    <div class="d-flex mt-5 main-content" >
+      <div id="mark-selector">
+        <p class="text-uppercase initiative-icons__heading text-center">Select a mark for your initiative</p>
+        <div class="d-flex flex-column ml-3">
+          <ng-container *ngFor="let lists of iconsLists">
+            <span class="d-flex initiative-icons__icon-headings text-uppercase mb-1">{{lists.name}}</span>
+            <div class="d-flex flex-row justify-content-between initiative-icons__icon-list">
+              <ng-container *ngFor="let icon of lists.icons;">
+                <span  draggable="true" class="marker {{icon}}" [class.selected]="isSelectedOrClickedIcon(icon)"   id="marker-{{icon}}">
+                    <app-icon  icon="{{icon}}" size="lg" type="black"></app-icon>
+                </span>
+              </ng-container>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="marker-information">
+        <!--<p></p>-->
+        <div class="d-flex">
+          <span class="initiative-icons__heading text-uppercase mt-4 pr-4 text-nowrap">add mark</span>&nbsp;
+          <span class="initiative-icons__heading initiative-icons__bottom-line ml-4 text-uppercase text-center
+          ">your {{selectedYear}} initiatives
+          </span>
+        </div>
+        <p></p>
+        <div class="pl-0">
+          <div *ngFor="let initiative of initiatives; let i = index" class="d-flex initiative mb-3">
+            <div (dragenter)="elementHovered()"
+                 (dragleave)="dragLeave()"
+                 (dragover)="allowDrop($event, i)"
+                 (drop)="elementDropped()"
+                 *ngIf="initiative.icon"
+                 [id]="'marker-icon-' + (i)" class="marker-icon d-flex justify-content-center">
+              <span class="cross-hair align-self-center">
+                <app-icon [icon]="initiative.icon" size="xl" type="black"></app-icon>
+              </span>
+            </div>
+            <div (dragenter)="elementHovered()" (dragleave)="dragLeave()"
+                 (dragover)="allowDrop($event, i)"
+                 (drop)="elementDropped()"
+                 *ngIf="!initiative.icon"
+                 [id]="'marker-icon-' + i"
+                 class="marker-icon d-flex justify-content-center"
+            >
+              <div class="counter text-muted">{{ i + 1 }}</div>
+
+              <span [id]="'drop-area-blue-square-' + i" class="drop-area" style="display: none;">
+                <app-icon icon="blue-square" size="xxl" type="primary"></app-icon>
+              </span>
+
+              <span [id]="'drop-area-dotted-square-' + i" class="drop-area">
+                <app-icon icon="dotted-square" size="xxl" type="primary"></app-icon>
+              </span>
+            </div>
+
+            <div class="marker-info d-flex flex-row"><span class = "mr-2">{{i + 1}}</span> <span>{{ initiative.title | slice:0:100 }}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center pb-5 mt-5">
+      <div id="buttons">
+
+        <button type="button" class="btn goals-btn__sec-btn mt-4"
+                [ngClass]="isFormNotFilledCompletely() ? 'goals-btn__disabled-sec-btn' : 'goals-btn__enabled-sec-btn'"
+                [disabled]="isFormNotFilledCompletely()" (click)="submitBtnClicked('preview')">PREVIEW
+        </button>
+
+        <button type="button" class="btn goals-btn__sec-btn mt-4 goals-btn__enabled-sec-btn mr-3"
+                (click)="submitBtnClicked('draft')">SAVE AS DRAFT
+        </button>
+
+        <button type="button" class="btn  goals-btn__primary-btn mt-4"
+                [ngClass]="isFormNotFilledCompletely() ? 'goals-btn__disabled-primary-btn' : 'goals-btn__enabled-primary-btn'"
+                [disabled]="isFormNotFilledCompletely()" (click)="submitBtnClicked('edit')">PUBLISH
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<main class="pt-2 mobile-main">
+  <div (click)="submitBtnClicked('cancel')" class="back-button d-flex pl-3">
+    <app-icon class="back-icon" icon="backspace" size="md" type="white"></app-icon>
+    <div class="back-text pl-2 pt-1 back-button">BACK</div>
+  </div>
+
+  <div class="bottom-content">
+    <p class="pt-2 text-center font-weight-normal visual-mark__sub-heading">A few of your {{selectedYear}} goals don't
+      have graphic marks.
+    </p>
+
+    <div class="d-flex main-content" >
+
+      <div id="mark-selector-mobile" class="mark-selector hide-mark-selector">
+        <p class="text-uppercase initiative-icons__heading text-center">Select a mark for your initiative</p>
+        <div class="d-flex flex-column ml-3">
+
+          <ng-container *ngFor="let lists of iconsLists">
+            <span class="d-flex initiative-icons__icon-headings text-uppercase">{{lists.name}}</span>
+
+            <div class="d-flex flex-row justify-content-between initiative-icons__icon-list">
+              <ng-container *ngFor="let icon of lists.icons;">
+                <ng-container *ngIf="isSelectedOrClickedIcon(icon) === 'clicked'; else notClicked">
+                <span (click)="selectIcon(icon)" class="{{icon}} selected clicked">
+                <app-icon icon="{{icon}}" size="lg" type="black"></app-icon>
+                </span>
+                </ng-container>
+                <ng-template #notClicked>
+                 <span (click)="selectIcon(icon)"  class="{{icon}}" [class.selected]="isSelectedOrClickedIcon(icon) === 'selected'">
+                  <app-icon icon="{{icon}}" size="lg" type="black"></app-icon></span>
+                </ng-template>
+              </ng-container>
+            </div>
+          </ng-container>
+          <button (click)="addMarkIcon()"
+                  class="btn btn-primary btn-md my-2 add-icon"
+                  type="submit">
+            SAVE & ADD ICON
+          </button>
+        </div>
+      </div>
+
+      <div class="marker-information">
+        <!--<p></p>-->
+        <div class="d-flex">
+          <span class="initiative-icons__heading text-uppercase mt-4 pr-4 text-nowrap">add mark</span>&nbsp;
+          <span class="initiative-icons__heading initiative-icons__bottom-line ml-4 text-uppercase text-center
+          ">your {{selectedYear}} initiatives
+          </span>
+        </div>
+        <p></p>
+        <div class="pl-0">
+          <div *ngFor="let initiative of initiatives; let i = index" class="d-flex initiative mb-3" (click)="addIcon($event, i)">
+            <ng-container>
+              <div
+                   *ngIf="initiative.icon"
+                   [id]="'marker-icon-' + (i)" class="marker-icon d-flex justify-content-center"
+                   (click)="selectIcon(initiative.icon)"
+              >
+              <span class="cross-hair align-self-center">
+                <app-icon [icon]="initiative.icon" size="xl" type="black"></app-icon>
+              </span>
+              </div>
+              <div *ngIf="!initiative.icon"
+                   [id]="'marker-icon-' + i"
+                   class="marker-icon d-flex justify-content-center"
+              >
+                <div class="counter text-muted">{{ i + 1 }}</div>
+
+                <span [id]="'drop-area-blue-square-' + i" class="drop-area" style="display: none;">
+                <app-icon  icon="blue-square" size="xxl" type="primary"></app-icon>
+              </span>
+
+                <span [id]="'drop-area-dotted-square-' + i" class="drop-area">
+                <app-icon  icon="dotted-square" size="xxl" type="primary"></app-icon>
+              </span>
+              </div>
+              <div class="marker-info d-flex flex-row">
+                <span class = "mr-2">{{i + 1}}</span>
+                <span>{{ initiative.title | slice:0:100 }}</span>
+              </div>
+
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center mb-5 mt-4">
+      <div id="buttons-mobile" class="add-icon">
+        <button class="btn btn-primary btn-md my-2 add-icon"
+                type="submit"
+                (click)="submitBtnClicked('edit')">
+                SAVE & ADD ICON
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<ng-template #iconInfo>
+  <div class="d-flex flex-column">
+    <p class="text-uppercase initiative-icons__bottom-heading text-center">Why visual marks?</p>
+    <span class="initiative-icons__bottom-description text-center">The marks above are categorized under each of the 4 pillars of the Blaast framework</span>
+    <span class="initiative-icons__bottom-description text-center">Adding visuals marks make your initiatives memorable to team members</span>
+    <span class="initiative-icons__bottom-description text-center">These marks will be used throughout the year</span>
+  </div>
+</ng-template>

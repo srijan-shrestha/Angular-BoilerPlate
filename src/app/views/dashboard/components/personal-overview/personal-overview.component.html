@@ -1,0 +1,226 @@
+<div class="container-fluid p-5">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-3 mt-3">
+          <app-doughnut-chart [dataArray]="personalArray" [title]="personalTitle">
+          </app-doughnut-chart>
+        </div>
+        <div class="col-md-3 mt-3">
+          <app-doughnut-chart [dataArray]="teamsArray" [title]="teamsTitle">
+          </app-doughnut-chart>
+        </div>
+        <div class="col-md-3 mt-3">
+          <app-doughnut-chart [dataArray]="departmentsArray" [title]="departmentsTitle">
+          </app-doughnut-chart>
+        </div>
+        <div class="col-md-3 mt-3">
+          <app-doughnut-chart [dataArray]="companyArray" [title]="companyTitle">
+          </app-doughnut-chart>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <app-card>
+            <div class="card-header" type="white">
+               <div class="card-header_top-right icon-container" >
+                <app-icon size="xs" type="white" icon="sideRight"></app-icon>
+              </div>
+            <h5>My Action List</h5>
+            </div>
+            <div class="card-body">
+              <form>
+                  <table class="table table-striped">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input checkbox-2x " id="exampleCheck1">
+                            <label class="form-check-label ml-2" for="exampleCheck1">Vivamus sagittis laued posuere consectetur est at lobortis cus vel augue laordolor.</label>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input checkbox-2x " id="exampleCheck4">
+                            <label class="form-check-label ml-2" for="exampleCheck1">Vivamus sagittis laued posuere consectetur est at lobortis cus vel augue laordolor.</label>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input checkbox-2x " id="exampleCheck2">
+                            <label class="form-check-label ml-2" for="exampleCheck1">Vivamus sagittis laued posuere consectetur est at lobortis cus vel augue laordolor.</label>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input checkbox-2x " id="exampleCheck3">
+                            <label class="form-check-label ml-2" for="exampleCheck1">Vivamus sagittis laued posuere consectetur est at lobortis cus vel augue laordolor.</label>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </form>
+            </div>
+          </app-card>
+        </div>
+      </div>
+      <div class="row mt-4">
+          <div class="col-md-6">
+              <app-card>
+                <div class="card-header" type="white">
+                  <div class="card-header_top-right " >
+                    221.6 / 250 (Year Goal)
+                  </div>
+                  <h5>My Goals</h5>
+                </div>
+
+                <div class="card-body card-body_pink-body">
+                  <p>Q3 Goal: Duis mollis est non commodo luctus nisi erat porttitor ets alligula.</p>
+                  <div class="goal-result">
+                    <span>Lorem:Ipsum</span>
+                    <span>
+                      <form>
+                        <input class="rounded-answer-box" type="number" value="55">/ 83.3
+                      </form>
+                    </span>
+                  </div>
+                </div>
+                <button class="btn dashboard-submit-btn"> Submit</button>
+              </app-card>
+          </div>
+          <div class="col-md-6">
+            <app-card>
+              <div class="card-header" type="white">
+                <div class="card-header_top-right" >
+                  15 Days left in Q3
+                </div>
+                <h5>My Initiatives</h5>
+              </div>
+
+              <div class="card-body card-initiative">
+                <form>
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <label for="defaultRadio1">Duis mollis, est non commo.</label>
+                          </td>
+                          <td>
+                            <input type="radio" id="defaultRadio1">
+                            <input type="radio" id="defaultRadio2">
+                            <input type="radio" id="defaultRadio3">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="defaultRadio5">Duis mollis, est non commo.</label>
+                          </td>
+                          <td>
+                            <input type="radio" id="defaultRadio4">
+                            <input type="radio" id="defaultRadio5">
+                            <input type="radio" id="defaultRadio6">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <label for="defaultRadio7">Duis mollis, est non commo.</label>
+                          </td>
+                          <td>
+                            <input type="radio" id="defaultRadio7">
+                            <input type="radio" id="defaultRadio8">
+                            <input type="radio" id="defaultRadio9">
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </form>
+              </div>
+              <button class="btn dashboard-submit-btn"> Submit</button>
+            </app-card>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <app-card>
+          <div class="card-header" type="white">
+            <div class="card-header_top-right icon-container" >
+              <app-icon size="xs" type="white" icon="sideRight"></app-icon>
+            </div>
+            <h5>Weekly Check-In</h5>
+          </div>
+          <div class="card-body">
+            <app-card shadow="md">
+                <div class="card-body">
+                  <h6>How are you feeling with your workload?</h6>
+                  <app-custom-rating> </app-custom-rating>
+                </div>
+              </app-card>
+
+              <br>
+
+              <app-card shadow="md">
+                <div class="card-body">
+                  <h6>How are you feeling with your Team?</h6>
+                  <app-custom-rating> </app-custom-rating>
+                </div>
+
+              </app-card>
+              <br>
+              <app-card shadow="md">
+                <div class="card-body">
+                    <h6>What are your top priorities for the week?</h6>
+                  <form>
+                    <input class="rounded-answer-box" type="text" placeholder="Add an answer">
+                  </form>
+                </div>
+              </app-card>
+              <br>
+              <app-card shadow="md">
+                <div class="card-body">
+                  <h6>What is your biggest roadblock right now?</h6>
+                  <form>
+                    <input class="rounded-answer-box" type="text" placeholder="Add an answer">
+                  </form>
+                </div>
+              </app-card>
+              <br>
+              <app-card shadow="md">
+                <div class="card-body">
+                  <h6>How do you need help with your roadblock?</h6>
+                  <form>
+                    <input class="rounded-answer-box" type="text" placeholder="Add an answer">
+                  </form>
+                </div>
+              </app-card>
+              <br>
+             <button class="btn dashboard-submit-btn"> Submit</button>
+
+          </div>
+
+        </app-card>
+        <!-- <app-card>
+            <div class="row">
+                <div class="col-auto text-center">
+                  <app-slide-out></app-slide-out>
+                </div>
+              </div>
+        </app-card> -->
+      </div>
+      <div class="quote">
+        <span class="quoteSign">"</span>
+        <span class="quoteText">Respect for People: We value our people, encourage their development and reward their performance.</span>
+        <span class="quoteSign">"</span>
+      </div>
+  </div>
+
+
+
+
+</div>

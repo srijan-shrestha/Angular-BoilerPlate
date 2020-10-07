@@ -1,0 +1,413 @@
+<div
+  class="page-profile pt-4"
+  style="background: white; padding-bottom: calc(100vh - 817px);">
+  <div class="py-4">
+    <div class="row">
+      <div class="col-4">
+        <form
+          [formGroup]="userPersonalDetailForm"
+          (ngSubmit)="updateMyProfilePersonal()">
+          <div class="profile-card py-5">
+            <div class="my-profile-img" [formGroup]="imageUploadForm">
+              <app-file
+                style="width: 130px;"
+                width="120px"
+                type="profile"
+                formControlName="image"
+                [label]="imgLabel"
+                id="profileSettingsPicture"
+                (data)="onPicChange($event)"
+                [imgURL]="imgURL"></app-file>
+            </div>
+            <div class="fullname mb-2">
+              <div class="form-group">
+                <div class="form-row align-items-center mt-2">
+                  <div class="col-md-12">
+                    <app-input
+                      [readonly]="disableTest"
+                      type="name"
+                      id="fullName"
+                      formControlName="fullName"
+                      placeholder="Your Name"></app-input>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              (click)="editInput()"
+              class="btn btn-light text-uppercase edit-btn"
+              [style.display]="!disableTest ? 'none' : 'block'">
+              edit
+            </div>
+            <div
+              (click)="saveInput()"
+              class="btn btn-primary text-uppercase edit-btn text-white"
+              [style.display]="disableTest ? 'none' : 'block'">
+              save
+            </div>
+
+            <div class="underline full my-2"></div>
+
+            <div class="profile-detail full">
+              <div class="form-group">
+                <div class="form-row align-items-center">
+                  <div class="col-md-12">
+                    <label class="m-0" for="email">Company Email</label>
+                  </div>
+                  <div class="col-md-12">
+                    <app-input
+                      [readonly]="true"
+                      type="email"
+                      id="email"
+                      formControlName="email"
+                      placeholder="you@company.com"></app-input>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="underline full my-2"></div>
+
+            <div class="dates">
+              <div formGroupName="profile">
+                <div
+                  class="profile-detail"
+                  style="width: 49%; display: inline-block; margin-right: 2px;">
+                  <div class="form-group">
+                    <div class="form-row align-items-center">
+                      <div class="col-md-12">
+                        <label class="m-0" for="dob">Birth Date</label>
+                      </div>
+                      <div class="col-md-12">
+                        <app-input
+                          type="date"
+                          id="dob"
+                          formControlName="birthDate"
+                          [readonly]="disableTest"
+                          placeholder=""></app-input>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="profile-detail"
+                  style="width: 49%; display: inline-block; margin-left: 2px;">
+                  <div class="form-group">
+                    <div class="form-row align-items-center">
+                      <div class="col-md-12">
+                        <label class="m-0" for="hiringDate">Hire Date</label>
+                      </div>
+                      <div class="col-md-12">
+                        <app-input
+                          type="date"
+                          id="hiringDate"
+                          [readonly]="disableTest"
+                          formControlName="hiringDate"
+                          placeholder=""></app-input>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bio text-left mt-4">
+              BIO
+            </div>
+
+            <div class="underline full my-2"></div>
+
+            <div class="form-group bio-form">
+              <div class="row">
+                <div class="col-md-12 col-sm-12">
+                  <div formGroupName="profile">
+                    <div class="form-group" *ngIf="editing.bio">
+                      <quill-editor
+                        formControlName="bio"
+                        [modules]="quillOptions"
+                        [styles]="{
+                        'min-height': '200px',
+                        'font-weight': '400',
+                        width: '100%',
+                        'border-radius': '0 0 10px 10px',
+                        'background-color': '#FFF'
+                        }">
+                      </quill-editor>
+                    </div>
+
+                    <div
+                      *ngIf="!editing.bio && bioText"
+                      class="bio-text-box"
+                      [innerHtml]="bioText"></div>
+                    <div
+                      *ngIf="!editing.bio && !bioText"
+                      (click)="this.onEdit('bio');"
+                      class="empty-detail text-uppercase">
+                      + Add Detail
+                    </div>
+                    <div class="float-right" *ngIf="editing.bio">
+                      <app-button type="gray" class="mx-1" (click)="stopEdit('bio')" size="sm" textTransform="uppercase">
+                        Cancel
+                      </app-button>
+                      <app-button type="gray" (click)="saveInput()" size="sm"  textTransform="uppercase" >
+                        Save
+                      </app-button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-8">
+        <h5 class="h6-title">General Information</h5>
+        <div class="underline my-3"></div>
+        <form
+          [formGroup]="userGeneralDetailForm"
+          (ngSubmit)="updateMyProfilePersonalGeneral()">
+          <div formGroupName="profile">
+            <div class="row my-4">
+              <div class="col-md-12">
+                <h6 class="mb-3" style="font-weight: 500; margin-bottom: 0px;">
+                  Position
+                </h6>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="form-row align-items-center">
+                    <div class="col-md-12">
+                      <label class="m-0" for="jobTitle">Job Title</label>
+                    </div>
+                    <div class="col-md-12">
+                      <app-input
+                        type="text"
+                        id="jobTitle"
+                        formControlName="jobTitle"></app-input>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="form-row align-items-center">
+                    <div class="col-md-12">
+                      <label class="m-0" for="department">Department</label>
+                    </div>
+                    <div class="col-md-12">
+                      <!-- <app-input type="text" id="department" inputValue="{{this.department}}" placeholder="Not Assigned" readonly="true"></app-input> -->
+                      <input type="text" id="department" value="{{this.department}}" placeholder="Not Assigned"
+                             class="form-control" readonly />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h6 class="mb-3" style="font-weight: 500; margin-bottom: 0px;">
+              Location
+            </h6>
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="form-row align-items-center">
+                    <div class="col-md-12">
+                      <label class="m-0" for="city">City</label>
+                    </div>
+                    <div class="col-md-12">
+                      <app-input
+                        type="text"
+                        id="city"
+                        formControlName="city"
+                        placeholder=""></app-input>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="form-row align-items-center">
+                    <div class="col-md-12">
+                      <label class="m-0" for="state">State</label>
+                    </div>
+                    <div class="col-md-12">
+                      <app-select
+                        formControlName="state"
+                        id="state"
+                        [placeholder]="'Select State'">
+                        <option
+                          *ngFor="let state of states"
+                          [value]="state.id"
+                          [selected]="userProfile?.profile?.state?.id ===
+                          state.id">
+                          {{ state.name }}
+                        </option>
+                      </app-select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="form-row align-items-center">
+                    <div class="col-md-12">
+                      <label class="m-0" for="country">Country</label>
+                    </div>
+                    <div class="col-md-12">
+                      <app-select
+                        formControlName="country"
+                        id="country"
+                        [placeholder]="'Select Country'">
+                        <option value="1">USA</option>
+                      </app-select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="form-row align-items-center">
+                    <div class="col-md-12">
+                      <label class="m-0" for="timezone">Timezone</label>
+                    </div>
+                    <div class="col-md-12">
+                      <app-select
+                        formControlName="timezone"
+                        id="timezone"
+                        placeholder="Select Timezone">
+                        <option
+                          *ngFor="let timezone of timezones"
+                          [value]="timezone.id"
+                          [selected]="userProfile?.profile?.timezone?.id ===
+                          timezone.id">
+                          {{ timezone.name }}
+                        </option>
+                      </app-select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--
+          <div class="row mt-4 mb-1">
+            <div class="col-md-12 role-settings">
+              <div [ngClass]="this.roleSwitch ? 'role-settings--enabled' :
+                'role-settings--disabled'">
+
+
+                <h6 class="mb-3" style="font-weight: 500; margin-bottom: 0px;">Blaast
+                  Role Settings</h6>
+
+                <div class="form-group mb-2">
+                  <div class="form-row" style="background: #F7F8F8; font-size:
+                    12px; height: 40px; letter-spacing: 0.763636px;">
+                    <div class="col-md-3 d-flex align-items-center
+                      justify-content-flexstart text-uppercase pl-4">
+                      Role Type
+                    </div>
+                    <div class="col-md-7 d-flex align-items-center
+                      text-uppercase">
+                      Usage rights
+                    </div>
+                    <div class="col-md-2 d-flex align-items-center
+                      justify-content-center text-uppercase">
+                      ACTIVATE
+                    </div>
+                  </div>
+                  <div class="form-row role-row">
+                    <div class="col-md-3 d-flex align-items-center
+                      justify-content-flexstart pl-4 font-weight-bold">
+                      Contributor
+                    </div>
+                    <div class="col-md-7">
+                      Can edit personal goals. Is able to view all playbook
+                      content, team plans, department plans and company goals
+                    </div>
+                    <div class="col-md-2 d-flex align-items-center
+                      justify-content-center">
+                      <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input"
+                            id="contributor">
+                          <label class="custom-control-label inner-label
+                            position-absolute"
+                            for="contributor"></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-row role-row">
+                    <div class="col-md-3 d-flex align-items-center
+                      justify-content-flexstart pl-4 font-weight-bold">
+                      Manager
+                    </div>
+                    <div class="col-md-7">
+                      Can edit personal and team goals. Can view their employee
+                      plans, team plans, department plans and company goals
+                    </div>
+                    <div class="col-md-2 d-flex align-items-center
+                      justify-content-center">
+                      <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input"
+                            id="manager">
+                          <label class="custom-control-label inner-label
+                            position-absolute"
+                            for="manager"></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-row role-row">
+                    <div class="col-md-3 d-flex align-items-center
+                      justify-content-flexstart pl-4 font-weight-bold">
+                      Admin
+                    </div>
+                    <div class="col-md-7">
+                      Can edit company, department, team and employee settings.
+                      Makes edits and view all pages of playbook.
+                    </div>
+                    <div class="col-md-2 d-flex align-items-center
+                      justify-content-center">
+                      <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input"
+                            id="admin">
+                          <label class="custom-control-label inner-label
+                            position-absolute"
+                            for="admin"></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div> -->
+          <div class="text-center float-right">
+            <app-button
+              type="primary"
+              class="profile-save-btn"
+              size="md"
+              [disabled]="userGeneralDetailForm.invalid">
+              Save
+            </app-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'app/assets/scss/app';
+// @import url('https://fonts.googleapis.com/css?family=Heebo:300,400,500,700,800&display=swap');
+// @import 'app/assets/fonts/_fonts.scss';
+body {
+    background-color: #F7F8F8 !important;
+    font-family: 'Heebo';
+    font-weight: normal;
+    font-style: normal;
+}
+// Default style for printer view
+printer-default {
+  position: static;
+}
+
+/**
+ * Could not overwrite this in the initiative component
+ * by using :host ::ng-deep
+ */
+.popover-custom {
+  max-width: 400px!important;
+  @media screen and (max-width: 540px) {
+    max-width: 276px!important
+  }
+}

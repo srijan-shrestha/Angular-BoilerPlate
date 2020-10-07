@@ -1,0 +1,36 @@
+<div class="playbook-bottombar d-flex flex-column" [class.playbook-bottombar--hidden]="state==='hidden'"
+     [class.playbook-bottombar--expanded]="state==='expanded'"
+     [class.playbook-bottombar--position_absolute]="state==='expanded'"
+     [class.overflow-y]="state==='expanded'"
+     id="playbook-bottombar-id">
+
+  <div class="playbook-bottombar__nav">
+    <div class="row no-gutters">
+      <div class="playbook-bottombar__toggle-container" (click)="toggleShowHide()">
+        <!-- <span class="hide-show">{{ state === 'hidden' ? 'Show' : 'Hide' }}</span> -->
+        <span style="margin-top: 5px;"><app-icon icon="{{ state === 'hidden' ? 'toggleUp' : 'toggleDown' }}" size="sm" type="white"></app-icon></span>
+      </div>
+      <div class="col text-center">
+        <app-button type="flat" size="sm" textTransform="uppercase" [className]="currentTab==='layouts' ? 'active':''"
+                    (click)="changeTab('layouts')">Layouts
+        </app-button>
+        <app-button type="flat" size="sm" textTransform="uppercase" [className]="currentTab==='images' ? 'active':''"
+                    (click)="changeTab('images')">Images
+        </app-button>
+      </div>
+    </div>
+  </div>
+  <div class="playbook-bottombar__content" [class.overflow-auto]="state==='expanded'">
+    <app-playbook-layouts *ngIf="currentTab==='layouts'" (bottomBarStateChanged)="changeState($event)"
+                          [bottomBarState]="state"></app-playbook-layouts>
+    <app-playbook-images *ngIf="currentTab==='images'" (bottomBarStateChanged)="changeState($event)"
+                         [bottomBarState]="state"></app-playbook-images>
+  </div>
+</div>
+
+<!--<ng-container #toggleDown>-->
+<!--  <app-icon icon="bottomToggle" size="sm" type="gray"></app-icon>-->
+<!--</ng-container>-->
+<!--<ng-container #toggleUp>-->
+<!--  <app-icon icon="bottomToggle" size="sm" type="gray"></app-icon>-->
+<!--</ng-container>-->

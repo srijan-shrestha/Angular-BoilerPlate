@@ -1,0 +1,171 @@
+<div class="page-profile py-4">
+  <div class="py-4">
+    <div class="row">
+      <div class="col-md-6">
+        <h6 class="mb-4 px-4 h6-title">Security</h6>
+        <div class="px-4">
+          <div class="mb-4">
+            <div class="row align-items-center">
+              <div class="col">
+                <h6>Two-factor authentication</h6>
+              </div>
+              <div class="col-auto">
+                <form [formGroup]="twoFactorAuthenticationForm">
+                  <app-switch formControlName="enable" (changed)="twoFactorChanged($event)"></app-switch>
+                </form>
+              </div>
+            </div>
+            <div class="divider mb-4"></div>
+            <p>
+              Protect your Blaast account with and extra layer of security by requiring access to your phone. Once you
+              configured, you'll be required to enter both your password and an authentication code form your mobile
+              phone
+              in order to sign into your Blaast account.
+            </p>
+          </div>
+          <div class="mt-5">
+            <h6>Sign out of all sessions</h6>
+            <div class="divider mb-4 mt-4"></div>
+            <p>
+              Lost your phone? Left yourself logged in on a public computer? Need a way to sign out everywhere except
+              your
+              current browser? This is for you.
+            </p>
+            <app-button type="outline-primary" [block]="false" size="lg" (click)="allSessionSignout()"
+                        className="mt-3 text-uppercase">
+              Sign out
+            </app-button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <h5 class="mb-4 px-4">Login</h5>
+        <div class="px-4">
+
+          <form [formGroup]="passwordUpdateForm" (ngSubmit)="passwordUpdateFormSubmit()">
+            <div class="form-group">
+              <label class="m-0 form-label" for="oldPassword">Old Password</label>
+              <app-input type="password" formControlName="oldPassword" id="oldPassword" placeholder=""
+                         [disableValidation]="true"
+              ></app-input>
+            </div>
+            <div class="form-group">
+              <label class="m-0 form-label" for="newPassword">New Password</label>
+              <app-input type="password" formControlName="newPassword" id="newPassword" placeholder=""
+              ></app-input>
+            </div>
+            <div class="mb-3">
+              <app-progress-bar [password]="password" [enableFeedback]="true"></app-progress-bar>
+            </div>
+
+            <div class="form-group">
+              <label class="m-0 form-label" for="confirmPassword">Confirm Password</label>
+              <app-input type="password" formControlName="confirmPassword" id="confirmPassword" placeholder=""
+                         [disableValidation]="true"
+              ></app-input>
+            </div>
+            <div class="form-row">
+              <div class="col-md-8 offset-4">
+                <app-button type="primary" size="lg" [disabled]="!passwordUpdateForm.valid" [block]="false"
+                            className="float-right">SAVE
+                  PASSWORD
+                </app-button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!--        <div class="px-4">-->
+        <!--          <div class="divider my-5"></div>-->
+        <!--        </div>-->
+        <!--        <div class="mb-4 px-4">-->
+        <!--          <h5 class="mb-4">Connect with</h5>-->
+        <!--          <small class="font-weight-bold">NOT CONNECTED</small>-->
+        <!--          <div class="unconnected-accounts mt-3 mb-2 pb-2">-->
+        <!--            <div class="social-account">-->
+        <!--              <img src="app/assets/images/social-icons/google.png" width="16" height="16"/>-->
+        <!--              <span>Google</span>-->
+        <!--              <button class="btn btn-link my-2">CONNECT</button>-->
+        <!--            </div>-->
+        <!--            <div class="social-account">-->
+        <!--              <img src="app/assets/images/social-icons/linkedin.png" width="28" height="28"/>-->
+        <!--              <span>Linkedin</span>-->
+        <!--              <button class="btn btn-link my-2">CONNECT</button>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--          <small class="font-weight-bold">CONNECTED</small>-->
+        <!--          <div class="connected-accounts mt-3 mb-2 pb-2">-->
+        <!--            <div class="social-account">-->
+        <!--              <img src="app/assets/images/social-icons/facebook.png" width="16" height="16"/>-->
+        <!--              <span>Facebook</span>-->
+        <!--              <button class="btn btn-link my-2" (click)="signInWithGoogle()">DISCONNECT</button>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
+      </div>
+    </div>
+
+    <ng-template #twoFactorEnableModal let-modal>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&otimes;</span>
+      </button>
+      <div class="text-center">
+        <div class="modal-header p-0">
+          <h4 class="w-100 modal-title">SMS Message</h4>
+        </div>
+        <form [formGroup]="twoFactorAuthenticationForm" (ngSubmit)="twoFactorAuthenticationFormSubmit()">
+          <div class="modal-body">
+            <p>We'll send a time-sensitive authentication code to your mobile phone via text message when you're signing
+              in.</p>
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col">
+                  <app-select ngbAutofocus formControlName="country" placeholder="Select Country Code" size="lg">
+                    <option *ngFor="let country of countries" [value]="country[3]">{{country[2]}}
+                      +{{country[3]}}</option>
+                    <!-- <option value="2">Two</option>
+                    <option value="3">Three</option> -->
+                  </app-select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col">
+                  <app-input type="text" formControlName="phone" size="lg" placeholder="(xxx) xxx-xxxx"
+                             [maskData]="'(000) 000-0000'"
+                  ></app-input>
+                </div>
+              </div>
+            </div>
+            <app-button type="primary" [block]="true" size="lg" [disabled]="twoFactorAuthenticationForm.invalid">
+              Activate
+            </app-button>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+
+    <ng-template #twoFactorActivatedModal let-modal>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&otimes;</span>
+      </button>
+      <div class="text-center">
+        <div class="modal-header ">
+          <h3 class="w-100 modal-title">Two-Factor Authentication<br> Activated</h3>
+        </div>
+        <div class="modal-body">
+          <div class="row pl-5 pr-5">
+            <div class="col">
+              <div class="form-group">
+                <app-button type="primary" [block]="true" size="lg" (click)="modal.dismiss()">
+                  Continue
+                </app-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

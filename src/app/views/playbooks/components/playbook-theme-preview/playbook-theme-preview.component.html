@@ -1,0 +1,39 @@
+<div class="modal-body">
+  <!-- <div class="playbook playbook--full">
+    <div class="row no-gutters h-100">
+      <div class="col h-100" style="width: 100px;">
+        <div class="playbook__page-container">
+          <div class="playbook__page playbook__page--single">
+            <div class="playbook__page-scale">
+              <div class="playbook__page-inner">
+                <img [src]="theme.image">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="image-container">
+    <img [src]="theme.image">
+  </div>
+  <div class="page-title-left">{{theme?.title}}</div>
+  <div class="page-title-right">{{theme?.title}}</div>
+  <div class="closeBtn" (click)="ngModal.dismissAll('Ok')">
+    <app-icon icon="cross" type="white" size="lg"></app-icon>
+  </div>
+  <div class="prevBtn">
+    <div (click)="updateNextPrev(false)">
+      <app-icon icon="sideLeft" type="white" size="sm"></app-icon>
+      PREVIOUS PAGE
+    </div>
+  </div>
+  <div class="nextBtn">
+    <div (click)="updateNextPrev(true)">
+      NEXT PAGE
+      <app-icon icon="sideRight" type="white" size="sm"></app-icon>
+    </div>
+  </div>
+</div>
+
+

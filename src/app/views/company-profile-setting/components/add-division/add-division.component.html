@@ -1,0 +1,22 @@
+<form [formGroup]="divisionForm">
+  <div class="modal-header">
+    <h3 class="modal-title font-weight-normal"><strong> Add Division</strong></h3>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body py-0">
+    <app-input class="form-group" formControlName="name" placeholder="Division Name"></app-input>
+    <hr>
+    <app-select formControlName="location" id="location" [placeholder]="'Select Location'">
+      <option *ngFor="let location of locations"
+              [value]="location.id">
+        {{location.locationName}}
+      </option>
+    </app-select>
+  </div>
+  <div class="modal-footer d-block ">
+    <app-button size="lg" (click)="onSubmit()" [loading]="loading">Submit</app-button>
+  </div>
+</form>

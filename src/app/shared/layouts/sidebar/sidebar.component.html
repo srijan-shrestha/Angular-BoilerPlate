@@ -1,0 +1,18 @@
+<div
+  class="sidebar"
+  [class.sidebar--collapsed]="collapsed"
+  [class.sidebar--lg]="size==='lg'"
+  [class.sidebar--md]="size==='md'"
+  [class.sidebar--sm]="size==='sm'"
+  [class.sidebar--dark]="theme==='dark'">
+  <div class="sidebar__inner">
+    <div class="sidebar__toggle" (click)="toggleSidebar()" *ngIf="showToggle">
+
+      <app-icon size="sm" type="primary" icon="{{ sideIcon?'sideLeft':'sideRight' }}"></app-icon>
+
+    </div>
+    <div class="sidebar__scroller">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

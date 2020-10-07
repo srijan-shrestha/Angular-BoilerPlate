@@ -1,0 +1,75 @@
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.nextBtn {
+  text-align: right;
+  right: 0;
+  position: absolute;
+  color: white;
+  /* top: 101%; */
+  padding-top: 11px;
+  font-weight: 600;
+  letter-spacing: 1.0143px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.prevBtn {
+  padding-top: 11px;
+  position: absolute;
+  left: 0;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1.0143px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.closeBtn {
+  position: absolute;
+  top: -1.5rem;
+  right: -8%;
+  cursor: pointer;
+}
+
+@media (min-width: 1440px) {
+  .closeBtn {
+    position: absolute;
+    top: -1.5rem;
+    right: -8%;
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 1440px) and (min-width: 1200px)  {
+  .closeBtn {
+    position: absolute;
+    top: -2rem;
+    right: -6%;
+    cursor: pointer;
+  }
+}
+
+.page-title-left {
+  position: absolute;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1.0143px;
+  top: -25px;
+  left: -18px;
+  text-transform: uppercase;
+}
+.page-title-right {
+  position: absolute;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1.0143px;
+  top: -25px;
+  right: -18px;
+  text-transform: uppercase;
+}
+::ng-deep .dark-backdrop{
+  background-color: #000000;
+}

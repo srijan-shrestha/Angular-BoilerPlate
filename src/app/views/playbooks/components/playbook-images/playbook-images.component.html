@@ -1,0 +1,476 @@
+<ng-template [ngIf]="isGallerySelected">
+  <div class="container-fluid h-100" (wheel)="onImageListScroll($event)">
+    <div *ngIf="!showAddNewImage" class="row pt-3  bg-white">
+      <div class="col mx-2">
+        <h4 class="gallery_header">My Galleries</h4>
+      </div>
+      <div class="col mr-4">
+        <div class="text-right">
+          <ng-container *ngTemplateOutlet="toggle"></ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="row h-100">
+      <div class="col gallery-list h-100 bg-gray">
+        <div *ngIf="!showAddNewImage">
+          <div class="row pl-5 gallery-list__images-container" *ngIf="galleries">
+            <div class="col">
+              <div class="row">
+                <!-- <div class="col-2">
+                  <div class="gallery-list__directory gallery-list__directory__img-add" (click)="showAddNewImage=true">
+                    <div class="gallery-list__directory-icon">
+                      <div>
+                        <app-icon icon="plus"  size="sm"></app-icon>
+                      </div>
+                    </div>
+                    <div class="gallery-list__directory-name text-center">Add Photos</div>
+                  </div>
+                </div> -->
+                <div class="col-2" *ngFor="let q of quarters" (click)="getGalleryImage(year, q, {'id': 1})"
+                [class.active]="selectedYear === year && selectedQuarter === q">
+                  <div class="gallery-list__directory">
+                    <!-- <div class="gallery-list__directory__images">
+                    </div> -->
+                    <img src="app/assets/images/login-image3.jpg">
+                    <app-icon class="image-placeholder"  icon="image-placeholder"></app-icon>
+                    <div class="gallery-list__directory-title text-center p-2">{{year}} - Q{{q}} Gallery </div>
+                  </div>
+
+
+                <!-- <div class="gallery-sidebar__quarter">Q{{q}}</div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div *ngIf="showAddNewImage">
+          <ng-container *ngTemplateOutlet="addNewImage"></ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="!isGallerySelected">
+  <div class="container-fluid h-100">
+    <div class="row bg-white">
+      <div class="col gallery-list h-100">
+        <div *ngIf="!showAddNewImage">
+          <div class="row gallery-list__images-container" *ngIf="galleryImages" (wheel)="onImageListScroll($event)">
+            <div class="col">
+              <div class="row image-header">
+                <div class="col-md-5 col-sm-12">
+                  <app-button (click)="setYearQuarterOfPlaybook()" type="link" textTransform="uppercase">
+                    <app-icon icon="left-arrow-feather" size="sm" type="primary"></app-icon> Back
+                  </app-button>
+                  <div class="mt-3 font-weight-bold">
+                    Q{{ selectedQuarter }} {{ selectedGalleryTitle ? '- ' + selectedGalleryTitle : '' }}
+                  </div>
+                </div>
+                <div class="col-md-7 col-sm-12">
+                  <div class="float-right">
+
+                    <div class="header-select">
+                      <div ngbDropdown class="header-select__dropdown">
+                        <button type="button" class="btn header-select__dropdown__single-button" ngbDropdownToggle>
+                          {{ sortBy ? sortBy : 'Sort By'}}
+                        </button>
+                        <div ngbDropdownMenu class="header-select-filter__dropdown-menu">
+                          <a ngbDropdownItem class="header-select-filter__dropdown-item" (click)="setSortOption('Option 1')">Option 1</a>
+                          <a ngbDropdownItem class="header-select-filter__dropdown-item" (click)="setSortOption('Option 2')">Option 2</a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="header-checkbox">
+                      <input type="checkbox" name="hideUsed" id="hideUsed" />
+                      <label for="hideUsed">Hide Used Photos</label>
+                    </div>
+
+                    <div class="mt-1 toggle-view">
+                      <ng-container *ngTemplateOutlet="toggle"></ng-container>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-6 equal-height">
+                  <div class="gallery-list__directory gallery-list__directory__img-add" (click)="showAddNewImage=true">
+                    <div class="gallery-list__directory-icon">
+                      <div>
+                        <app-icon icon="plus"  size="sm"></app-icon>
+                      </div>
+                    </div>
+                    <div class="gallery-list__directory-name text-center">Add Photos</div>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6 equal-height" *ngFor="let g of galleryImages; let i = index">
+                  <div class="gallery-list__directory equal-height__list" [style.backgroundImage]="'url(' + g.image + ')'" style="background-size: cover;"
+                       (click)="attachImage(g,g.image,i)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div *ngIf="showAddNewImage" (wheel)="onImageListScroll($event)">
+          <div class="row py-2">
+            <div class="col">
+              <app-button (click)="showAddNewImage=false" type="link">&larr; Back to Galleries</app-button>
+            </div>
+            <div class="col text-center">
+              <div class="p-2 font-weight-bold">
+                {{ selectedYear }} Q{{ selectedQuarter }}
+              </div>
+            </div>
+            <div class="col text-right">
+              <ng-container *ngTemplateOutlet="toggle"></ng-container>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div *ngIf="imageUploadStep===1">
+
+                <div>
+                  <h4 class="text-center">
+                    Add Your Photos
+                  </h4>
+                </div>
+                <div class="cultural-photos__upload-container text-center" appDragDrop (fileDropped)="uploadFile($event)">
+                  <div class="d-inline-block">
+                    <div class="media align-items-center">
+                      <app-icon icon="upload" size="lg" class="mr-2"></app-icon>
+                      <div class="media-body">
+                        <div>
+                          Upload New Photos | Smaller than 10 MB
+                        </div>
+                        <div>
+                          [Drag & Drop: .jpeg, .jpg, .png image]
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mt-4">
+                      <span class="btn btn-primary btn-file float-left">Choose Photos
+                        <input type="file" #fileInput  multiple (change)="uploadFolder(fileInput.files)">
+                      </span>
+                      <span class="btn btn-primary btn-directory float-right">Choose Folder
+                        <input type="file" #folderInput webkitDirectory multiple (change)="uploadFolder(folderInput.files)"/>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="font-weight-bold text-center">{{files?.length || '0'}}
+                  Photo{{files?.length === 1 ? '' : 's'}} Selected.
+                </div>
+                <div class="files-list">
+                  <div class="file" *ngFor="let file of files; let i= index;">
+                    <img *ngIf="file" [src]="file.url">
+                    <!-- <button type="button" class="close" aria-label="Close" (click)="deleteAttachment(i)">
+                      <span aria-hidden="true">&times;</span>
+                    </button> -->
+                    <div class="bg-secondary text-white row font-size-sm align-items-center no-gutters"
+                    style="margin-top: 2px">
+                      <div class="col">
+                        <div class="cultural-photos__meta-icon float-left">
+                          <app-icon icon="edit" size="sm" (click)="editImage(file, i)"></app-icon>
+                        </div>
+                        <div class="cultural-photos__meta-icon float-right">
+                          <app-icon icon="trash" size="sm" (click)="deleteIdex(i)" ></app-icon>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center mb-2" *ngIf="files?.length">
+                  <!-- <app-button type="outline-primary" (click)="imageUploadStep=2" [disabled]="!files?.length">Next</app-button> -->
+                  <app-button type="outline-primary" (click)="addImage()"  [loading]="btnLoading" [disabled]="!files?.length">Upload
+                  </app-button>
+                </div>
+              </div>
+              <div *ngIf="imageUploadStep===2">
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <button class="btn btn-lg btn-gallery-selection" (click)="openExitingGallery(true)"
+                              [class.active]="isCreateNewGallerySelected">
+                        <app-icon icon="tiles-plus"></app-icon>
+                        <div>
+                          Create New Gallery
+                        </div>
+                      </button>
+                      <div *ngIf="isCreateNewGallerySelected">
+                        <div class="row mt-4">
+                          <div class="col">
+                            <input type="text" placeholder="Add gallery title" class="form-control"
+                                   [(ngModel)]="galleryTitle" required="required">
+                          </div>
+                          <div class="col-auto">
+                            <button class="btn btn-primary" (click)="createImage()">
+                              Create
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <button class="btn btn-lg btn-gallery-selection" (click)="openExitingGallery(false)"
+                              [class.active]="!isCreateNewGallerySelected">
+                        <app-icon icon="tiles"></app-icon>
+                        <div>
+                          Add to Existing Gallery
+                        </div>
+                      </button>
+                      <div *ngIf="!isCreateNewGallerySelected">
+                        <div class="row mt-4">
+                          <div class="col">
+                            <select placeholder="select" class="custom-select" id="inputGroupSelect03"
+                                    [(ngModel)]="galleryTitle">
+                              <option selected>Choose Folder...</option>
+                              <option *ngFor="let g of galleries" [value]="g.id">{{g.title}}</option>
+                            </select>
+                          </div>
+                          <div class="col-auto">
+                            <button class="btn btn-primary" (click)="addImage()">
+                              Add Image
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="galleryTitle" *ngIf="!isCreateNewGallerySelected">
+                    <option selected>Choose Year...</option>
+                    <option *ngFor="let g of galleries" [value]="g.id">{{g.title}}</option>
+                  </select>
+                  <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="galleryTitle" *ngIf="!isCreateNewGallerySelected">
+                    <option selected>Choose Quarter...</option>
+                    <option *ngFor="let g of galleries" [value]="g.id">{{g.title}}</option>
+                  </select>
+                  <select class="custom-select" id="inputGroupSelect03" [(ngModel)]="galleryTitle" *ngIf="!isCreateNewGallerySelected">
+                    <option selected>Choose Folder...</option>
+                    <option *ngFor="let g of galleries" [value]="g.id">{{g.title}}</option>
+                  </select> -->
+
+                </div>
+                <div class="text-center mt-4">
+                  <app-button type="outline-primary" (click)="imageUploadStep=1">Back</app-button>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-auto gallery-sidebar h-100" [class.overflow-auto]="bottomBarState==='expanded'">
+        <div class="gallery-sidebar__title mb-1">Select from Gallery </div>
+        <div class="gallery-sidebar_separator"></div>
+        <div class="gallery-sidebar__year">{{this.selectedYear}}</div>
+        <div *ngFor="let q of quarters" (click)="getGalleryImage(year, q, {'id': 1})" class="p-2"
+             [class.active]="selectedYear === year && selectedQuarter === q">
+             <div class="gallery-list__directory galleries mb-0">
+              <img src="app/assets/images/login-image3.jpg">
+              <div class="gallery-list__directory-title text-center p-2">Q{{q}}</div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<!-- <div class="d-flex">
+  <div class="p-2 flex-grow-1">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-3 folder-bg" *ngFor="let g of galleries" (click)="getGalleryImage(g)">
+          <span>{{g?.title}}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3" *ngFor="let g of galleryImages"><img [src]="g.image" width="100%" height="80px" (click)="attachImage(g.id,g.image)"></div>
+      </div>
+    </div>
+    <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (fileDropped)="uploadFile($event)">
+      <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
+    </div>
+    <div class="files-list" *ngFor="let file of files;let i= index">
+      <img *ngIf="file" [src]="file.url" width="100px" height="100px">
+      <button class="delete-file" (click)="deleteAttachment(i)">
+        <b>X</b>
+      </button>
+    </div>
+  </div>
+  <div class="p-2 ml-auto bg-primary" style="width: 200px">
+    <h1 class="text-light">{{year}}</h1>
+    <p *ngFor="let q of quarters">
+      <span style="color: white">{{q}}</span>
+      <img (click)="getGalleries(q)" src="https://blaast-staging.s3-us-west-2.amazonaws.com/icon/folder.png" width="100%" height="80px">
+    </p>
+
+  </div>
+</div> -->
+
+<ng-template #toggle>
+  <button class="btn gallery_toggle-btn" (click)="toggleBottomBarState()">
+    <span class="gallery_view-type-header"> {{ bottomBarState === 'expanded' ? 'Collapse View' : 'Expand View' }} </span>
+    <span class="mx-2 gallery_expanded-icon">
+    <app-icon *ngIf="bottomBarState != 'expanded'" type="white" icon="full-gallery" size="sm"></app-icon>
+    <app-icon *ngIf="bottomBarState == 'expanded'" type="white" icon="double-down" size="sm"></app-icon>
+    </span>
+  </button>
+</ng-template>
+
+<ng-template #addNewImage>
+  <div class="row pt-3">
+    <div class="col">
+      <app-button (click)="showAddNewImage=false" type="link">&larr; Back to Galleries</app-button>
+    </div>
+    <div class="col text-center">
+      <div class="pt-3 font-weight-bold">
+        {{ selectedYear }} Q{{ selectedQuarter }}
+      </div>
+    </div>
+    <div class="col pt-3 mr-4">
+      <div class="text-right">
+        <ng-container *ngTemplateOutlet="toggle"></ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div *ngIf="imageUploadStep===1">
+
+        <div>
+          <h4 class="text-center">
+            Add Your Photos
+          </h4>
+        </div>
+        <div class="cultural-photos__upload-container text-center" appDragDrop (fileDropped)="uploadFile($event)">
+          <div class="d-inline-block">
+            <div class="media align-items-center">
+              <app-icon icon="upload" size="lg" class="mr-2"></app-icon>
+              <div class="media-body">
+                <div>
+                  Upload New Photos | Smaller than 10 MB
+                </div>
+                <div>
+                  [Drag & Drop: .jpeg, .jpg, .png image]
+                </div>
+              </div>
+            </div>
+            <div class="mt-4">
+              <span class="btn btn-primary btn-file float-left">Choose Photos
+                <input type="file" multiple (change)="uploadFile($event)">
+              </span>
+              <span class="btn btn-primary btn-directory float-right">Choose Folder
+                <input type="file" #folderInput webkitDirectory multiple (change)="uploadFolder(folderInput.files)"/>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="font-weight-bold text-center">{{files?.length || '0'}}
+          Photo{{files?.length === 1 ? '' : 's'}} Selected.
+        </div>
+        <div class="files-list">
+          <div class="file" *ngFor="let file of files; let i= index" >
+            <img *ngIf="file" [src]="file.url">
+            <!-- <button type="button" class="close" aria-label="Close" (click)="deleteAttachment(i)">
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+            <div class="bg-secondary text-white row font-size-sm align-items-center no-gutters"
+            style="margin-top: 2px">
+              <div class="col">
+                <div class="cultural-photos__meta-icon float-left">
+                  <app-icon icon="edit" size="sm" (click)="editImage(file, i)"></app-icon>
+                </div>
+                <div class="cultural-photos__meta-icon float-right">
+                  <app-icon icon="trash" size="sm" (click)="deleteIdex(i)" ></app-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mb-2">
+          <!-- <app-button type="outline-primary" (click)="imageUploadStep=2" [disabled]="!files?.length">Next</app-button> -->
+          <app-button type="outline-primary" (click)="addImage()" [disabled]="!files?.length">Upload
+          </app-button>
+        </div>
+      </div>
+      <div *ngIf="imageUploadStep===2">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-lg btn-gallery-selection" (click)="openExitingGallery(true)"
+                      [class.active]="isCreateNewGallerySelected">
+                <app-icon icon="tiles-plus"></app-icon>
+                <div>
+                  Create New Gallery
+                </div>
+              </button>
+              <div *ngIf="isCreateNewGallerySelected">
+                <div class="row mt-4">
+                  <div class="col">
+                    <input type="text" placeholder="Add gallery title" class="form-control"
+                           [(ngModel)]="galleryTitle" required="required">
+                  </div>
+                  <div class="col-auto">
+                    <button class="btn btn-primary" (click)="createImage()">
+                      Create
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <button class="btn btn-lg btn-gallery-selection" (click)="openExitingGallery(false)"
+                      [class.active]="!isCreateNewGallerySelected">
+                <app-icon icon="tiles"></app-icon>
+                <div>
+                  Add to Existing Gallery
+                </div>
+              </button>
+              <div *ngIf="!isCreateNewGallerySelected">
+                <div class="row mt-4">
+                  <div class="col">
+                    <select placeholder="select" class="custom-select" id="inputGroupSelect03"
+                            [(ngModel)]="galleryTitle">
+                      <option selected>Choose Folder...</option>
+                      <option *ngFor="let g of galleries" [value]="g.id">{{g.title}}</option>
+                    </select>
+                  </div>
+                  <div class="col-auto">
+                    <button class="btn btn-primary" (click)="addImage()">
+                      Add Image
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="galleryTitle" *ngIf="!isCreateNewGallerySelected">
+            <option selected>Choose Year...</option>
+            <option *ngFor="let g of galleries" [value]="g.id">{{g.title}}</option>
+          </select>
+          <select class="custom-select" id="inputGroupSelect02" [(ngModel)]="galleryTitle" *ngIf="!isCreateNewGallerySelected">
+            <option selected>Choose Quarter...</option>
+            <option *ngFor="let g of galleries" [value]="g.id">{{g.title}}</option>
+          </select>
+          <select class="custom-select" id="inputGroupSelect03" [(ngModel)]="galleryTitle" *ngIf="!isCreateNewGallerySelected">
+            <option selected>Choose Folder...</option>
+            <option *ngFor="let g of galleries" [value]="g.id">{{g.title}}</option>
+          </select> -->
+        </div>
+        <div class="text-center mt-4">
+          <app-button type="outline-primary" (click)="imageUploadStep=1">Back</app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

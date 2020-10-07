@@ -1,0 +1,54 @@
+<div class="mb-4">
+  <app-card>
+    <form [formGroup]="goalForm">
+      <div class="form-group">
+        <label class="input-label font-weight-bold">Goal Name:</label>
+        <app-input formControlName="name" placeholder="Goal Name Here" type="text" *ngIf="!goal">
+        </app-input>
+        <p *ngIf="!editable">{{goal?.name}}</p>
+      </div>
+
+      <div class="form-group">
+        <label class="input-label font-weight-bold">Goal Number:</label>
+        <div class="form-row">
+          <div class="col-2">
+            <app-input formControlName="goalPrefix" placeholder="" type="text"></app-input>
+          </div>
+          <div class="col">
+            <app-input formControlName="target" placeholder="Goal Number Here" type="number" *ngIf="!goal"></app-input>
+            <p *ngIf="goal">{{goal?.target}}</p>
+          </div>
+          <div class="col-2">
+            <app-input formControlName="goalInfix" placeholder="" type="text"></app-input>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="input-label font-weight-bold">Description:</label>
+        <app-input type="textarea" formControlName="description" placeholder="Goal Description Here"
+                   [fixedHeight]="true" *ngIf="!goal"></app-input>
+        <p *ngIf="goal">{{goal?.description}}</p>
+      </div>
+
+      <div class="row" *ngIf="!goal">
+        <div class="col text-left">
+          <app-button type="outline-primary" (click)="removeGoalCard()">Remove</app-button>
+        </div>
+        <div class="col text-right">
+          <app-button type="primary" (click)="submitGoal()" [loading]="loading">Submit Goal</app-button>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="goal && goal?.status !== 'Awaiting Feedback'">
+        <div class="col text-left">
+          <app-button type="outline-primary" (click)="editGoal()">Edit Goal</app-button>
+        </div>
+        <div class="col text-right">
+          <app-button type="primary" [loading]="loading">Publish Goal</app-button>
+        </div>
+      </div>
+
+    </form>
+  </app-card>
+</div>

@@ -1,0 +1,49 @@
+@mixin fixedView {
+  position: fixed;
+  bottom: 0;
+  height:auto;
+}
+.quick-view {
+  position: relative;
+  z-index: 2;
+
+  &-wrapper {
+    @include fixedView;
+    background: $white;
+    box-shadow: $dropdown-box-shadow;
+    width: 100vw;
+    left: 0;
+    right: auto;
+    z-index: 20;
+    overflow-y: auto;
+    //height:16vw;
+
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+    }
+  }
+
+
+  &-overlay {
+    @include fixedView;
+    width: 100%;
+    background: rgba($black, .5);
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
+
+  &__close {
+    position: absolute;
+    right: 10px;
+    font-size: 2rem;
+    margin: $spacer;
+    cursor: pointer;
+    z-index: 2;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+}

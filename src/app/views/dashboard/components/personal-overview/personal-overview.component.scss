@@ -1,0 +1,242 @@
+.icon-container {
+  background-color: rgb(243, 146, 0);
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0px;
+}
+
+.card-header {
+  background: none !important;
+
+  h5 {
+    color: darkgray;
+    font-weight: 500;
+  }
+
+  &_top-right {
+    position: absolute;
+    right: 0;
+    margin-right: 1.25rem;
+  }
+}
+
+.card-body {
+  &_pink-body {
+    background-color: #FFF1E5;
+    margin: 20pt 5pt;
+    border-radius: 5pt;
+  }
+}
+
+.card-initiative {
+  margin: 4pt 0pt;
+
+  form {
+    input[type="radio"] {
+      margin: 0pt 8pt;
+    }
+  }
+}
+
+
+.form-check {
+  padding: 0.9rem 1rem;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #FFF1E5 !important;
+}
+
+.checkbox-2x {
+  transform: scale(1.6);
+  -webkit-transform: scale(1.4);
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.table td {
+  padding: 0.55rem;
+  padding-left: 0.9rem;
+  vertical-align: top;
+  border-top: none !important;
+  border-radius: 5px;
+}
+
+
+.rounded-answer-box {
+  width: 100%;
+  background-color: #FFF1E5;
+  border-radius: 5px;
+  padding: 0.9rem;
+}
+
+input[type="text"] {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-width: 0 !important;
+}
+
+.dashboard-submit-btn {
+  background-color: #F48620;
+  padding: 5pt 28pt;
+  border-radius: 5pt;
+  color: #ffffff;
+  float: right;
+  transition: none;
+}
+
+.dashboard-submit-btn:hover {
+  background-color: rgb(255, 153, 0);
+}
+
+.dashboard-submit-btn:active {
+  background-color: #F48620;
+}
+
+.goal-result {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+
+  form {
+    display: inline;
+
+    input[type="number"] {
+      width: 40pt;
+      background-color: rgb(255, 255, 255);
+      border-radius: 5px;
+      padding: 0.3rem;
+      text-align: center;
+    }
+  }
+}
+
+.quote {
+  padding: 1rem 0.7rem;
+
+  .quoteSign {
+    font-family: serif;
+    font-size: 5.2rem;
+    margin: 0.5rem 1.1rem;
+    color: #A19FAC;
+  }
+
+  .quoteText {
+    font-size: 1.5rem;
+    color: #2E3039;
+    margin: 0.2rem 0.9rem;
+    word-spacing: 0.6rem;
+    letter-spacing: 0.1rem;
+  }
+}
+
+@media screen and (max-width: 1566px) {
+  .container-fluid {
+    font-size: 0.8rem !important;
+  }
+
+  .card-header {
+    h5 {
+      font-size: 0.9rem;
+    }
+  }
+
+  .card-body {
+    padding: 0.5rem;
+
+    h6 {
+      font-size: 0.8rem;
+    }
+
+    &_pink-body {
+      background-color: #FFF1E5;
+      margin: 10pt 4pt;
+      padding: 0.8rem;
+      border-radius: 5pt;
+    }
+  }
+
+  .rounded-answer-box {
+    padding: 0.7rem;
+  }
+
+  .dashboard-submit-btn {
+    padding: 4pt 20pt;
+    font-size: 0.8rem;
+  }
+
+  .card-initiative {
+    margin: 1pt 0pt;
+
+    form {
+      input[type="radio"] {
+        margin: 0pt 4pt;
+      }
+
+      td {
+        padding: 0.4rem 0;
+      }
+    }
+
+  }
+
+
+  .form-check {
+    padding: 0.8rem 1rem;
+  }
+
+  .form-check-input {
+    position: static;
+    margin-left: 0.3rem;
+  }
+
+  .checkbox-2x {
+    transform: scale(1.6);
+    -webkit-transform: scale(1.2);
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .table td {
+    padding: 0.3rem 0.3rem 0.3rem 0.2rem;
+    vertical-align: top;
+    border-top: none !important;
+    border-radius: 5px;
+  }
+
+  .goal-result {
+    form {
+      input[type="number"] {
+        width: 30pt;
+        padding: 0.2rem;
+      }
+    }
+  }
+
+  .quote {
+    padding: 1rem 0.7rem;
+    text-align: center;
+
+    .quoteSign {
+      font-family: serif;
+      font-size: 3.2rem;
+      margin: 0.5rem 0.4rem;
+      color: #A19FAC;
+    }
+
+    .quoteText {
+      font-size: 0.9rem;
+      color: #2E3039;
+      word-spacing: 0.4rem;
+      letter-spacing: 0.08rem;
+      margin: 0.2rem 0.2rem;
+    }
+  }
+}

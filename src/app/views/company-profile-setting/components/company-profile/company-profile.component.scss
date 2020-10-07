@@ -1,0 +1,423 @@
+.email-extention-cross {
+  &:after {
+    content: "\d7";
+    font-size: 25px;
+    font-weight: bold;
+    color: red;
+    line-height: 0;
+    cursor: pointer;
+  }
+}
+
+.email-ext-close {
+  position: absolute;
+  right: -25px;
+  top: 16px;
+  cursor: pointer;
+}
+
+.secondary-color-box {
+  width: 100%;
+  height: 50px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #c0c7db;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.color-input {
+  width: 45%;
+  height: 100%;
+  border-radius: 8px 0 0 8px;
+  color: transparent;
+}
+
+.hex-value {
+  width: 65%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gradient-input {
+  width: 100%;
+  height: 50px;
+  color: transparent;
+  border-radius: 8px;
+  // background: linear-gradient(90deg, var(--primary) -0.02%, var(--secondary) 64.46%);
+}
+
+.color-data {
+  width: 100%;
+  height: 24px;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #c0c7db;
+  box-sizing: border-box;
+  display: flex;
+
+  
+}
+
+.color-data-left {
+  >::ng-deep color-picker > .color-picker {
+    top: 70px !important;
+    left: 16px !important;
+    border-radius: 8px;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
+    border-color: #DADEEB !important;
+
+
+    .arrow.arrow-bottom {
+      left: 10px !important;
+      border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #c0c7db rgba(0, 0, 0, 0);
+      border-width: 10px 8px;
+    }
+
+    .saturation-lightness {
+      border-radius: 8px 8px 0 0;
+    }
+  }
+}
+
+
+.color-data-right {
+  >::ng-deep color-picker > .color-picker {
+    top: 70px !important;
+    left: -128px !important;
+    border-radius: 8px;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
+    border-color: #DADEEB !important;
+
+    .arrow.arrow-bottom {
+      left: 226px !important;
+      border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #c0c7db rgba(0, 0, 0, 0);
+      border-width: 10px 8px;
+    }
+
+    .saturation-lightness {
+      border-radius: 8px 8px 0 0;
+    }
+  }
+}
+
+.color-input-gradient {
+  width: 45%;
+  height: 100%;
+  border-radius: 4px 0 0 4px;
+  color: transparent;
+
+
+  &-right {
+    border-radius: 0px 4px 4px 0px;
+  }
+}
+
+.hex-value-gradient {
+  width: 65%;
+  height: 100%;
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+}
+
+.color-text {
+  line-height: 50px;
+}
+
+.card-title {
+  font-weight: 500;
+}
+
+.main-logo label {
+  width: 100%;
+  text-align: center;
+  color: rgb(168, 168, 168);
+}
+
+.edit-btn {
+  // font-weight: 500;
+  // color: #2f89fc !important;
+  cursor: pointer;
+  float: right;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  color:var(--primary);
+  border-radius: 4px;
+  padding: 3px 8px !important;
+  margin-top: -4px !important;
+
+  // to remove the background color of button.
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  overflow: hidden;
+  outline:none;
+
+  &:hover {
+    color: #194785 !important;
+  }
+
+  &:active {
+    color: #2f89fc !important;
+  }
+}
+
+.field-title {
+  font-weight: 500;
+}
+
+.company-detail {
+  label {
+    height: 18px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #9599aa;
+  }
+
+  // ::ng-deep .form-control {
+  //   border: 1px solid #c0c7db;
+  //   box-sizing: border-box;
+  //   border-radius: 8px !important;
+  //   color: #40465E;
+  //   margin: 0.3rem 0;
+  //   padding: 10px;
+  //   height: 46px;
+  // }
+
+  // ::ng-deep .custom-select {
+  //   border: 1px solid #c0c7db;
+  //   box-sizing: border-box;
+  //   border-radius: 8px !important;
+  //   color: #40465E;
+  //   margin: 0.3rem 0;
+  //   height: 46px;
+  // }
+}
+
+.company-color-box {
+  width: 100%;
+}
+
+.gradient-editor-box {
+  position: absolute;
+  width: 300px;
+  z-index: 100;
+  padding: 35px 20px;
+  background: #f7f8f8;
+  border: 1px solid #dadeeb;
+  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
+
+
+  .box-head {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .box-body {
+    font-size: 14px;
+  }
+}
+
+.add-photo-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.add-photo-btn {
+  color: #9599AA;
+  font-size: 12px;
+  text-transform: uppercase;
+  background-color: #F7F8FC;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-big {
+    height: 140px;
+    width: 140px;
+  }
+
+  &-small {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+.add-photo-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.box {
+  position: relative;
+  width: auto;
+  height: auto;
+	display:inline-block;
+	justify-content: center;
+	align-items : center;
+  background: transparent;
+}
+
+/* common */
+.ribbon {
+  width: 10px;
+  height: 10px;
+  overflow: hidden;
+/* background:grey; */
+  position: absolute;
+	
+}
+
+/* top left*/
+.ribbon-top-left {
+  top: -13px;
+  left: -13px;
+	border-right: 3px solid #18A0FB;
+	border-bottom: 3px solid #18A0FB;
+}
+/* top right*/
+.ribbon-top-right {
+  top: -13px;
+  right: -13px;
+	border-left: 3px solid #18A0FB;
+	border-bottom: 3px solid #18A0FB;
+}
+
+
+/* bottom left*/
+.ribbon-bottom-left {
+  bottom: -13px;
+  left: -13px;
+	border-right: 3px solid #18A0FB;
+	border-top: 3px solid #18A0FB;
+}
+
+/* bottom right*/
+.ribbon-bottom-right {
+  bottom: -13px;
+  right: -13px;
+	border-left: 3px solid #18A0FB;
+	border-top: 3px solid #18A0FB;
+}
+
+// Color Picker Button starts
+::ng-deep .cp-ok-button-class {
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  // color:var(--primary);
+  color: #121212;
+  border-radius: 4px;
+  background-color: #EEE;
+  padding: 5px 12px;
+  margin: 0 3px !important;
+  border: none;
+  overflow: hidden;
+  outline:none;
+
+  &:hover {
+    color:#121212;
+    background-color: #e7e7e7;
+  }
+
+  &:active {
+    color:#121212;
+    background-color: #d8d8d8;
+    outline:none !important;
+  }
+
+}
+
+::ng-deep .cp-cancel-button-class {
+  background-color: transparent;
+  // border: 1px solid #eee;
+  border: none;
+  color: #c0c7db;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  border-radius: 4px;
+  padding: 5px 12px;
+  margin: 0 3px !important;
+  overflow: hidden;
+  outline:none;
+
+  &:hover {
+    color:#121212;
+    // background-color: #e7e7e7;
+  }
+
+  &:active {
+    color:#121212;
+    // background-color: #d8d8d8;
+    outline:none !important;
+  }
+}
+
+::ng-deep color-picker > .color-picker {
+  border-radius: 4px;
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
+  border-color: #DADEEB !important;
+
+  .saturation-lightness {
+    border-radius: 4px 4px 0 0;
+  }
+}
+
+::ng-deep color-picker > .color-picker {
+  input {
+    border-radius: 5px;
+  }
+
+  .hue {
+    border-radius: 8px;
+    height: 10px;
+    display: flex !important;
+    align-items: center;
+  }
+}
+
+.apply-navcolor-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+
+  .btn {
+    padding: 5px 15px !important;
+    font-size: 11px !important;
+    border-radius: 4px;
+    font-weight: 600;
+    line-height: 19px;
+    text-transform: uppercase;;
+  }
+
+  .btn-cancel {
+    color: #c0c7db;
+
+    &:hover {
+      color:#121212;
+    }
+  }
+}

@@ -1,0 +1,135 @@
+.folder-bg {
+  background-image: url('https://blaast-staging.s3-us-west-2.amazonaws.com/icon/images.png');
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+  height: 100px;
+}
+
+.uploadfilecontainer {
+  height: 120px;
+  width: 60%;
+  margin: 1rem auto;
+  padding: 1rem;
+  border: 2px dashed var(--secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  color: #999;
+}
+
+.uploadfilecontainer:hover {
+  background: rgba(0, 0, 0, .05);
+}
+
+.files-list {
+  display: flex;
+  justify-content: center;
+  background: #ffffff;
+  // border: 1px dashed;
+  // border-radius: 12px;
+  // padding: 5px;
+  // color: #1c8adb;
+
+
+  .file {
+    margin: 1rem;
+    position: relative;
+
+    img {
+      object-fit: cover;
+      height: 100px;
+      width: 100px;;
+    }
+
+    .close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: #fff;
+    }
+  }
+}
+
+
+// .files-list .delete-file img {
+//   width: 30px;
+// }
+
+
+.btn-gallery-selection {
+  height: 8rem;
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  display: block;
+
+  &.active,
+  &:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+    border: 1px solid #888;
+  }
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  cursor: inherit;
+  display: block;
+}
+
+.btn-directory {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-directory input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  cursor: inherit;
+  display: block;
+}
+
+.gallery-list__directory-title {
+  color: #34374A;
+  background-color: white;
+}
+
+.galleries {
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.bg-gray {
+  background-color: #F7F8F8;
+}
+
+.image-placeholder {
+  position: absolute;
+  left: 40%;
+  top: 30%;
+}

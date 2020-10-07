@@ -1,0 +1,51 @@
+<div class="container overflow-hidden">
+  <div class="row align-items-center employee-list__header">
+    <div class="col text-white">EMPLOYEES</div>
+    <div class="col-auto">
+      <app-button size="md" type="flat" (click)="openInviteMembersModal()" className="text-white">
+        <app-icon type="white" icon="circular-add" class="sidebar__nav-icon"></app-icon>
+        Invite
+      </app-button>
+    </div>
+  </div>
+
+  <div class="row align-items-center bg-white">
+    <div class="col-auto">
+      <app-button size="sm" type="round" (click)="openFilterModal()">
+        <app-icon type="gray" icon="filter" size="sm" class="employee-list__filter-icon"></app-icon>
+      </app-button>
+    </div>
+    <div class="col p-0">
+      <input type="text" class="form-control" placeholder="Search User" [ngModel]="searchText"
+             (ngModelChange)="onSearchTextUpdate($event);"/>
+    </div>
+  </div>
+
+  <div class="row employee-list__employees">
+    <div class="col p-0">
+      <div *ngIf="selectedMemberList.length">
+        <div class="employee-list__header employee-list__header--primary text-white font-weight-bold">
+          Selected Employees
+        </div>
+        <div>
+          <div class="border-bottom" *ngFor="let member of selectedMemberList">
+            <app-user-card [active]="false" [draggable]="true" [selected]="true" [user]="member"
+                           (removeUser)="removeUser(member)" (showModal)="openUserModal(member)"></app-user-card>
+          </div>
+        </div>
+      </div>
+      <div class="employee-list__header employee-list__header--primary text-white font-weight-bold">
+        Available Employees
+      </div>
+      <div *ngFor="let memberGroup of filteredMemberList">
+        <div class="employee-list__header text-white">{{memberGroup.firstLetter}}</div>
+        <div>
+          <div class="border-bottom" *ngFor="let member of memberGroup.users">
+            <app-user-card [active]="false" [draggable]="true" [user]="member"
+                           (addUser)="addUser(member)" (showModal)="openUserModal(member)"></app-user-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

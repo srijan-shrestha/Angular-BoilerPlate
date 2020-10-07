@@ -1,0 +1,30 @@
+.company-img{
+  width: 100%;
+
+  img {
+    margin: 0 auto;
+    width: 145px;
+    background-color: #FFF;
+  }
+}
+
+.edit-btn-container {
+  margin: 1.1rem 0 1.2rem;
+}
+
+.extra-info-form {
+  .datepicker {
+    width: 100%;
+    position: relative;
+
+    .btn-calendar {
+      position: absolute;
+      right: 0;
+      top: 3px;
+    }
+  }
+
+  ::ng-deep .form-control{
+    font-size: 14px;
+  }
+}

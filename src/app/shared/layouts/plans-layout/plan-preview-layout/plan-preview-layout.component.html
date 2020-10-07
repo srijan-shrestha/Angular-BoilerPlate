@@ -1,0 +1,210 @@
+<div *ngIf="!showBtnBar" class="navbar-right-nav ml-auto" id="rightNav">
+  <div class="right-nav-item" (click)="exportToPdf(type, id)">
+
+        <svg class="top-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V3.33333C2 2.97971 2.14048 2.64057 2.39052 2.39052C2.64057 2.14048 2.97971 2 3.33333 2H10.6667L14 5.33333V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14Z"
+            stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11.3334 14.0003V8.66699H4.66675V14.0003" stroke="#252733" stroke-linecap="round"
+                stroke-linejoin="round"/>
+          <path d="M4.66675 2V5.33333H10.0001" stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      PDF
+  </div>
+  <div class="right-nav-item" (click)="print('middle-content')">
+      <svg class="top-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 5.99967V1.33301H12V5.99967" stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+        <path
+          d="M3.99992 12H2.66659C2.31296 12 1.97382 11.8595 1.72378 11.6095C1.47373 11.3594 1.33325 11.0203 1.33325 10.6667V7.33333C1.33325 6.97971 1.47373 6.64057 1.72378 6.39052C1.97382 6.14048 2.31296 6 2.66659 6H13.3333C13.6869 6 14.026 6.14048 14.2761 6.39052C14.5261 6.64057 14.6666 6.97971 14.6666 7.33333V10.6667C14.6666 11.0203 14.5261 11.3594 14.2761 11.6095C14.026 11.8595 13.6869 12 13.3333 12H11.9999"
+          stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 9.33301H4V14.6663H12V9.33301Z" stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      PRINT
+  </div>
+</div>
+
+<div class="preview">
+    <div class="preview-container">
+
+      <div class="preview-container__plan-selection" *ngIf="!showBtnBar">
+       <!-- <div class="preview-container__plan-selection__title">
+         <span class="text-capitalize">View {{type}} Plans</span> for
+       </div> -->
+       <div class="row mb-3">
+        <p class="team-goals__header"> <span class="text-capitalize">View {{type}} Plans</span> for</p>
+        <div ngbDropdown class="team-goals__header__dropdown mx-3 my-1">
+          <button type="button" class="btn team-goals__header__dropdown__single-button" ngbDropdownToggle>
+            {{selectedPlan.quarter && selectedPlan.year ? 'Q' +  selectedPlan.quarter + ' ' + selectedPlan.year : '' }}
+          </button>
+          <div ngbDropdownMenu class="team-goals__header-filter__dropdown-menu">
+            <div ngbDropdownItem class="team-goals__header-filter__dropdown-item" *ngFor="let quarterYear of quarterYearOptions"
+               (click)="setYearQuarterOption(quarterYear.year, quarterYear.quarter)">
+              Q{{quarterYear.quarter}} {{quarterYear.year}}
+            </div>
+          </div>
+        </div>
+        <div ngbDropdown autoClose="outside" class="team-goals__header__dropdown mx-3 my-1" *ngIf="type == 'department' && !hideSecondaryDropDown">
+          <button type="button"  class="btn team-goals__header__dropdown__single-button" ngbDropdownToggle>
+            {{selectedDepartment ? selectedDepartment.name : 'Select Department' }}
+          </button>
+          <div ngbDropdownMenu  class="team-goals__header-filter__dropdown-menu search-menu" >
+            <div ngbDropdownItem  class="team-goals__header-filter__dropdown-search">
+              <input id="departmentSearchInput" class="form-control search-input" placeholder="Search"
+              name="search">
+              <button class="btn btn-search" type="button" title="click to search" (click)="onSearch()" id="search-button">
+                <ng-container >
+                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.64964 5.2C9.64964 7.65769 7.65736 9.65 5.19982 9.65C2.74228 9.65 0.75 7.65769 0.75 5.2C0.75 2.74231 2.74228 0.75 5.19982 0.75C7.65736 0.75 9.64964 2.74231 9.64964 5.2Z" stroke="#C0C7DB" stroke-width="1.5"/>
+                    <path d="M8.80029 8.80029L12.0001 12.0003" stroke="#C0C7DB" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </ng-container>
+              </button>
+            </div>
+            <a ngbDropdownItem class="team-goals__header-filter__dropdown-item" *ngFor="let department of departments ; let i=index"
+               (click)="setDepartmentOption(department.id, department.name)">
+                {{department.name}}
+            </a>
+          </div>
+        </div>
+        <div ngbDropdown autoClose="outside" class="team-goals__header__dropdown mx-3 my-1" *ngIf="type == 'team'  && !hideSecondaryDropDown">
+          <button type="button" class="btn team-goals__header__dropdown__single-button" ngbDropdownToggle>
+            {{selectedTeam ? selectedTeam.name : 'Select Team' }}
+          </button>
+          <div ngbDropdownMenu class="team-goals__header-filter__dropdown-menu search-menu">
+            <div ngbDropdownItem class="team-goals__header-filter__dropdown-search">
+              <input id="teamSearchInput" class="form-control search-input" placeholder="Search"
+              name="search">
+              <button class="btn btn-search" type="button" title="click to search" (click)="onSearch()" id="search-button">
+                <ng-container >
+                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.64964 5.2C9.64964 7.65769 7.65736 9.65 5.19982 9.65C2.74228 9.65 0.75 7.65769 0.75 5.2C0.75 2.74231 2.74228 0.75 5.19982 0.75C7.65736 0.75 9.64964 2.74231 9.64964 5.2Z" stroke="#C0C7DB" stroke-width="1.5"/>
+                    <path d="M8.80029 8.80029L12.0001 12.0003" stroke="#C0C7DB" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </ng-container>
+              </button>
+            </div>
+            <a ngbDropdownItem class="team-goals__header-filter__dropdown-item" *ngFor="let team of teams; let i=index"
+               (click)="setTeamOption(team.id, team.name)">
+                {{team.name}}
+            </a>
+          </div>
+        </div>
+        <div ngbDropdown  autoClose="outside" class="team-goals__header__dropdown mx-3 my-1" *ngIf="type == 'personal'  && !hideSecondaryDropDown">
+          <button type="button" class="btn team-goals__header__dropdown__single-button" ngbDropdownToggle>
+            {{selectedPersonal ? selectedPersonal.name : 'Select Personal' }}
+          </button>
+          <div ngbDropdownMenu class="team-goals__header-filter__dropdown-menu search-menu">
+            <div ngbDropdownItem class="team-goals__header-filter__dropdown-search">
+              <input id="personalSearchInput" class="form-control search-input" placeholder="Search"
+              name="search">
+              <button class="btn btn-search" type="button" title="click to search" (click)="onSearch()" id="search-button">
+                <ng-container >
+                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.64964 5.2C9.64964 7.65769 7.65736 9.65 5.19982 9.65C2.74228 9.65 0.75 7.65769 0.75 5.2C0.75 2.74231 2.74228 0.75 5.19982 0.75C7.65736 0.75 9.64964 2.74231 9.64964 5.2Z" stroke="#C0C7DB" stroke-width="1.5"/>
+                    <path d="M8.80029 8.80029L12.0001 12.0003" stroke="#C0C7DB" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </ng-container>
+              </button>
+            </div>
+            <a ngbDropdownItem class="team-goals__header-filter__dropdown-item" *ngFor="let personal of personals; let i=index"
+               (click)="setPersonalOption(personal.id, personal.fullName)">
+                {{personal.fullName}}
+            </a>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="preview-container__control text-right" *ngIf="draft">
+        <button (click)="backBtn()"
+        class="btn team-goals__sec-btn enabled-sec-button mt-0">
+        BACK TO EDIT
+        </button>
+
+        <button (click)="saveAsDraft()"
+        class="btn team-goals__sec-btn enabled-sec-button mt-0">
+        <div *ngIf="!progress">SAVE AS DRAFT</div>
+        <div *ngIf="progress">SAVING... <div class="btn__loader"></div></div>
+        </button>
+
+        <button (click)="publish()"
+        class="btn team-goals__submit-btn enabled-save-button ml-1 mt-0">
+        <div *ngIf="!progress">PUBLISH</div>
+        <div *ngIf="progress">PUBLISHING... <div class="btn__loader"></div></div>
+        </button>
+      </div>
+
+      <div id="middle-content" class="preview-container__middle-content">
+        <div *ngIf="draft && goalData.length > 0" class="draft-div float-right mt-4">
+          Draft
+        </div>
+        <div  class="preview__title" *ngIf="previewType !== 'personal'" [attr.data-content]="goalPlan">
+          {{goalName}} Plan
+        </div>
+        <div class="preview__leadership" *ngIf="type === 'department'">
+          Leadership
+        </div>
+        <div class="row mt-4" *ngIf="previewType !== 'personal'">
+          <div class="col">
+            <div class="row preview__profile">
+              <ng-container *ngFor="let profile of associatedProfiles">
+                <div class="col-lg-1 col-md-2 pr-0 mr-3 mb-4" *ngIf="profile.id">
+                  <div class="preview__profile__image-wrapper">
+                    <img *ngIf="profile.profilePic" src="{{profile.profilePic}}">
+                  </div>
+                  <div class="preview__profile-name mx-2  mt-2">{{profile?.fullName ? profile.fullName : profile.email}}</div>
+                  <div class="preview__profile-role">{{profile.role?.name}}</div>
+                </div>
+            </ng-container>
+            </div>
+          </div>
+          <!-- <div class="col-auto"></div> -->
+        </div>
+
+        <div class="row mt-4" *ngIf="type === 'personal' && previewType === 'personal'">
+          <div class="col-lg-1 col-md-3">
+            <div class="row preview__profile personal_profile">
+              <ng-container *ngFor="let profile of associatedProfiles">
+                <div class="col mb-4" *ngIf="profile.id">
+                  <div class="preview__profile__image-wrapper">
+                    <img *ngIf="profile.profilePic" src="{{profile.profilePic}}">
+                  </div>
+                  <div class="preview__profile-name mt-2 ml-lg-2">{{profile?.fullName ? profile.fullName : profile.email}}</div>
+                  <div class="preview__profile-role ml-lg-2">{{profile.role?.name}}</div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md ml-lg-4">
+            <div  class="preview__title" *ngIf="type === 'personal'" [attr.data-content]="goalPlan">
+              {{goalName}} Plan
+            </div>
+          </div>
+          <div class="col"></div>
+        </div>
+
+        <div class="row  preview__goal">
+          <div class="col-6 col-xs-12"  *ngFor="let data of goalData; let i = index">
+            <div class=" ">
+              <p class="preview__goal__heading">
+                 <app-icon icon="{{data.icon}}"></app-icon>
+                 <span class="mx-3 preview__goal__sub-description pt-1">{{ i+1 }}</span>
+                 <span class="preview__goal__title">{{data.title}}</span>
+              </p>
+              <div class="preview__goal__description" *ngFor="let d of data.data">
+                <ul>
+                  <li>{{d.bullet}}</li>
+                  <div class="preview__goal__sub-description" *ngIf="d.subBullet">
+                    <ul class="preview__goal__dash" *ngFor="let ds of d.subBullet">
+                      <li>{{ds}}</li>
+                    </ul>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

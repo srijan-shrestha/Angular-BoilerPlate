@@ -1,0 +1,94 @@
+<!-- [class.is-valid]="!control.invalid && control.dirty && !(!defaultValidator.required && inputValue === '')" -->
+<div [ngClass]="{'input-group': inputGroupAppend || inputGroupPrepend }">
+  <div class="input-group-prepend" *ngIf="inputGroupPrepend">
+    <span class="input-group-text">{{inputGroupPrepend}}</span>
+  </div>
+  <input
+    [attr.id]="id ? id : null"
+    [type]="attrType"
+    [(ngModel)]="inputValue"
+    class="form-control"
+    [ngClass]="'form-control-'+ size"
+    [class.text-left]="align==='left'"
+    [class.text-right]="align==='right'"
+    [class.text-center]="align==='center'"
+    [placeholder]="placeholder"
+    [class.form-control--invalid]="control && control.invalid && control.touched"
+    (blur)="onBlur()"
+    [autocomplete]="autocomplete"
+    (change)="onChange($event)"
+    [attr.disabled]="disabled ? '' : null"
+    [readOnly]="readonly"
+    [mask] = "maskData"
+    [class.text-white]="theme==='dark'"
+    [class.border-white]="theme==='dark'"
+    *ngIf="type!=='textarea' && type!=='date'"
+  />
+  <input
+    [attr.id]="id ? id : null"
+    [type]="attrType"
+    [(ngModel)]="inputValue"
+    class="form-control"
+    [ngClass]="'form-control-'+ size"
+    [class.text-left]="align==='left'"
+    [class.text-right]="align==='right'"
+    [class.text-center]="align==='center'"
+    [placeholder]="placeholder"
+    [class.form-control--invalid]="control.invalid && control.touched"
+    (blur)="onBlur()"
+    [autocomplete]="autocomplete"
+    (change)="onChange($event)"
+    [attr.disabled]="disabled ? '' : null"
+    [readOnly]="readonly"
+    [class.text-white]="theme==='dark'"
+    [class.border-white]="theme==='dark'"
+    *ngIf="type==='date'"
+  />
+  <div class="input-group-append" *ngIf="inputGroupAppend">
+    <span class="input-group-text">{{inputGroupAppend}}</span>
+  </div>
+
+<textarea
+  [attr.id]="id ? id : null"
+  [(ngModel)]="inputValue"
+  class="form-control"
+  [ngClass]="'form-control-'+ size"
+  [class.text-left]="align==='left'"
+  [class.text-right]="align==='right'"
+  [class.text-center]="align==='center'"
+  [placeholder]="placeholder"
+  [class.form-control--invalid]="control.invalid && control.touched"
+  (blur)="onBlur()"
+  (change)="onChange($event)"
+  [attr.disabled]="disabled ? '' : null"
+  [readOnly]="readonly"
+  [class.text-white]="theme==='dark'"
+  [class.border-white]="theme==='dark'"
+  *ngIf="type==='textarea'"
+  [class.form-control--fixed-height]="fixedHeight"
+  [maxlength] = "maxCharLength"
+></textarea>
+<div
+  *ngIf="control && control.invalid && (control.touched)"
+  class="invalid-feedback"
+  [class.text-left]="align==='left'"
+  [class.text-right]="align==='right'"
+  [class.text-center]="align==='center'"
+>
+  <span *ngIf="control.errors?.required">
+    This field is required.
+  </span>
+  <span *ngIf="control.errors?.min">
+    This field must have minimum value of {{control.errors.min.min}}.
+  </span>
+  <span *ngIf="control.errors?.max">
+    This field must have minimum value of {{control.errors.max.max}}.
+  </span>
+  <span *ngIf="control.errors?.minlength">
+    This field must be at least {{control.errors.minlength.requiredLength}} characters long.
+  </span>
+  <ng-container *ngIf="control.errors?.fieldError && !(control.errors?.required || control.errors?.minlength)">
+    <div *ngFor="let err of control.errors.fieldError">{{ err }}</div>
+  </ng-container>
+</div>
+</div>

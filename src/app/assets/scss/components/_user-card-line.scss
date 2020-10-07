@@ -1,0 +1,16 @@
+.user-card-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(0, -50%);
+  height: 0;
+  border-top: 2px solid $dodger-blue;
+  width: calc(50% + #{$spacer*7});
+}
+
+.user-card-cross-icon {
+  position: absolute;
+  top: 32%;
+  left: 110%;
+  cursor: pointer;
+}

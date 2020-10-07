@@ -1,0 +1,230 @@
+<div class="container-fluid py-4" style="padding: 0 3.5rem;">
+  <div class="row">
+    <div class="col col-sm-6">
+      <h2>Employee Directory</h2>
+    </div>
+    <div class="col col-sm-6 text-right">
+      <app-button className="rounded-pill" type="outline-secondary" (click)="openInviteModal()">Add Employee +</app-button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-9 col-sm-12">
+      <form>
+        <div class="row align-items-end">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="filterName"><small><b>Name</b></small></label>
+              <input class="form-control" [ngModel]="filterName" (ngModelChange)="onSearchTextUpdate($event)"
+                     placeholder="Type Employee Name" [ngModelOptions]="{standalone: true}"/>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="filterDepartment"><small><b>Department</b></small></label>
+              <select class="form-control" [(ngModel)]="filterDepartmentId" id="filterDepartment" [ngModelOptions]="{standalone: true}">
+                <option [value]="0">All</option>
+                <option *ngFor="let department of departmentList" [value]="department.id">{{department?.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="sortBY"><small><b>Sort By</b></small></label>
+              <select class="form-control" [(ngModel)]="sortBy" id="sortBY" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let sort of sortByList" [value]="sort.key">{{sort?.name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="form-group">
+              <app-button type="secondary" (click)="filterEmployeeList()" [block]="true">Filter
+                <app-icon icon="search" type="white" class="pl-4" size="sm"></app-icon>
+              </app-button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+<!--       <cdk-virtual-scroll-viewport itemSize="200"  class="example-viewport">-->
+      <app-table [dataSource]="employeeList" [noData]="'Employee not available.'" height="700px" [border]="false" size="lg"
+                 multiTemplateDataRows>
+        <ng-container cdkColumnDef="fullName">
+          <th appTableHeader cdk-header-cell *cdkHeaderCellDef>Employee Name</th>
+          <td cdk-cell *cdkCellDef="let row">
+            <div class="row pl-4">
+              <div class="icon-wrapper" *ngIf="!row?.profilePic">
+                <div class="gallery-icon"></div>
+                <!-- <app-icon icon="image-icon" size="lg" type="white" class="image"></app-icon> -->
+              </div>
+              <div class="image-wrapper" [style.backgroundImage]="row?.profilePic ? 'url(' + row?.profilePic  + ')' : ''"
+                   *ngIf="row?.profilePic"></div>
+              <div class="col-auto py-2">{{row?.fullName}}</div>
+            </div>
+          </td>
+        </ng-container>
+        <ng-container cdkColumnDef="department">
+          <th appTableHeader cdk-header-cell *cdkHeaderCellDef>Department</th>
+          <td cdk-cell *cdkCellDef="let row"> {{row?.departmentName}} </td>
+        </ng-container>
+        <ng-container cdkColumnDef="team">
+          <th appTableHeader cdk-header-cell *cdkHeaderCellDef>Team</th>
+          <td cdk-cell *cdkCellDef="let row">{{ row?.teamName }}</td>
+        </ng-container>
+        <ng-container cdkColumnDef="supervisor">
+          <th appTableHeader cdk-header-cell *cdkHeaderCellDef>Supervisor</th>
+          <td cdk-cell *cdkCellDef="let row">{{ row?.supervisorName }}</td>
+        </ng-container>
+        <ng-container cdkColumnDef="view">
+          <th appTableHeader cdk-header-cell *cdkHeaderCellDef></th>
+          <td cdk-cell *cdkCellDef="let row">
+            <button class="btn p-0"
+                    (click)="viewEmployeeDetails(row.id)">{{ viewDetail && employeeDetailId === row.id ? 'Close' : 'View' }}</button>
+          </td>
+        </ng-container>
+
+        <ng-container cdkColumnDef="employeeDetails">
+          <td cdk-cell *cdkCellDef="let row" [attr.colspan]="employeeDirectoryColumns.length">
+            <div class="row p-4" *ngIf="viewDetail && employeeDetailId === row.id">
+              <div class="col-md-2 text-center emp-img-info">
+                <div class="row">
+                  <div class="col py-4">
+                    <div class="image-wrapper__large" [style.backgroundImage]="row?.profilePic ? 'url(' + row?.profilePic  + ')' : ''"
+                         *ngIf="row?.profilePic"></div>
+                    <div class="icon-wrapper__large" *ngIf="!row?.profilePic">
+                      <div class="gallery-icon__large"></div>
+                    </div>
+                  </div>
+                  <!-- <img class="mb-2" src="{{ row.profilePic ? row.profilePic : 'app/assets/images/blaastlogo.svg' }}" alt="" width="100" height="100"> -->
+
+                  <div class="col pt-2 pr-5">
+                    <div>
+                      <strong>{{ row?.fullName }}</strong>
+                    </div>
+                    <div>
+                      {{ row?.profile?.jobTitle }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 border-right pr-5">
+                <div class="row py-1">
+                  <div class="col">
+                    <b>Contact Information</b>
+                  </div>
+                </div>
+
+                <div class="row py-1">
+                  <div class="col">
+                    Office
+                  </div>
+                </div>
+
+                <div class="row py-1">
+                  <div class="col-auto text-left">
+                    Mobile
+                  </div>
+                  <div class="col text-right">
+                    {{ row?.mobile }}
+                  </div>
+                </div>
+
+                <div class="row py-1">
+                  <div class="col-auto text-left">
+                    Email
+                  </div>
+                  <div class="col text-right">
+                    {{ row?.email }}
+                  </div>
+                </div>
+
+                <div class="row  py-1">
+                  <div class="col">
+                    <b>Work Information</b>
+                  </div>
+                </div>
+
+                <div class="row py-1">
+                  <div class="col-auto text-left">
+                    Department
+                  </div>
+                  <div class="col text-right">
+                    {{ row?.departmentName }}
+                  </div>
+                </div>
+
+                <div class="row py-1">
+                  <div class="col-auto text-left">
+                    Supervisor
+                  </div>
+                  <div class="col text-right">
+                    {{ row?.supervisorName }}
+                  </div>
+                </div>
+
+                <div class="row py-1">
+                  <div class="col-auto text-left">
+                    Office
+                  </div>
+                  <div class="col text-right">
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4 pl-5">
+                <div class="row py-1">
+                  <div class="col">
+                    <b>Personal Information</b>
+                  </div>
+                </div>
+
+                <div class="row py-1">
+                  <div class="col-auto text-left">
+                    Hire Date
+                  </div>
+                  <div class="col text-right">
+                    {{ row?.createdAt | date}}
+                  </div>
+                </div>
+
+                <div class="row py-1">
+                  <div class="col-auto text-left">
+                    Birth Date
+                  </div>
+                  <div class="col text-right">
+                    {{ row?.profile?.birthDate | date }}
+                  </div>
+                </div>
+
+                <div class="row py-1">
+                  <div class="col-auto text-left">
+                    From
+                  </div>
+                  <div class="col text-right">
+                    {{ row?.profile?.city }}, {{ row?.profile?.state?.abbreviation }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Header and Row Declarations -->
+        <tr cdk-header-row *cdkHeaderRowDef="employeeDirectoryColumns"></tr>
+        <tr cdk-row *cdkRowDef="let row; columns: employeeDirectoryColumns;" class="bg-white"></tr>
+        <tr cdk-row *cdkRowDef="let element; columns: ['employeeDetails']" class="table__detail bg-white"></tr>
+      </app-table>
+<!--       </cdk-virtual-scroll-viewport>-->
+    </div>
+  </div>
+</div>

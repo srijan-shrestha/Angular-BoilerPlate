@@ -1,0 +1,14 @@
+.review {
+
+  &__header {
+    height: 60px;
+  }
+}
+
+::ng-deep .popover {
+  max-width: 60%;
+
+  .popover-body {
+    padding: 0;
+  }
+}

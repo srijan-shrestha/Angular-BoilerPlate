@@ -1,0 +1,178 @@
+.page-tag {
+  background: #222222;
+  color: #fff;
+  position: absolute;
+  right: 40pt;
+  top: 0;
+  font-size: 8pt;
+  padding: 20pt 4pt;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 3pt;
+}
+
+.mission-values-container {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 2%;
+  height: 100%;
+  font-family: 'Heebo', sans-serif;
+}
+
+.mission {
+  width: 50%;
+  height: 100%;
+  padding: 5% 2% 0;
+  text-align: center;
+}
+
+.values {
+  width: 50%;
+  height: 100%;
+  padding: 5% 2% 0;
+  text-align: center;
+}
+
+.values-data {
+  padding: 5% 2% 0;
+}
+
+.lineBreaker {
+  width: 67pt;
+  height: 15pt;
+  border-bottom: 5pt solid #101010;
+  margin-top: 3pt;
+}
+
+.logo-div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.image-wrapper {
+  width: 100pt;
+  height: 80pt;
+}
+
+.mission-text {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  padding: 5% 15%;
+  color: gray;
+  font-style: italic;
+}
+
+.mission-statement-content {
+
+}
+
+.mission-value-header {
+  padding: 3% 0;
+  font-weight: bold;
+  font-size: 30pt;
+  text-transform: uppercase;
+  letter-spacing: 5pt;
+}
+
+.value-card {
+  height: 15%;
+  padding: 3% 12%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: flex-start;
+  border: 0;
+
+  &__image {
+    width: 25%;
+    height: 100%;
+    padding: 1% 1%;
+    border-radius: 50%;
+  }
+
+  &__info {
+    width: 75%;
+    min-height: 100%;
+    padding: 1%;
+    text-align: left;
+  }
+
+  &--name {
+    font-weight: bold;
+    font-size: 14pt;
+  }
+
+  &--position {
+    font-weight: 600;
+    font-size: 12pt;
+  }
+
+  &--bio {
+    font-size: 12pt;
+  }
+
+  .info-title {
+    height: 30%;
+    font-weight: bold;
+    font-size: 14pt;
+    color: black;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .info-content {
+    height: 70%;
+    font-size: 14pt;
+    font-style: italic;
+    white-space: pre-wrap;
+    color: gray;
+  }
+}
+
+.employee-image {
+  height: 75pt;
+  width: 80pt;
+  border-radius: 50%;
+  overflow: hidden;
+  background-size: cover;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.mv-image-background {
+  height: 100%;
+  width: 100%;
+  background-color: gray;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.mission-statement-footer {
+  position: absolute;
+  display: flex;
+  flex-flow: row nowrap;
+  bottom: 0;
+  width: 100%;
+  height: 40pt;
+  z-index: 3;
+  font-size: 9pt;
+
+  &-left {
+    height: 100%;
+    width: 50%;
+    padding: 1% 3%;
+    text-transform: uppercase;
+  }
+
+  &-right {
+    height: 100%;
+    width: 50%;
+    padding: 1% 3%;
+    text-transform: uppercase;
+    text-align: right;
+  }
+}

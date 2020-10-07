@@ -1,0 +1,295 @@
+<div class="page-container">
+  <div class="page-tag">TEAMS</div>
+  <div class="left-page">
+    <div class="left-page__title-row">
+      Business Development
+    </div>
+    <div class="left-page__image-row">
+      <div class="left-page__image-row__image" (click)="loadForm('image-form', 'bdImg1')">
+        <div [style.backgroundImage]="'url(' + page?.data?.bdImg1?.imageurl + ')'" class="bd-image-background"
+             *ngIf="page?.data?.bdImg1; else bdImg1"></div>
+      </div>
+      <div class="left-page__image-row__image" (click)="loadForm('image-form', 'bdImg2')">
+        <div [style.backgroundImage]="'url(' + page?.data?.bdImg2?.imageurl + ')'" class="bd-image-background"
+             *ngIf="page?.data?.bdImg2; else bdImg2"></div>
+      </div>
+      <div class="left-page__image-row__image" (click)="loadForm('image-form', 'bdImg3')">
+        <div [style.backgroundImage]="'url(' + page?.data?.bdImg3?.imageurl + ')'" class="bd-image-background"
+             *ngIf="page?.data?.bdImg3; else bdImg3"></div>
+      </div>
+    </div>
+
+    <div class="left-page__content1">
+      <div class="left-page--content-title">Department Goals</div>
+      <div class="left-page--content-text">
+        <div class="goal-content" (click)="loadForm('multi-line-text', 'bdDeptGoals')">
+        <span *ngIf="page?.data?.bdDeptGoals; else newDepartmentGoal">
+        {{page?.data?.bdDeptGoals?.text}}
+        </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="left-page__content2">
+      <div class="left-page--content-title">Team Wins</div>
+      <div class="left-page--content-text">
+        <div class="team-content" (click)="loadForm('multi-line-text', 'bdTeamWins')">
+          <span *ngIf="page?.data?.bdTeamWins; else newTeamWins">
+                      {{page?.data?.bdTeamWins?.text}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="left-page__content3">
+      <div class="left-page--content-title">Locations</div>
+      <div class="left-page--content-text">
+        <div class="location-content" (click)="loadForm('multi-line-text', 'bdLocations')">
+          <span *ngIf="page?.data?.bdLocations; else newLocation">
+                      {{page?.data?.bdLocations?.text}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-page">
+    <div class="right-page__title-row">
+      TEAM BIOS
+    </div>
+
+    <div class="right-page__content-row">
+      <div class="right-page__content-row__employee">
+        <div class="right-page__content-row__employee__image" (click)="loadForm('image-form', 'teamBioImg1')">
+          <div class="employee-image">
+            <div class="bd-image-background" [style.backgroundImage]="'url(' + page?.data?.teamBioImg1?.imageurl + ')'"
+                 *ngIf="page?.data?.teamBioImg1?.imageurl; else profileImg"></div>
+          </div>
+        </div>
+        <div class="right-page__content-row__employee__info">
+          <div class="right-page__content-row__employee__info--name" (click)="loadForm('single-line-text', 'teamBioName1')">
+            <span *ngIf="page?.data?.teamBioName1 else newTeamBioName">
+                {{page?.data?.teamBioName1?.text}}
+            </span>
+          </div>
+          <div class="right-page__content-row__employee__info--position" (click)="loadForm('single-line-text', 'teamBioPosition1')">
+            <span *ngIf="page?.data?.teamBioPosition1 else newTeamBioPosition">
+              {{page?.data?.teamBioPosition1?.text}}
+            </span>
+          </div>
+          <div class="right-page__content-row__employee__info--bio" (click)="loadForm('multi-line-text', 'teamBio1')">
+            <span *ngIf="page?.data?.teamBio1 else newTeamBioDesc">
+              {{page?.data?.teamBio1?.text}}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-page__content-row__employee">
+        <div class="right-page__content-row__employee__image" (click)="loadForm('image-form', 'teamBioImg2')">
+          <div class="employee-image">
+            <div class="bd-image-background" [style.backgroundImage]="'url(' + page?.data?.teamBioImg2?.imageurl + ')'"
+                 *ngIf="page?.data?.teamBioImg2?.imageurl; else profileImg"></div>
+          </div>
+        </div>
+        <div class="right-page__content-row__employee__info">
+          <div class="right-page__content-row__employee__info--name" (click)="loadForm('single-line-text', 'teamBioName2')">
+            <span *ngIf="page?.data?.teamBioName2 else newTeamBioName">
+                {{page?.data?.teamBioName2?.text}}
+            </span>
+          </div>
+          <div class="right-page__content-row__employee__info--position" (click)="loadForm('single-line-text', 'teamBioPosition2')">
+            <span *ngIf="page?.data?.teamBioPosition2 else newTeamBioPosition">
+              {{page?.data?.teamBioPosition2?.text}}
+            </span>
+          </div>
+          <div class="right-page__content-row__employee__info--bio" (click)="loadForm('multi-line-text', 'teamBio2')">
+            <span *ngIf="page?.data?.teamBio2 else newTeamBioDesc">
+              {{page?.data?.teamBio2?.text}}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-page__content-row__employee">
+        <div class="right-page__content-row__employee__image" (click)="loadForm('image-form', 'teamBioImg3')">
+          <div class="employee-image">
+            <div class="bd-image-background" [style.backgroundImage]="'url(' + page?.data?.teamBioImg3?.imageurl + ')'"
+                 *ngIf="page?.data?.teamBioImg3?.imageurl; else profileImg"></div>
+          </div>
+        </div>
+        <div class="right-page__content-row__employee__info">
+          <div class="right-page__content-row__employee__info--name" (click)="loadForm('single-line-text', 'teamBioName3')">
+            <span *ngIf="page?.data?.teamBioName3 else newTeamBioName">
+                {{page?.data?.teamBioName3?.text}}
+            </span>
+          </div>
+          <div class="right-page__content-row__employee__info--position" (click)="loadForm('single-line-text', 'teamBioPosition3')">
+            <span *ngIf="page?.data?.teamBioPosition3 else newTeamBioPosition">
+              {{page?.data?.teamBioPosition3?.text}}
+            </span>
+          </div>
+          <div class="right-page__content-row__employee__info--bio" (click)="loadForm('multi-line-text', 'teamBio3')">
+            <span *ngIf="page?.data?.teamBio3 else newTeamBioDesc">
+              {{page?.data?.teamBio3?.text}}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-page__content-row__employee">
+        <div class="right-page__content-row__employee__image" (click)="loadForm('image-form', 'teamBioImg4')">
+          <div class="employee-image">
+            <div class="bd-image-background" [style.backgroundImage]="'url(' + page?.data?.teamBioImg4?.imageurl + ')'"
+                 *ngIf="page?.data?.teamBioImg4?.imageurl; else profileImg"></div>
+          </div>
+        </div>
+        <div class="right-page__content-row__employee__info">
+          <div class="right-page__content-row__employee__info--name" (click)="loadForm('single-line-text', 'teamBioName4')">
+            <span *ngIf="page?.data?.teamBioName4 else newTeamBioName">
+                {{page?.data?.teamBioName4?.text}}
+            </span>
+          </div>
+          <div class="right-page__content-row__employee__info--position" (click)="loadForm('single-line-text', 'teamBioPosition4')">
+            <span *ngIf="page?.data?.teamBioPosition4 else newTeamBioPosition">
+              {{page?.data?.teamBioPosition4?.text}}
+            </span>
+          </div>
+          <div class="right-page__content-row__employee__info--bio" (click)="loadForm('multi-line-text', 'teamBio4')">
+            <span *ngIf="page?.data?.teamBio4 else newTeamBioDesc">
+              {{page?.data?.teamBio4?.text}}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-page__content-row__employee">
+        <div class="right-page__content-row__employee__image" (click)="loadForm('image-form', 'teamBioImg5')">
+          <div class="employee-image">
+            <div class="bd-image-background" [style.backgroundImage]="'url(' + page?.data?.teamBioImg5?.imageurl + ')'"
+                 *ngIf="page?.data?.teamBioImg5?.imageurl; else profileImg"></div>
+          </div>
+        </div>
+        <div class="right-page__content-row__employee__info">
+          <div class="right-page__content-row__employee__info--name" (click)="loadForm('single-line-text', 'teamBioName5')">
+            <span *ngIf="page?.data?.teamBioName5 else newTeamBioName">
+                {{page?.data?.teamBioName5?.text}}
+            </span>
+          </div>
+          <div class="right-page__content-row__employee__info--position" (click)="loadForm('single-line-text', 'teamBioPosition5')">
+            <span *ngIf="page?.data?.teamBioPosition5 else newTeamBioPosition">
+              {{page?.data?.teamBioPosition5?.text}}
+            </span>
+          </div>
+          <div class="right-page__content-row__employee__info--bio" (click)="loadForm('multi-line-text', 'teamBio5')">
+            <span *ngIf="page?.data?.teamBio5 else newTeamBioDesc">
+              {{page?.data?.teamBio5?.text}}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-page__content-row__employee">
+        <div class="right-page__content-row__employee__image" (click)="loadForm('image-form', 'teamBioImg6')">
+          <div class="employee-image">
+            <div class="bd-image-background" [style.backgroundImage]="'url(' + page?.data?.teamBioImg6?.imageurl + ')'"
+                 *ngIf="page?.data?.teamBioImg6?.imageurl; else profileImg"></div>
+          </div>
+        </div>
+        <div class="right-page__content-row__employee__info">
+          <div class="right-page__content-row__employee__info--name" (click)="loadForm('single-line-text', 'teamBioName6')">
+            <span *ngIf="page?.data?.teamBioName6 else newTeamBioName">
+                {{page?.data?.teamBioName6?.text}}
+            </span>
+          </div>
+          <div class="right-page__content-row__employee__info--position" (click)="loadForm('single-line-text', 'teamBioPosition6')">
+            <span *ngIf="page?.data?.teamBioPosition6 else newTeamBioPosition">
+              {{page?.data?.teamBioPosition6?.text}}
+            </span>
+          </div>
+          <div class="right-page__content-row__employee__info--bio" (click)="loadForm('multi-line-text', 'teamBio6')">
+            <span *ngIf="page?.data?.teamBio6 else newTeamBioDesc">
+              {{page?.data?.teamBio6?.text}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="bd1-footer">
+      <div class="bd1-footer-left">
+        <span><b>{{pageNumber * 2 }}</b> | {{playBook.title}} | Q{{playBook.quarter}}-{{playBook.year}}</span>
+      </div>
+      <div class="bd1-footer-right">
+        <span>Q{{playBook.quarter}}-{{playBook.year}} | {{playBook.title}} | <b>{{pageNumber * 2 + 1 }}</b></span>
+      </div>
+    </div>
+  </div>
+  <div class="border-overlay"></div>
+</div>
+
+<ng-template #newTeamBioName>John Doe</ng-template>
+<ng-template #newTeamBioPosition>Business Analyst</ng-template>
+<ng-template #newTeamBioDesc>Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis.
+  Donec id elit non mi porta gravida at eget metus. Vivamus sagittis lacus vel augue laoreet
+  rutrum faucibus dolor auctor.
+</ng-template>
+<ng-template #newDepartmentGoal>
+  Nullam id dolor id nibh ultricies vehicula ut id elit.
+  Sed posuere consectetur est at lobortis. Donec id
+  elit non mi porta gravida at eget metus. Vivamus
+  sagittis lacus vel augue laoreet rutrum faucibus
+  dolor auctor.
+</ng-template>
+<ng-template #newTeamWins>
+  Nullam id dolor id nibh ultricies vehicula ut id elit. Sed
+  posuere consectetur est at lobortis. Donec id elit non
+  mi porta gravida at eget metus. Vivamus sagittis
+  lacus vel augue laoreet rutrum faucibus dolor auctor.
+
+  Nullam id dolor id nibh ultricies vehicula ut id elit. Sed
+  posuere consectetur est at lobortis. Donec id elit non
+  mi porta gravida at eget metus. Vivamus sagittis
+  lacus vel augue laoreet rutrum faucibus dolor auctor.
+</ng-template>
+<ng-template #newLocation>
+  Nullam id dolor id nibh ultricies
+  vehicula ut id elit. Sed posuere
+  consectetur est at lobortis. Donec
+  id elit non mi porta gravida at
+  eget metus. Vivamus sagittis lacus
+  vel augue laoreet rutrum faucibus
+  dolor auctor.
+
+  Nullam id dolor id nibh ultricies
+  vehicula ut id elit. Sed posuere
+
+  consectetur est at lobortis. Donec
+  id elit non mi porta gravida at
+  eget metus. Vivamus sagittis lacus
+  vel augue laoreet rutrum faucibus
+  dolor auctor.
+</ng-template>
+
+<ng-template #bdImg1>
+  <div
+    style="background-image: url('app/assets/images/playbook/bdImg1.png')" class="bd-image-background"></div>
+</ng-template>
+
+<ng-template #bdImg2>
+  <div
+    style="background-image: url('app/assets/images/playbook/bdImg2.png')" class="bd-image-background"></div>
+</ng-template>
+
+<ng-template #bdImg3>
+  <div
+    style="background-image: url('app/assets/images/playbook/bdImg3.png')" class="bd-image-background"></div>
+</ng-template>
+
+<ng-template #profileImg>
+  <div
+    style="background-image: url('app/assets/images/playbook/profileimg.jpg')" class="bd-image-background"></div>
+</ng-template>

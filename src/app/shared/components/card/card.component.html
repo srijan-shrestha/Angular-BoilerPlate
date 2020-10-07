@@ -1,0 +1,15 @@
+<div class="card"
+     [class.shadow-lg]="shadow==='lg'"
+     [class.shadow]="shadow==='md'"
+     [class.shadow-sm]="shadow==='sm'"
+     [class.rounded-lg]="rounded==='lg'"
+     [class.rounded-md]="rounded==='md'"
+     [class.rounded-sm]="rounded==='sm'"
+     [class.bg-secondary]="background==='secondary'"
+     [class.rounded-0]="borderRadius==='none'"
+>
+  <div class="card-body" [class.p-0]="padding==='none'"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

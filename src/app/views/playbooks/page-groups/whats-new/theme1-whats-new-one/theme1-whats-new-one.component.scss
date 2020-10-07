@@ -1,0 +1,181 @@
+.page-container {
+  height: 100%;
+  display: grid;
+  grid-template-areas: "left right" "footer footer";
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 95% 5%;
+}
+
+.wn-page-tag {
+  background: #222222;
+  color: #fff;
+  position: absolute;
+  right: 40pt;
+  top: 0;
+  font-size: 8pt;
+  padding: 12pt 4pt;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 3pt;
+}
+
+.left-page {
+  height: 100%;
+  padding: 2%;
+  grid-area: left;
+
+  &__header {
+    padding: 2%;
+    height: 25%;
+    display: flex;
+    flex-flow: column nowrap;
+
+    &--logo {
+      height: 45%;
+      align-self: center;
+    }
+
+    &--quarter {
+      height: 15%;
+      align-self: center;
+    }
+
+    &--title {
+      height: 40%;
+      align-self: center;
+      font-size: 48pt;
+      font-weight: bold;
+    }
+  }
+
+  &__sub-title {
+    height: 15%;
+    padding: 2%;
+    display: flex;
+    flex: 1 1 auto;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    &--content {
+      width: 80%;
+      flex: 0 1 auto;
+      align-self: center;
+      font-style: italic;
+      font-size: 12pt;
+      color: gray;
+    }
+  }
+
+  &__body {
+    height: 70%;
+    padding: 3% 2%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    &--content {
+      flex: 1 0 auto;
+      width: 80%;
+      align-self: center;
+      white-space: pre-wrap;
+      font-size: 12pt;
+    }
+  }
+
+}
+
+
+.right-page {
+  padding: 10% 0 0 2%;
+  height: 100%;
+  grid-area: right;
+  display: flex;
+  flex-flow: row nowrap;
+
+  &__col1 {
+    width: 50%;
+
+    &__caption {
+      height: 40%;
+      padding: 5%;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      font-style: italic;
+      font-size: 12pt;
+      color: gray;
+    }
+
+    &__image {
+      height: 60%;
+
+      &--one {
+        height: 60%;
+        padding: 2% 2%;
+      }
+
+      &--two {
+        height: 40%;
+        padding: 2% 2% 2% 20%;
+      }
+    }
+  }
+
+  &__col2 {
+    width: 50%;
+    padding: 45pt 35pt 0 0;
+
+    &--image1 {
+      height: 70%;
+      padding: 2% 2%;
+    }
+
+    &--image2 {
+      height: 30%;
+      padding: 2% 2%;
+    }
+  }
+}
+
+.image-background {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: gray;
+}
+
+.footer {
+  display: grid;
+  grid-template-areas: ".";
+  grid-area: footer;
+  grid-template-rows: 100%;
+}
+
+
+.whatnew-footer {
+  position: absolute;
+  display: flex;
+  flex-flow: row nowrap;
+  bottom: 0;
+  width: 100%;
+  height: 40pt;
+  z-index: 3;
+  font-size: 8pt;
+
+  .whatnew-footer-left {
+    height: 100%;
+    width: 50%;
+    padding: 1% 3%;
+    text-transform: uppercase;
+  }
+
+  .whatnew-footer-right {
+    height: 100%;
+    width: 50%;
+    padding: 1% 3%;
+    text-transform: uppercase;
+    text-align: right;
+  }
+}

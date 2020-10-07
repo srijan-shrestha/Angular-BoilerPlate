@@ -1,0 +1,32 @@
+.page-layout-icon {
+  height: 139px;
+  width: 107px;
+  border: 1px solid #C0C7DB;
+  background-image: url('app/assets/images/playbook-layout.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &--selected {
+    border: 1px solid var(--primary);
+    box-shadow: $box-shadow;
+  }
+
+  &--sm {
+    height: 42px;
+    width: 30px;
+  }
+}
+
+.page-layout-title {
+  width: 107px;
+  color: #40465E;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  line-height: 20px;
+
+  &:hover {
+    color: var(--primary);
+  }
+}

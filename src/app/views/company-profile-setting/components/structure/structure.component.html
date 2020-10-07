@@ -1,0 +1,254 @@
+<div class="pt-4 structure-profile" (click)="removeDragPreviewElement()">
+  <div class="pt-4">
+    <div class="page-structure" [style.height.px]="containerHeight">
+      <div class="page-structure__content">
+        <app-structure-column-leadership #leadershipColumn [leadershipList]="leadershipList"
+                                         [selected]="selectedLeadership"
+                                         (leadershipSelected)="onLeadershipSelected($event)"
+                                         (selectedY)="onLeadershipY($event)"
+                                         [showNextArrow]="!!departmentColumn.currentHeaderY && departmentList.length"
+                                         (addUser)="onAddLeadershipUser($event)"
+                                         (openEmployeeSearchBox)="listEmployees({})"
+                                         (employeeDropped)="onAddLeadershipUser($event)"
+                                         (addAssistant)="onAddLeadershipAssistant($event)"
+                                         [selectedNewUserCard]="selectedNewUserCard"
+                                         (updateUser)="updateLeader($event)"
+                                         (deleteCardMemberEvent)="onCardMemberDeleteBtnClick($event)"
+                                         (personCardMoveStartEvent)="onPersonCardMoveStartEvent($event)"
+                                         (personCardMoveEndEvent)="onPersonCardMoveEndEvent($event)"
+                                         (dragover)="movementUpdates($event, 'leadership', true)"
+                                         (dragleave)="movementUpdates($event, 'leadership', false)"
+                                         id="leadership-app"
+        >
+        </app-structure-column-leadership>
+
+        <!-- <app-structure-column-division  [parentY]="leadershipY" [divisions]="divisionList" [selected]="selectedDivision" (divisionSelected)="onDivisionSelected($event)" (selectedY)="onDivisionY($event)" [showNextArrow]="!!selectedDepartmentLeader" [selectedNewUserCard]="selectedNewUserCard"></app-structure-column-division> -->
+        <app-structure-column-department #departmentColumn [parentY]="leadershipY" [departments]="departmentList"
+                                         [departmentLeaders]="departmentLeaderList"
+                                         [selected]="selectedDepartmentLeader"
+                                         (departmentLeaderSelected)="onDepartmentLeaderSelected($event)"
+                                         (selectedY)="onDepartmentY($event)"
+                                         [showNextArrow]="!!teamColumn.currentHeaderY"
+                                         (addUser)="onAddDepartmentLeader($event)"
+                                         (itemDropped)="onAddDepartmentLeader($event)"
+                                         [selectedNewUserCard]="selectedNewUserCard"
+                                         [selectedleader]="selectedLeadership"
+                                         (openEmployeeSearchBox)="listEmployees({})"
+                                         (newDepartmentCreated)="getDepartments()" (userUpdate)="updateLeader($event)"
+                                         (onOrgUnitAllMemberDeleteBtnClickEvent)="onOrgUnitAllMemberDeleteEvent($event)"
+                                         (deleteCardMemberEvent)="onCardMemberDeleteBtnClick($event)"
+                                         (personCardMoveStartEvent)="onPersonCardMoveStartEvent($event)"
+                                         (personCardMoveEndEvent)="onPersonCardMoveEndEvent($event)"
+                                         (movementDetected)="organizationChartHovered($event)"
+                                         (shouldUpdateDepartmentLeader)="setDepartmentLeaderUpdate($event)"
+                                         id="department-leader-app"
+        >
+        </app-structure-column-department>
+
+        <app-structure-column-team #teamColumn [parentY]="departmentY" [teamAndTeamLeaders]="teamAndTeamLeaderList"
+                                   [selected]="selectedTeamLeader" (teamLeaderSelected)="onTeamLeaderSelected($event)"
+                                   (selectedY)="onTeamY($event)" [showNextArrow]="!!selectedTeamLeader"
+                                   [departmentLeader]="selectedDepartmentLeader" (reload)="getTeamAndTeamLeaders()"
+                                   (addUser)="onAddTeamLeader($event)"
+                                   (employeeDropped)="onAddTeamLeader($event)"
+                                   (openEmployeeSearchBox)="listEmployees({})"
+                                   [selectedNewUserCard]="selectedNewUserCard"
+                                   (updateUser)=updateLeader($event) id="team-leader-app"
+                                   (onOrgUnitAllMemberDeleteBtnClickEvent)="onOrgUnitAllMemberDeleteEvent($event)"
+                                   (deleteCardMemberEvent)="onCardMemberDeleteBtnClick($event)"
+                                   (personCardMoveStartEvent)="onPersonCardMoveStartEvent($event)"
+                                   (personCardMoveEndEvent)="onPersonCardMoveEndEvent($event)"
+                                   (movementDetected)="organizationChartHovered($event)"
+                                   (shouldUpdateTeamLeader)="setTeamLeaderUpdate($event)"
+        >
+        </app-structure-column-team>
+
+        <app-structure-column-member [parentY]="teamY" [teamMembers]="teamMemberList"
+                                     (addUser)="onAddMember($event)"
+                                     (employeeDropped)="onAddMember($event, true)"
+                                     (openEmployeeSearchBox)="listEmployees({})"
+                                     [selectedNewUserCard]="selectedNewUserCard"
+                                     (onOrgUnitAllMemberDeleteBtnClickEvent)="onOrgUnitAllMemberDeleteEvent($event)"
+                                     (deleteCardMemberEvent)="onCardMemberDeleteBtnClick($event)"
+                                     (personCardMoveStartEvent)="onPersonCardMoveStartEvent($event)"
+                                     (personCardMoveEndEvent)="onPersonCardMoveEndEvent($event)"
+                                     (dragover)="movementUpdates($event, 'team-member', true)"
+                                     (dragleave)="movementUpdates($event, 'team-member', false)"
+                                     id="member-app"
+        ></app-structure-column-member>
+      </div>
+      <div class="page-structure__searchbar">
+        <form class="form-inline">
+          <div class="input-group mr-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text" (click)="filterEmployee()">
+                <app-icon type="light-gray" icon="search" size="sm"></app-icon>
+              </div>
+            </div>
+            <input type="text" class="form-control text-light" [(ngModel)]="employeeSearchText"
+                   (focus)="listEmployees({})"
+                   placeholder="Search Employees" (ngModelChange)="filterEmployee()" name="employeeSearchText">
+          </div>
+          <app-icon type="white" icon="filter-funnel" (click)="filterEmployee()" size="sm"></app-icon>
+        </form>
+
+        <div *ngIf="shouldShowUserList" class="employee">
+          <div class="user-card ml-0" *ngFor="let employee of employees">
+            <div class="row align-items-center no-gutters" draggable="true" (dragstart)="dragStarted(employee)"
+            >
+              <div class="col-1">
+                <app-icon class="sidebar__nav-icon" icon="drag" type="gray"></app-icon>
+              </div>
+              <div class="col-auto pl-2">
+                <div *ngIf="employee?.profilePic" [style.backgroundImage]="'url(' + employee?.profilePic + ')'"
+                     class="profile-image mr-3 rounded-circle"></div>
+                <div *ngIf="!employee?.profilePic" class="profile-image mr-3"></div>
+              </div>
+              <div class="col">
+                <div class="employee-card__name">{{ employee?.fullName }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-sm btn-primary rounded float-right mt-2"
+                *ngIf="shouldShowUserList " (click)="toggleSearchEmployeeBox()">
+          Cancel
+        </button>
+      </div>
+
+      <!--<div class="page-structure__sidebar">-->
+      <!--<div class="employee-list">-->
+      <!--<app-employee-list [memberList]="userList" [selectedMemberList]="selectedUserList" (userAdded)="addUser($event)" (userRemoved)="removeUser($event)"></app-employee-list>-->
+      <!--</div>-->
+      <!--</div>-->
+    </div>
+
+    <!--
+    <app-button class="btn btn-primary" (click)="openAddLocation()">Add Location</app-button>
+    <app-button class="btn btn-primary" (click)="openDivisonModal()">Add Division</app-button>
+    <app-button class="btn btn-primary" (click)="openDepartmentModal()">Add Department</app-button>
+
+    <div class="my-2 py-2">
+      <form [formGroup]="leadershipForm">
+        <div>
+          <app-input type="text" placeholder="Index" formControlName="order"></app-input>
+        </div>
+        <div>
+          <app-select formControlName="leader" id="leader" [placeholder]="'Select Leader'">
+            <option *ngFor="let user of userList" [value]="user.id">
+              {{user?.fullName}}
+            </option>
+          </app-select>
+        </div>
+      </form>
+      <button class="btn btn-primary" type="button" (click)="leaderSubmit()">Create Leader</button>
+    </div>
+
+    <div class="my-2 py-2">
+      <form [formGroup]="assistantForm">
+        <div>
+          <app-select formControlName="leader" id="leadership" [placeholder]="'Select Leader'">
+            <option *ngFor="let leader of leadershipList" [value]="leader.id">
+              {{leader.leader.fullName}}
+            </option>
+          </app-select>
+        </div>
+        <div>
+          <app-select formControlName="assistant" id="assistant" [placeholder]="'Select Assistant'">
+            <option *ngFor="let user of userList" [value]="user.id">
+              {{user?.fullName}}
+            </option>
+          </app-select>
+        </div>
+      </form>
+      <button class="btn btn-primary" type="button" (click)="assistantSubmit()">Create Assistant</button>
+    </div>
+
+
+    <div class="my-2 py-2">
+      <form [formGroup]="departmentLeaderForm">
+        <div>
+          <app-select formControlName="leadership" id="leadership" [placeholder]="'Select Leadership'">
+            <option *ngFor="let leadership of leadershipList" [value]="leadership.id">
+              {{leadership.leader.fullName}}
+            </option>
+          </app-select>
+        </div>
+        <div>
+          <app-select formControlName="department" id="department" [placeholder]="'Select Department'">
+            <option *ngFor="let department of departmentList" [value]="department.id">
+              {{department.name}}
+            </option>
+          </app-select>
+        </div>
+        <div>
+          <app-select formControlName="user" id="user" [placeholder]="'Select Department Leader'">
+            <option *ngFor="let user of userList" [value]="user.id">
+              {{user?.fullName}}
+            </option>
+          </app-select>
+        </div>
+      </form>
+      <button class="btn btn-primary" type="button" (click)="departmentLeaderSubmit()">Add Department Leader</button>
+    </div>
+
+    <div class="my-2 py-2">
+      <form [formGroup]="teamForm">
+        <div>
+          <app-input type="text" formControlName="teamName" placeholder="Team Name" size="lg"></app-input>
+        </div>
+        <div>
+          <app-select formControlName="departmentLeader" id="departmentLeader" [placeholder]="'Select Department Leader'">
+            <option *ngFor="let user of departmentLeaderList" [value]="user.id">
+              {{user.user.fullName}}
+            </option>
+          </app-select>
+        </div>
+      </form>
+      <button class="btn btn-primary" type="button" (click)="teamSubmit()">Create Team</button>
+    </div>
+
+    <div class="my-2 py-2">
+      <form [formGroup]="teamLeaderForm">
+        <div>
+          <app-select formControlName="teamLeader" id="teamLeader" [placeholder]="'Select Team Leader'">
+            <option *ngFor="let user of userList" [value]="user.id">
+              {{user?.fullName}}
+            </option>
+            >
+          </app-select>
+        </div>
+        <div>
+          <app-select formControlName="team" id="team" [placeholder]="'Select Team'">
+            <option *ngFor="let team of teamList" [value]="team.id">
+              {{team.teamName}}
+            </option>
+          </app-select>
+        </div>
+      </form>
+      <button class="btn btn-primary" type="button" (click)="teamLeaderSubmit()">Add Team Leader</button>
+    </div>
+
+    <div class="my-2 py-2">
+      <form [formGroup]="teamMemberForm">
+        <div>
+          <app-select formControlName="teamMember" id="teamMember" [placeholder]="'Select Team Member'">
+            <option *ngFor="let user of userList" [value]="user.id">
+              {{user?.fullName}}
+            </option>
+            >
+          </app-select>
+        </div>
+        <div>
+          <app-select formControlName="teamLeader" id="teamLeader" [placeholder]="'Select Team Leader'">
+            <option *ngFor="let leader of teamLeaderList" [value]="leader.id">
+              {{leader.user.fullName}}
+            </option>
+          </app-select>
+        </div>
+      </form>
+      <button class="btn btn-primary" type="button" (click)="teamMemberSubmit()">Add Team Member</button>
+    </div> -->
+  </div>
+</div>

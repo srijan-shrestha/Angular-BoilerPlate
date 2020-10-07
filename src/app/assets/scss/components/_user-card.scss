@@ -1,0 +1,76 @@
+.user-card {
+  padding: $spacer/2;
+  background: $white;
+  box-shadow: $box-shadow-sm;
+  transition: box-shadow 200ms;
+  position: relative;
+  border: 0.5px solid #DADEEB;
+  border-radius: 4px;
+  &__name {
+    font-weight: $font-weight-bold;
+    color: $black;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.1px;
+    &-white{
+      color: $gray-600;
+    }
+  }
+
+  &__position {
+    font-size: $font-size-sm;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 12px;
+    letter-spacing: 0.1px;
+    color: #9599AA;
+  }
+
+  &__items{
+    margin-right: $spacer*1 ;
+    .user-card {
+      margin-right: $spacer*1 ;
+    }
+  }
+  &__btn{
+    margin-right: $spacer*2;
+  }
+
+  &:hover {
+    box-shadow: $box-shadow;
+    cursor: pointer;
+  }
+
+  &__items{
+    .user-card--active {
+      margin-right: unset ;
+      margin-left: $spacer*1 ;
+    }
+  }
+  &--active {
+    //border-right: 4px solid var(--secondary);
+  }
+  &--assignment-needed{
+    border: 2px dotted $gray-900;
+    background-color: $gray-300;
+  }
+
+  &--empty {
+    background: transparent;
+    border: 1px dashed $gray-400;
+    box-shadow: none;
+
+    &:hover {
+      box-shadow: none;
+      cursor: default;
+    }
+  }
+
+  &--empty-active {
+    border: 1px solid $secondary;
+    box-shadow: $box-shadow-sm !important;
+    background: rgba($white, .5);
+  }
+}
+

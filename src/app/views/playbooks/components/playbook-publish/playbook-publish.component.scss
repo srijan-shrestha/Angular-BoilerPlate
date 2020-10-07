@@ -1,0 +1,105 @@
+.no-pages {
+  min-height: 10vw;
+  text-align: center;
+  font-size: 40px;
+  padding-top: 4%;
+}
+
+.below-modal {
+  position: absolute;
+  bottom: -5rem;
+  width: 100%;
+  margin: 0;
+
+
+  .nextBtn {
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1.0143px;
+    cursor: pointer;
+    // margin-top: 0.5rem;
+    text-align: right;
+  }
+
+  .prevBtn {
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1.0143px;
+    cursor: pointer;
+    // margin-top: 0.5rem;
+  }
+
+  .publish-btn {
+    padding-top: 1.5rem;
+    padding-left: 3rem;
+
+    ::ng-deep .btn{
+    height: calc(36rem/16);
+    width: calc(100rem/16);
+    }
+  }
+
+  label {
+    text-transform: none;
+    color: white;
+  }
+
+  ::ng-deep .time-input {
+    margin-top: 0;
+    height: 36px;
+    width: 217px;
+  }
+  ::ng-deep .date-input {
+    margin-top: 0;
+    height: 36px;
+    width: 217px;
+  }
+}
+
+
+.closeBtn {
+  position: absolute;
+  top: -1.5rem;
+  right: -8%;
+  cursor: pointer;
+}
+
+@media (min-width: 1440px) {
+  .closeBtn {
+    position: absolute;
+    top: -1.5rem;
+    right: -8%;
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 1440px) and (min-width: 1200px)  {
+  .closeBtn {
+    position: absolute;
+    top: -2rem;
+    right: -6%;
+    cursor: pointer;
+  }
+}
+
+.page-title-left {
+  position: absolute;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1.0143px;
+  top: -25px;
+  left: -18px;
+  text-transform: uppercase;
+}
+.page-title-right {
+  position: absolute;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1.0143px;
+  top: -25px;
+  right: -18px;
+  text-transform: uppercase;
+}
+::ng-deep .dark-backdrop{
+  background-color: #000000;
+}

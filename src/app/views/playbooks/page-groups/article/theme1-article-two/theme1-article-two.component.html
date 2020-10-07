@@ -1,0 +1,128 @@
+<div class="article2-container">
+  <div class="article2-title-section">
+    <div class="article2-title" (click)="loadForm('single-line-text', 'title')">
+      <span *ngIf="page?.data?.title?.text; else newTitle">{{ page?.data?.title?.text }}</span>
+    </div>
+
+    <div class="article2-title-second">
+      <div class="title-name" (click)="loadForm('single-line-text', 'subtitle')">
+        <span *ngIf="page?.data?.subtitle?.text; else newSubTitle">{{ page?.data?.subtitle?.text }}</span>
+      </div>
+      <div class="title-description" (click)="loadForm('multi-line-text', 'highlights')">
+        <span *ngIf="page?.data?.highlights?.text; else newHighlights">{{ page?.data?.highlights?.text }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="article2-image-wrapper">
+    <div class="article2-img1-container" (click)="loadForm('image-form', 'image1')">
+      <div class="bg-img" *ngIf="page?.data?.image1; else newImageText1"
+           [style.backgroundImage]="page?.data?.image1?.imageurl ? 'url(' + page?.data?.image1?.imageurl  + ')' : ''"></div>
+    </div>
+    <div class="article2-img2-container" (click)="loadForm('image-form', 'image2')">
+      <div class="bg-img" *ngIf="page?.data?.image2; else newImageText2"
+           [style.backgroundImage]="page?.data?.image2?.imageurl ? 'url(' + page?.data?.image2?.imageurl  + ')' : ''"></div>
+    </div>
+  </div>
+
+  <div class="article2-text-wrapper">
+    <div class="article2-text-left">
+      <div class="article-description" (click)="loadForm('multi-line-text', 'paragraph1')">
+        <span *ngIf="page?.data?.paragraph1?.text; else newParagraph1">{{ page?.data?.paragraph1?.text }}</span>
+      </div>
+    </div>
+
+    <div class="article2-text-right">
+      <div class="article2-right-text">
+        <div class="article-description" (click)="loadForm('multi-line-text', 'paragraph3')">
+          <span *ngIf="page?.data?.paragraph3?.text; else newParagraph3">{{ page?.data?.paragraph3?.text }}</span>
+        </div>
+      </div>
+      <div class="article2-right-footer">
+        <div class="line"></div>
+        <div class="article-footer" (click)="loadForm('multi-line-text', 'paragraph5')">
+          <span *ngIf="page?.data?.paragraph5?.text; else newParagraph5">{{ page?.data?.paragraph5?.text }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article2-footer">
+    <div class="article2-footer-left">
+      <span> <b>{{pageNumber * 2 }}</b> | {{playBook.title}} | Q{{playBook.quarter}}-{{playBook.year}}</span>
+    </div>
+    <div class="article2-footer-right">
+      <span>Q{{playBook.quarter}}-{{playBook.year}} | {{playBook.title}} | <b>{{pageNumber * 2 + 1 }}</b></span>
+    </div>
+  </div>
+
+  <div class="border-overlay"></div>
+</div>
+
+<ng-template #newTitle>ARTICLE TITLE</ng-template>
+<ng-template #newSubTitle>
+  TITLE HERE
+</ng-template>
+<ng-template #newHighlights>
+  Et aut rempore vit hitatur
+  estrum quostrumet, idis del
+  maximi consequi.
+</ng-template>
+<ng-template #newParagraph1>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula ligula nec sodales dictum.
+  Vivamus faucibus pharetra purus, dictum venenatis ex vehicula sed. Donec ut varius ante. Praesent v
+  arius leo ut urna tristique, vitae vestibulum sapien cursus. Nullam turpis nulla, egestas eget sodales
+  nec, mollis et risus. Suspendisse a neque pulvinar, ullamcorper nulla sit amet, iaculis sem. Fusce ut ju
+  sto vitae libero tempus gravida sit amet nec orci. Praesent in felis purus. Etiam non leo eleifend, imper
+  diet justo eu, volutpat eros. Quisque dictum at risus sed blandit. Aenean pharetra odio augue, sit amet m
+  aximus dui tempor dignissim. Curabitur tempor commodo erat. Pellentesque porta dui id mi auctor imperdiet.
+  Aliquam feugiat ex vel ex tristique, ultrices posuere felis consequat. Etiam aliquet nisi ut mollis vestibulum.
+  Fusce fermentum sodales justo vel facilisis.
+</ng-template>
+
+<ng-template #newParagraph2>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula ligula nec sodales dictum.
+  Vivamus faucibus pharetra purus, dictum venenatis ex vehicula sed. Donec ut varius ante. Praesent v
+  arius leo ut urna tristique, vitae vestibulum sapien cursus. Nullam turpis nulla, egestas eget sodales
+  nec, mollis et risus. Suspendisse a neque pulvinar, ullamcorper nulla sit amet, iaculis sem. Fusce ut ju
+  sto vitae libero tempus gravida sit amet nec orci. Praesent in felis purus. Etiam non leo eleifend, imper
+  diet justo eu, volutpat eros. Quisque dictum at risus sed blandit. Aenean pharetra odio augue, sit amet m
+  aximus dui tempor dignissim. Curabitur tempor commodo erat. Pellentesque porta dui id mi auctor imperdiet.
+  Aliquam feugiat ex vel ex tristique, ultrices posuere felis consequat. Etiam aliquet nisi ut mollis vestibulum.
+  Fusce fermentum sodales justo vel facilisis.
+</ng-template>
+
+<ng-template #newParagraph3>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula ligula nec sodales dictum.
+  Vivamus faucibus pharetra purus, dictum venenatis ex vehicula sed. Donec ut varius ante. Praesent v
+  arius leo ut urna tristique, vitae vestibulum sapien cursus. Nullam turpis nulla, egestas eget sodales
+  nec, mollis et risus. Suspendisse a neque pulvinar, ullamcorper nulla sit amet, iaculis sem. Fusce ut ju
+  sto vitae libero tempus gravida sit amet nec orci. Praesent in felis purus. Etiam non leo eleifend, imper
+  diet justo eu, volutpat eros.
+</ng-template>
+
+<ng-template #newParagraph4>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula ligula nec sodales dictum.
+  Vivamus faucibus pharetra purus, dictum venenatis ex vehicula sed. Donec ut varius ante. Praesent v
+  arius leo ut urna tristique, vitae vestibulum sapien cursus. Nullam turpis nulla, egestas eget sodales
+  nec, mollis et risus. Suspendisse a neque pulvinar, ullamcorper nulla sit amet, iaculis sem. Fusce ut ju
+  sto vitae libero tempus gravida sit amet nec orci. Praesent in felis purus. Etiam non leo eleifend, imper
+  diet justo eu,
+</ng-template>
+
+<ng-template #newParagraph5>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula ligula nec sodales dictum.
+  Vivamus faucibus pharetra purus, dictum venenatis ex vehicula sed. Donec ut varius ante. Praesent v
+  arius
+</ng-template>
+
+
+<ng-template #newImageText1>
+  <div class="bg-img" style="background-image: url('app/assets/images/playbooks/images-article_2.jpg')"></div>
+</ng-template>
+
+<ng-template #newImageText2>
+  <div class="bg-img" style="background-image: url('app/assets/images/playbooks/screen_3.jpg')"></div>
+
+</ng-template>
+

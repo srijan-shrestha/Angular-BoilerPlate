@@ -1,0 +1,44 @@
+<div class="playbook">
+  <div *ngFor="let data of playBooksdata; let rowCount = index;">
+    <div class="playbook-year-group container-fluid mb-3">
+      <h6 class="playbook-year-header">{{ data?.year }}</h6>
+      <div class="row">
+        <ng-container *ngFor="let i of data.totalPlaybooksQuarters">
+          <div class="col-md-3" *ngIf="shouldShow(data, i)">
+            <div class="playbook__item" (click)="showPreviewOrDetailBasedOnRole(data['q' + i], i, data.year, rowCount)"
+                 [class.playbook__item__highlight]="selectedIndex === (rowCount * 4) + i"
+            >
+              <div class="playbook-cover"
+                   [style.backgroundImage]="data['q' + i]?.image ? 'url(' + data['q' + i]?.image + ')' : 'url(https://blaast-staging.s3.amazonaws.com/media/playbook/page/cover.jpg)'"
+                   [class.playbook-cover--unset]="!data['q' + i]"
+              >
+
+                <p *ngIf="!data['q' + i] && isAdmin; else nonAdminText" class="new-playbook-text">
+                  <span>+</span>
+                  <span>Add New</span>
+                  <span>Playbook</span>
+                </p>
+                <ng-template #nonAdminText>
+                  <p *ngIf="!data['q' + i]" class="new-playbook-text">
+                    <span class="non-admin-not-available">Not Available</span>
+                  </p>
+                </ng-template>
+              </div>
+              <div class="accordion-title" *ngIf="isAdmin">
+                <span *ngIf="!data['q' + i]; else second" class="dot__grey"></span>
+                <ng-template #second>
+                <span *ngIf="data['q' + i]?.completedPercentage === 100 && data['q' + i]?.publishedAt"
+                      class="dot__green"></span>
+                  <span *ngIf="data['q' + i]?.completedPercentage !== 100" class="dot__yellow"></span>
+                </ng-template>
+                <div *ngIf="data['q' + i] else titleTem"
+                     class="accordion-title__text">{{data['q' + i]?.title || "N/A"}}</div>
+                <ng-template #titleTem><span class="accordion-title__text">Title Here</span></ng-template>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

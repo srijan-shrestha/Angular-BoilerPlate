@@ -1,0 +1,23 @@
+.view-all-theme {
+  display: inline-block;
+  float: left;
+  position: absolute;
+  left: 15px;
+  top: 25px;
+
+  a {
+    color: var(--primary);
+    font-size: 13px;
+    padding-left: 10px;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--primary-light);
+    }
+  }
+
+  ::ng-deep app-icon i {
+    vertical-align: middle;
+  }
+}

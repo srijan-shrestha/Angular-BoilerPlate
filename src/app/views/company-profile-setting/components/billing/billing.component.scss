@@ -1,0 +1,254 @@
+.pills-tab-wrapper {
+  width: 90%;
+  border: 1px solid #dadeeb;
+  padding: 3px;
+  margin: auto;
+  border-radius: 16px;
+  background: #FFF;
+
+  .pills-tab {
+    width: 49.8%;
+    display: inline-flex;
+    font-size: 10px;
+    line-height: 10px;
+    letter-spacing: 0.75px;
+    font-weight: 600;
+    padding: 0.35rem 0.6rem;
+    border-radius: 12px;
+    text-align: center;
+    color: #9599aa;
+    text-transform: uppercase;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+
+    &.active {
+      color: var(--light);
+      background-color: var(--primary);
+
+      span {
+        color: #fff !important;
+      }
+      ::ng-deep i {
+        svg {
+          fill: #fff;
+
+          path {
+            stroke: #fff !important;
+          }
+        }
+      }
+
+    }
+
+    &:hover {
+      box-shadow: 0 0 0 1px #dadeeb;
+    }
+
+    .pill-view {
+      padding-left: 4px;
+    }
+  }
+}
+
+.card-view {
+  .cvv-desc {
+    color: var(--primary);
+    font-weight: bold;
+  }
+  ::ng-deep .tooltip-inner {
+    font-size: 12px;
+  }
+}
+
+.icon-circle {
+  app-icon {
+    padding: 25px;
+    border-radius: 50%;
+    background: var(--primary-lightest);
+    color: var(--primary);
+    display: inline-block;
+
+    &[size=md] {
+      padding: 20px;
+    }
+
+    ::ng-deep .icon {
+      display: inline-block;
+    }
+  }
+
+}
+
+::ng-deep .credit-card-btn .btn {
+  padding: 13px 38px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  width: auto;
+  height: auto;
+}
+
+::ng-deep .view-more-row {
+  td{
+    padding: 0;
+  }
+  ::ng-deep .view-more-button .btn{
+    color: var(--primary);
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.8px;
+    border: 0;
+    border-radius: 0;
+    padding: 22px;
+    height: auto;
+
+    &:hover {
+      color: var(--white);
+      background: var(--primary-light);
+
+    }
+  }
+}
+
+::ng-deep .plan-btn .btn {
+  border: 1px solid var(--secondary);
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 13px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin-top: 10px;
+  height: auto;
+  width: auto;
+  padding: 9px 17px;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+.billing-history {
+  ::ng-deep .table-wrapper--border {
+    border: 1px solid #DADEEB;
+    background: #fff;
+
+    .table th {
+      border-top: 0;
+    }
+
+    .dropdown-toggle:after {
+      content: none
+    }
+
+    .dropdown-menu {
+      padding: 0;
+      transform: translate(-158px, 12px);
+
+      button {
+        font-size: 11px;
+        line-height: 16px;
+        letter-spacing: 1px;
+        color: #9599AA;
+        text-transform: uppercase;
+        padding: 16px;
+        border-bottom: 0.5px solid #dadeeb;
+        &:hover {
+          background: #F7F8FC;
+        }
+
+        &:after {
+          content: " ";
+          position: absolute;
+          right: 5px;
+          top: -8px;
+          border-top: none;
+          border-right: 8px solid transparent;
+          border-left: 8px solid transparent;
+          border-bottom: 8px solid rgba(0, 0, 0, 0.1);
+          background: white;
+        }
+      }
+    }
+  }
+}
+
+.billing-service {
+
+  .card-body {
+    padding: 25px;
+  }
+
+  &__plan {
+    border: 1px solid #DADEEB;
+    padding: 30px;
+    border-radius: 8px;
+    background: #FBFCFC;
+
+    label {
+      font-size: 13px;
+      line-height: 19px;
+      letter-spacing: 0.8px;
+      color: #252733;
+      margin-bottom: 0.3rem;
+    }
+
+    .get-more.btn {
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 0.75px;
+      cursor: pointer;
+      display: inline-block;
+      margin: 8px 0;
+      text-transform: uppercase;
+      background-color: white;
+      padding: 2px 8px;
+    }
+
+    ul {
+      margin-bottom: 2.25rem;
+      margin-top: 2.25rem;
+
+      li {
+        list-style-type: none;
+        margin-bottom: 12px;
+        font-size: 14px;
+        letter-spacing: 0.3px;
+        font-weight: normal;
+        &:before {
+          display: inline-block;
+          font-size: 1em;
+          line-height: 0;
+          margin-left: - 1.5em;
+          width: 1.5em;
+          color: var(--primary);
+          font-weight: bold;
+        }
+      }
+      &.gold-plan li:before {
+        content: "✔";
+      }
+      &.silver-plan li:before {
+        content: "✗";
+      }
+    }
+
+    ::ng-deep .btn.btn-primary {
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 19px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+  }
+}
+
+.btn-outline-secondary {
+  border-radius: 8px;
+  font-size: 13px;
+}

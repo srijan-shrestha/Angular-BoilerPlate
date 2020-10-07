@@ -1,0 +1,38 @@
+.nav-accordion {
+  &__item {
+    &--active {
+      // font-weight: $font-weight-bold;
+      // > .nav-accordion__header {
+      //   font-weight: $font-weight-bold;
+      // }
+    }
+  }
+
+  &__header {
+    //font-weight: 400;
+    //border-bottom: 1px solid $gray-200;
+    //padding: 3*$spacer/4 $spacer;
+    //cursor: pointer;
+    //font-size: $font-size-sm;
+    //padding-left: 25%;
+    font-weight: bold;
+    border-bottom: 1px solid #A19FAC;
+    padding: 16px 1rem;
+    cursor: pointer;
+    font-size: 13px;
+    letter-spacing: 0.763636px;
+
+    &--active {
+      font-weight: 700;
+      background: rgba($gray-200, .35);
+    }
+
+  }
+
+  &__dropdown {
+    background: rgba($gray-200, .25);
+    .nav-accordion__header {
+      padding-left: $spacer*2;
+    }
+  }
+}

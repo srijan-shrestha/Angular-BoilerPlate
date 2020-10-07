@@ -1,0 +1,73 @@
+<div class="modal-header">
+  <h3 class=" modal-title font-weight-normal"><b>Profile</b></h3>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body" [formGroup]="profileForm">
+  <div class="row my-4">
+    <div class="col-4">
+      <label for="name" class="font-weight-bold">
+        Name
+      </label>
+      <app-input id="name" formControlName="fullName" [disabled]="true"></app-input>
+    </div>
+    <div class="col-2">
+      <div class="profile-image profile-image--md mr-3" [style.backgroundImage]="'url(' + selectedMember?.profilePic + ')'"
+           *ngIf="selectedMember?.profilePic"></div>
+      <div class="profile-image profile-image--lg mr-3" *ngIf="!selectedMember?.profilePic"></div>
+    </div>
+    <div class="col-6">
+      <label for="date" class="font-weight-bold">
+        Accepted Date
+      </label>
+      <app-input id="date" formControlName="createdAt" [disabled]="true"></app-input>
+    </div>
+  </div>
+
+  <div class="row my-4">
+    <div class="col">
+      <label for="department" class="font-weight-bold">
+        Department
+      </label>
+      <app-select formControlName="department" id="department" placeholder="Department" [disabled]="true">
+<!--        <option *ngFor="let department of Departments"-->
+<!--                [value]="department">-->
+<!--        </option>-->
+      </app-select>
+    </div>
+    <div class="col">
+      <label for="position" class="font-weight-bold">
+        Position
+      </label>
+      <app-input formControlName="jobTitle" id="position" placeholder="Position">
+      </app-input>
+    </div>
+  </div>
+
+  <div class="row my-4">
+    <div class="col">
+      <label for="email" class="font-weight-bold">
+        Email Address
+      </label>
+      <app-input id="email" formControlName="email" [disabled]="true"></app-input>
+    </div>
+    <div class="col">
+      <label for="role" class="font-weight-bold">
+        Role
+      </label>
+      <app-select formControlName="role" id="role" placeholder="Role">
+        <option *ngFor="let role of roles"
+                [value]="role.id"
+                [selected]="role.id === profileForm?.value?.role">
+          {{role.name}}
+        </option>
+      </app-select>
+    </div>
+  </div>
+</div>
+<div class="modal-footer d-flex justify-content-between">
+  <app-button type="outline-secondary" size="lg" (click)="activeModal.close()">Cancel</app-button>
+  <app-button type="primary" size="lg" (click)="saveProfile()">Save</app-button>
+</div>

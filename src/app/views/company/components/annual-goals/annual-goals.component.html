@@ -1,0 +1,98 @@
+<button class="btn score-button1" (click)="toggle()" *ngIf="type ==='create' || type ==='edit'">
+  <span>
+    <svg height="20" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9.7725 7.41516L6.00928 11.1973L7.43048 12.6256L11.1937 8.8435L9.7725 7.41516Z" fill="url(#paint0_linear)"/>
+      <path d="M10.1966 21.6987L0.34414 11.7969C-0.114713 11.3357 -0.114713 10.592 0.34414 10.1309L4.31225 6.14287L5.73405 7.5718L2.35728 10.9623L11.0238 19.6723L19.5772 11.0792L16.0712 7.55881L17.493 6.12988L21.5903 10.2478C22.0492 10.709 22.0492 11.4559 21.5903 11.9138L11.8543 21.6987C11.3954 22.1567 10.6554 22.1567 10.1966 21.6987Z" fill="#E1261C"/>
+      <path d="M15.03 8.89234L9.37256 14.5781L10.7938 16.0065L16.4512 10.3207L15.03 8.89234Z" fill="url(#paint1_linear)"/>
+      <path d="M14.0226 5.49977L10.9075 2.3691L7.82805 5.46404L6.40625 4.03511L10.0803 0.345867C10.5392 -0.115289 11.2791 -0.115289 11.738 0.345867L15.4444 4.07083L14.0226 5.49977Z" fill="#E9830A"/>
+      <defs>
+        <linearGradient id="paint0_linear" x1="7.44232" y1="12.5971" x2="9.81155" y2="7.48944" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#E9830A"/>
+          <stop offset="1" stop-color="#E1261C"/>
+        </linearGradient>
+        <linearGradient id="paint1_linear" x1="10.5756" y1="16.1387" x2="14.915" y2="9.07329" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#E9830A"/>
+          <stop offset="1" stop-color="#E1261C"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </span>
+  <span class="score-text">SCORE</span>
+</button>
+
+<app-theme-preview-side-bar [show]="show && (type ==='create' || type ==='edit')" (wizardClosed)="wizardClosed()"></app-theme-preview-side-bar>
+
+<div id="main-content">
+  <div class="">
+    <div class="container-fluid">
+      <ng-container *ngIf="type === 'marking'; else otherTemplate">
+        <div class="row">
+          <div class="col-md-12 visual-mark-container">
+            <app-select-visual-mark (actionEvent)="actionEvent($event)"
+                                    [inputData]="inputData"></app-select-visual-mark>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #otherTemplate>
+        <div class="row">
+          <ng-container *ngIf="navNeeded">
+            <div class="col" style="padding:0">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a (click)="navigated('create')"
+                     [className]="isCreateSelected() ? 'nav-link active': 'nav-link'"
+                  >CREATE ANNUAL GOALS</a>
+                </li>
+                <li class="nav-item">
+                  <a (click)="navigated('publish')"
+                     [className]="isPublishSelected() ? 'nav-link active': 'nav-link'">
+                    VIEW ANNUAL GOALS</a>
+                </li>
+              </ul>
+
+              <div *ngIf="isDraftOrPublishedSelected()" class="navbar-right-nav ml-auto" id="rightNav">
+                <div class="right-nav-item" (click)="exportToPdf()">
+
+                      <svg class="top-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V3.33333C2 2.97971 2.14048 2.64057 2.39052 2.39052C2.64057 2.14048 2.97971 2 3.33333 2H10.6667L14 5.33333V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14Z"
+                          stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M11.3334 14.0003V8.66699H4.66675V14.0003" stroke="#252733" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M4.66675 2V5.33333H10.0001" stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    PDF
+                </div>
+                <div class="right-nav-item" (click)="print('printSectionId')">
+                    <svg class="top-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M4 5.99967V1.33301H12V5.99967" stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path
+                        d="M3.99992 12H2.66659C2.31296 12 1.97382 11.8595 1.72378 11.6095C1.47373 11.3594 1.33325 11.0203 1.33325 10.6667V7.33333C1.33325 6.97971 1.47373 6.64057 1.72378 6.39052C1.97382 6.14048 2.31296 6 2.66659 6H13.3333C13.6869 6 14.026 6.14048 14.2761 6.39052C14.5261 6.64057 14.6666 6.97971 14.6666 7.33333V10.6667C14.6666 11.0203 14.5261 11.3594 14.2761 11.6095C14.026 11.8595 13.6869 12 13.3333 12H11.9999"
+                        stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M12 9.33301H4V14.6663H12V9.33301Z" stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    PRINT
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <ng-container *ngIf="type === 'create' || type ==='edit'">
+              <app-annual-goal-create (actionEvent)="actionEvent($event)"
+                                   (selectedIdEvent)="selectedIdEvent($event)"
+                                   [inputData]="inputData"
+              ></app-annual-goal-create>
+            </ng-container>
+            <ng-container *ngIf="type === 'publish' || type === 'draft' || type ==='preview'">
+              <app-annual-goal-detail (actionEvent)="actionEvent($event)"
+                                     (selectedIdEvent)="selectedIdEvent($event)"
+                                     [inputData]="inputData"></app-annual-goal-detail>
+            </ng-container>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

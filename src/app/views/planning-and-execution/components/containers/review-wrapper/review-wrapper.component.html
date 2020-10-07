@@ -1,0 +1,19 @@
+<app-tabs>
+  <app-tab [tabTitle]="'GOALS'">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          <app-goal-card *ngFor="let goal of goals" [goal]="goal"></app-goal-card>
+        </div>
+
+        <div class="col-6">
+          <app-review-card></app-review-card>
+        </div>
+      </div>
+    </div>
+  </app-tab>
+  <app-tab [tabTitle]="'INITIATIVES'">
+  </app-tab>
+</app-tabs>
+
+

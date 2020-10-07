@@ -1,0 +1,38 @@
+<div class="page-company">
+  <app-sidebar theme="light" size="md" [showToggle]="false">
+    <app-nav-accordion>
+      <app-nav-accordion-item>
+        <app-nav-accordion-header type="page-link" [routerLink]="['/cultural-photos/upload']">Upload Photos</app-nav-accordion-header>
+      </app-nav-accordion-item>
+      <app-nav-accordion-item>
+        <app-nav-accordion-header type="page-link" [routerLink]="['/cultural-photos/approve']">Approve Photos</app-nav-accordion-header>
+      </app-nav-accordion-item>
+      <app-nav-accordion-item>
+        <app-nav-accordion-header type="page-link" [routerLink]="['/cultural-photos/submitted']">Submitted Photos</app-nav-accordion-header>
+      </app-nav-accordion-item>
+    </app-nav-accordion>
+  </app-sidebar>
+  <div class="content content--sidebar-md">
+    <div class="cultural-photos">
+      <div class="container-fluid">
+        <div class="row py-2">
+          <div class="col p-0">
+            <h2>Cultural Photos</h2>
+          </div>
+          <div class="col-auto">
+            <app-year-quarter-filter [quarter]="2"
+                                     [year]="2019"></app-year-quarter-filter>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col p-0">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,124 @@
+.cultural-photos {
+  padding: $spacer*2 $spacer*5;
+
+  &__upload-container {
+    width: 80%;
+    padding: $spacer*5;
+    border: 2px dashed var(--secondary);
+    margin: $spacer*4 auto;
+    cursor: pointer;
+
+    &:hover {
+      background: $gray-100;
+    }
+  }
+
+  &__action-bar {
+    padding: $spacer*2;
+    margin: 0 -1rem;
+    background: var(--secondary);
+    color: $white;
+  }
+
+  &__selected-image {
+    height: 85px;
+    width: 85px;
+    display: inline-block;
+    text-align: center;
+    margin: $spacer;
+    position: relative;;
+
+    .close-icon {
+      svg {
+        fill: $white;
+      }
+
+      position: absolute;
+      right: 0;
+      top: 0;
+      cursor: pointer;
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: $border-radius;
+    }
+  }
+
+  &__meta-listing-container {
+    width: 80%;
+    margin: $spacer*4 auto;
+  }
+
+  &__meta-image {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__meta-icon {
+    margin: 0 5px;
+    display: inline-block;
+
+    svg {
+      margin-top: 2px;
+      fill: $white;
+    }
+
+    svg:hover {
+      fill: $gray-300;
+    }
+  }
+}
+
+.uploadfilecontainer {
+  height: 120px;
+  width: 60%;
+  margin: 1rem auto;
+  padding: 1rem;
+  border: 2px dashed var(--secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  color: #999;
+}
+
+.uploadfilecontainer:hover {
+  background: rgba(0, 0, 0, .05);
+}
+
+.files-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  background: transparent;
+  // border: 1px dashed;
+  // border-radius: 12px;
+  // padding: 5px;
+  // color: #1c8adb;
+  min-height: 20%;
+
+
+  .file {
+    margin: 1rem;
+    position: relative;
+
+    img {
+      object-fit: cover;
+      height: 100px;
+      width: 100px;;
+    }
+
+    .close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: #fff;
+    }
+  }
+}

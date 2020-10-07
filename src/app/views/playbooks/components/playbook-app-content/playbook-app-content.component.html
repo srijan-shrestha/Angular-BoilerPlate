@@ -1,0 +1,176 @@
+<div class="playbook" [class.playbook--full]="bottombarState==='hidden'">
+  <div class="container-fluid p-0 h-100">
+    <div class="row no-gutters h-100">
+      <div class="col h-100" style="width:100px;">
+        <div class="row no-gutters mx-auto playbook__page-title-width mt-4 mb-1"
+             [class.playbook__page-title-width--single]="pageGroup?.code==='cover'" *ngIf="showSideBar">
+          <div class="col">{{page?.title}}</div>
+          <div class="col-auto">{{page?.title}}</div>
+        </div>
+        <div class="playbook__page-container">
+          <div class="playbook__page" [class.playbook__page--single]="pageGroup?.code==='cover'">
+            <div class="playbook__page-scale">
+              <div class="playbook__page-inner">
+                <app-theme-sky-blue *ngIf="theme?.code==='sky-blue'">
+                  <ng-container *ngTemplateOutlet="theme1Container"></ng-container>
+                </app-theme-sky-blue>
+                <div class="row no-gutters mt-2" *ngIf="showPrevNextBtn">
+                  <div class="col">
+                    <div class="playbook__prevBtn" *ngIf="showPrevNextBtn" (click)="updateNextPrev(false)">
+                      <app-icon icon="sideLeft" type="grey" size="lg"></app-icon>
+                      PREVIOUS PAGE
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <div class="playbook__prevBtn" *ngIf="showPrevNextBtn" (click)="updateNextPrev(true)">
+                      NEXT PAGE
+                      <app-icon icon="sideRight" type="grey" size="lg"></app-icon>
+                    </div>
+                  </div>
+                </div>
+                <!-- TODO: Other page themes here. -->
+                <!-- <ng-template #themeContainer>
+                </ng-template> -->
+              </div>
+            </div>
+          </div>
+          <div class="playbook__page playbook__page--single coverPager"
+               style="opacity: 0; position: absolute; z-index: -999;">
+            <div class="playbook__page-scale">
+              <div class="playbook__page-inner">
+                <app-theme-sky-blue *ngIf="theme?.code==='sky-blue'">
+                  <ng-container>
+                    <app-theme1-cover-one-column [page]="page"
+                                                 [playBook]="playBook"></app-theme1-cover-one-column>
+                  </ng-container>
+                </app-theme-sky-blue>
+                <!-- TODO: Other page themes here. -->
+                <!-- <ng-template #themeContainer>
+                </ng-template> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-auto h-100">
+        <div class="bg-white">
+          <app-playbook-form-wrapper *ngIf="showSideBar"></app-playbook-form-wrapper>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="playbook__page-container">
+  </div> -->
+
+</div>
+
+<ng-template #theme1Container>
+  <ng-container *ngIf="pageGroup?.code === 'cover'">
+    <app-theme1-cover-one-column *ngIf="layout.code === 'cover-one'" [page]="page"
+                                 [playBook]="playBook"></app-theme1-cover-one-column>
+    <app-theme1-cover-two-column *ngIf="layout.code ==='cover-two'" [page]="page"></app-theme1-cover-two-column>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'letter_to_editor'">
+    <app-theme1-letter-to-editor1 *ngIf="layout.code === 'letter-to-editor-one'" [page]="page"
+                                  [playBook]="playBook"></app-theme1-letter-to-editor1>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'toc'">
+    <app-theme1-toc1 *ngIf="layout.code === 'toc-one'" [page]="page" [playBook]="playBook"></app-theme1-toc1>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'section_divider'">
+    <app-theme1-section-divider-one *ngIf="layout.code === 'section-divider-one'" [page]="page"
+                                    [playBook]="playBook"></app-theme1-section-divider-one>
+    <app-theme1-section-divider-two *ngIf="layout.code === 'section-divider-two'" [page]="page"
+                                    [playBook]="playBook"></app-theme1-section-divider-two>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'article'">
+    <app-theme1-article-one *ngIf="layout.code === 'article-one'" [page]="page"
+                            [playBook]="playBook"></app-theme1-article-one>
+    <app-theme1-article-two *ngIf="layout.code === 'article-two'" [page]="page"
+                            [playBook]="playBook"></app-theme1-article-two>
+    <app-theme1-article-three *ngIf="layout.code === 'article-three'" [page]="page"
+                              [playBook]="playBook"></app-theme1-article-three>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'whats_new'">
+    <app-theme1-whats-new-one *ngIf="layout.code === 'whats-new-one'" [page]="page"
+                              [playBook]="playBook"></app-theme1-whats-new-one>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'mission_statement'">
+    <app-mission-statement-company-values *ngIf="layout.code === 'mission-statement-one'" [page]="page"
+                                          [playBook]="playBook"></app-mission-statement-company-values>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'business_development'">
+    <app-theme1-business-development-one *ngIf="layout.code === 'business-development-one'" [page]="page"
+                                         [playBook]="playBook"></app-theme1-business-development-one>
+    <app-theme1-business-development-two *ngIf="layout.code === 'business-development-two'" [page]="page"
+                                         [playBook]="playBook"></app-theme1-business-development-two>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'company_bios'">
+    <app-company-bios-one *ngIf="layout.code === 'company-bios-one'" [page]="page"
+                                 [playBook]="playBook"></app-company-bios-one>
+  </ng-container>
+
+
+  <ng-container *ngIf="pageGroup?.code === 'corporate_events'">
+    <app-theme1-corporate-events-one *ngIf="layout.code === 'corporate-events-one'" [page]="page"
+                                     [playBook]="playBook"></app-theme1-corporate-events-one>
+    <app-theme1-corporate-events-two *ngIf="layout.code === 'corporate-events-two'" [page]="page"
+                                     [playBook]="playBook"></app-theme1-corporate-events-two>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'top_initiatives'">
+    <app-top-initiatives *ngIf="layout.code === 'top-initiatives'" [page]="page"
+                         [playBook]="playBook"></app-top-initiatives>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'company_wide_initiatives'">
+    <app-theme1-company-wide-initiative *ngIf="layout.code === 'company-wide-initiatives'" [page]="page"
+                                        [playBook]="playBook"></app-theme1-company-wide-initiative>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'philosophies'">
+    <app-philosophies *ngIf="layout.code === 'philosophies'" [page]="page" [playBook]="playBook"></app-philosophies>
+  </ng-container>
+
+  <!--  <ng-container *ngIf="pageGroup?.code === 'article-three'">-->
+  <!--    <app-theme1-article-three *ngIf="layout.code === 'article-three'" [page]="page" [playBook]="playBook"></app-theme1-article-three>-->
+  <!--  </ng-container>-->
+
+  <ng-container *ngIf="pageGroup?.code === 'problem_solution'">
+    <app-theme1-problem-solution *ngIf="layout.code === 'problem-solution'" [page]="page"
+                                 [playBook]="playBook"></app-theme1-problem-solution>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'journey'">
+    <app-theme1-journey-one *ngIf="layout.code === 'journey'" [page]="page"
+                            [playBook]="playBook"></app-theme1-journey-one>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'growth'">
+    <app-growth *ngIf="layout.code === 'growth'" [page]="page" [playBook]="playBook"></app-growth>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'upcoming_events'">
+    <app-theme1-upcoming-events-one *ngIf="layout.code === 'upcoming-events-one'" [page]="page"
+                                    [playBook]="playBook"
+                                    [enableClickBtn]="enableClickBtn"></app-theme1-upcoming-events-one>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'back_cover'">
+    <app-theme1-back-cover *ngIf="layout.code === 'back-cover'" [page]="page"
+                           [playBook]="playBook"></app-theme1-back-cover>
+  </ng-container>
+
+  <ng-container *ngIf="pageGroup?.code === 'goals'">
+    <app-theme1-goal-one *ngIf="layout.code === 'goals-one'" [page]="page" [playBook]="playBook"></app-theme1-goal-one>
+  </ng-container>
+</ng-template>

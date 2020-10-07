@@ -1,0 +1,47 @@
+<section class="container-fluid custom-stepper">
+  <!-- Display this only when Theme selection step is not skipped
+  <div class="text-left view-all-theme" *ngIf="!stepperFromCulturePhoto && selectedIndex === 0">
+    <app-icon icon="left-arrow-feather" type="primary" size="sm" shape="regular"></app-icon>
+    <a [routerLink]="['/playbooks/themes']" target="_blank" class="text-uppercase">View all Theme Options</a>
+  </div>-->
+  <div class="title" *ngIf="title">{{title}}</div>
+  <div class="row custom-stepper-header" *ngIf="stepperFromCulturePhoto">
+    <div class="custom-stepper-header-box">
+      <div class="custom-stepper-header-circle" [ngClass]="{'active': selectedIndex === 0}"></div>
+      <div class="custom-stepper-header-rightLine"></div>
+      <div class="stepper-caption">Upload</div>
+    </div>
+    <div class="custom-stepper-header-box">
+      <div class="custom-stepper-header-leftLine"></div>
+      <div class="custom-stepper-header-circle" (click)="onClick(1)" [ngClass]="{'active': selectedIndex === 1}"></div>
+      <div class="stepper-caption">Add Data</div>
+    </div>
+  </div>
+  <div class="row custom-stepper-header" *ngIf="!stepperFromCulturePhoto" style="height: 3rem !important;">
+    <!-- Display this only when Theme selection step is not skipped
+    <div class="custom-stepper-header-box" [class.d-none]="true">
+      <div class="custom-stepper-header-circle" [ngClass]="{'active': selectedIndex === 0 || selectedIndex === 1 || selectedIndex === 2}"></div>
+      <div class="stepper-caption" [ngClass]="{'active': selectedIndex === 0}">Choose theme</div>
+      <div class="custom-stepper-header-rightLine" [ngClass]="{'active': selectedIndex === 1  || selectedIndex === 2}"></div>
+    </div>
+    <If this section is uncommented, increase the value compared with selectedIndex> -->
+    <div class="custom-stepper-header-box" [class.d-none]="selectedIndex === 1 || true">
+      <div class="custom-stepper-header-circle" [ngClass]="{'active': selectedIndex === 0  || selectedIndex === 1}"></div>
+      <div class="custom-stepper-header-leftLine d-none" [ngClass]="{'active': selectedIndex === 0  || selectedIndex === 1}"></div>
+      <div class="stepper-caption" [ngClass]="{'active': selectedIndex === 0}">Upload photos</div>
+      <div class="custom-stepper-header-rightLine" [ngClass]="{'active': selectedIndex === 1}"></div>
+    </div>
+    <div class="custom-stepper-header-box" [class.d-none]="selectedIndex === 1 || true">
+      <div class="custom-stepper-header-leftLine" [ngClass]="{'active': selectedIndex === 1}"></div>
+      <div class="custom-stepper-header-circle" [ngClass]="{'active': selectedIndex === 1}"></div>
+      <div class="stepper-caption" [ngClass]="{'active': selectedIndex === 1}">Start editing</div>
+    </div>
+  </div>
+
+  <div class="custom-stepper-body">
+    <div [style.display]="selected ? 'block' : 'none'">
+      <!-- Content from the CdkStep is projected here -->
+      <ng-container [ngTemplateOutlet]="selected.content"></ng-container>
+    </div>
+  </div>
+</section>

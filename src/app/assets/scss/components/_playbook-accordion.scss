@@ -1,0 +1,30 @@
+.playbook-accordion {
+  height: 100%;
+  overflow-y: auto;
+
+  .card-header {
+    color: $white;
+    font-size: $font-size-base;
+
+    &:first-child {
+      border-radius: 0;
+    }
+  }
+
+  &.card-body {
+    background: inherit;
+  }
+
+  &__item {
+    cursor: pointer;
+    .playbook-cover {
+      transition: box-shadow 200ms;
+    }
+
+    &:hover {
+      .playbook-cover {
+        box-shadow: $box-shadow;
+      }
+    }
+  }
+}

@@ -1,0 +1,440 @@
+<!-- <button (click)="toggle()"
+        *ngIf="authService.isAdmin() && !isViewQuarterlyThemeSelected() && !isViewAnnualThemeSelected()"
+        class="float-right my-2 score-button d-flex col-3 shadow-lg"> -->
+  <!--todo render this dynamically.-->
+  <!-- <div
+    style="background-image: url('https://blaast-staging.s3.amazonaws.com/media/company-logo/Blaast_LogoMark_Color.png');"
+    class="score-logo" _ngcontent-lll-c2=""></div>
+  <div class="pl-2 score-text">SCORE</div>
+</button> -->
+<button class="btn score-button1" (click)="toggle()"
+        *ngIf="isAdmin && !isViewQuarterlyThemeSelected() && !isViewAnnualThemeSelected()">
+  <span>
+    <svg height="20" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9.7725 7.41516L6.00928 11.1973L7.43048 12.6256L11.1937 8.8435L9.7725 7.41516Z" fill="url(#paint0_linear)"/>
+      <path d="M10.1966 21.6987L0.34414 11.7969C-0.114713 11.3357 -0.114713 10.592 0.34414 10.1309L4.31225 6.14287L5.73405 7.5718L2.35728 10.9623L11.0238 19.6723L19.5772 11.0792L16.0712 7.55881L17.493 6.12988L21.5903 10.2478C22.0492 10.709 22.0492 11.4559 21.5903 11.9138L11.8543 21.6987C11.3954 22.1567 10.6554 22.1567 10.1966 21.6987Z" fill="#E1261C"/>
+      <path d="M15.03 8.89234L9.37256 14.5781L10.7938 16.0065L16.4512 10.3207L15.03 8.89234Z" fill="url(#paint1_linear)"/>
+      <path d="M14.0226 5.49977L10.9075 2.3691L7.82805 5.46404L6.40625 4.03511L10.0803 0.345867C10.5392 -0.115289 11.2791 -0.115289 11.738 0.345867L15.4444 4.07083L14.0226 5.49977Z" fill="#E9830A"/>
+      <defs>
+        <linearGradient id="paint0_linear" x1="7.44232" y1="12.5971" x2="9.81155" y2="7.48944" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#E9830A"/>
+          <stop offset="1" stop-color="#E1261C"/>
+        </linearGradient>
+        <linearGradient id="paint1_linear" x1="10.5756" y1="16.1387" x2="14.915" y2="9.07329" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#E9830A"/>
+          <stop offset="1" stop-color="#E1261C"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </span>
+  <span class="score-text">SCORE</span>
+</button>
+<app-theme-preview-side-bar [show]="show" (wizardClosed)="wizardClosed()"></app-theme-preview-side-bar>
+<div id="main-content">
+  <ul class="nav nav-tabs d-flex theme-nav-web quarterly-theme-nav">
+    <li class="nav-item" *ngIf="isAdmin && !shouldHideCreateLinks()">
+      <a
+        (click)="navigated('annual')"
+        [className]="isAnnualThemeSelected() ? 'nav-link active': 'nav-link'"
+      >CREATE ANNUAL THEME</a>
+    </li>
+    <li class="nav-item">
+      <a (click)="navigated('preview-annual')"
+         [className]="isViewAnnualThemeSelected() ? 'nav-link active': 'nav-link'">
+        VIEW ANNUAL THEME</a>
+    </li>
+    <li class="nav-item" *ngIf="isAdmin && !shouldHideCreateLinks()">
+      <a class="nav-link" (click)="navigated('quarterly')"
+         [className]="isQuarterlyThemeSelected() ? 'nav-link active': 'nav-link'"
+      >CREATE QUARTERLY THEME</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="navigated('preview-quarterly')"
+         [className]="isViewQuarterlyThemeSelected() ? 'nav-link active': 'nav-link'"
+      >VIEW QUARTERLY THEME</a>
+    </li>
+
+    <!-- <div class="flex-grow-1 d-flex justify-content-end mr-3 mt-3"
+         *ngIf="isViewAnnualThemeSelected() || isViewQuarterlyThemeSelected() || showPreview">
+      <div class="icon pl-5 pr-3 cursor-pointer" (click)="exportPdf()">
+        <app-icon icon="pdf" size="sm" type="white" class="icon-save"></app-icon>
+        <span class="small ml-2">PDF</span>
+      </div>
+      <div class="icon pl-5 pr-3 ml-2 cursor-pointer" (click)="print()">
+        <app-icon icon="printer" size="sm" type="white" class="icon-save"></app-icon>
+        <span class="small ml-2">PRINT</span>
+      </div>
+    </div> -->
+
+    <div *ngIf="annualTheme && (isViewAnnualThemeSelected() || isViewQuarterlyThemeSelected() || showPreview)"
+         class="navbar-right-nav ml-auto" id="rightNav">
+      <div class="right-nav-item" (click)="exportPdf()">
+
+            <svg class="top-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V3.33333C2 2.97971 2.14048 2.64057 2.39052 2.39052C2.64057 2.14048 2.97971 2 3.33333 2H10.6667L14 5.33333V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14Z"
+                stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M11.3334 14.0003V8.66699H4.66675V14.0003" stroke="#252733" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+              <path d="M4.66675 2V5.33333H10.0001" stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          PDF
+      </div>
+      <div (click)="print()" class='right-nav-item'>
+          <svg class="top-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 5.99967V1.33301H12V5.99967" stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M3.99992 12H2.66659C2.31296 12 1.97382 11.8595 1.72378 11.6095C1.47373 11.3594 1.33325 11.0203 1.33325 10.6667V7.33333C1.33325 6.97971 1.47373 6.64057 1.72378 6.39052C1.97382 6.14048 2.31296 6 2.66659 6H13.3333C13.6869 6 14.026 6.14048 14.2761 6.39052C14.5261 6.64057 14.6666 6.97971 14.6666 7.33333V10.6667C14.6666 11.0203 14.5261 11.3594 14.2761 11.6095C14.026 11.8595 13.6869 12 13.3333 12H11.9999"
+              stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 9.33301H4V14.6663H12V9.33301Z" stroke="#252733" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          PRINT
+      </div>
+    </div>
+  </ul>
+
+  <div class="theme-nav-mobile">
+    <div ngbDropdown class="d-inline-block theme-dropdown-menu">
+      <button class="btn" id="dropdownBasic1" ngbDropdownToggle>{{mobileMenuName}}</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem *ngIf="isAdmin">
+          <a (click)="navigated('annual')" [className]="isAnnualThemeSelected() ? 'nav-link active': 'nav-link'">
+            CREATE ANNUAL THEME
+          </a>
+        </button>
+
+        <button ngbDropdownItem>
+          <a (click)="navigated('preview-annual')"
+             [className]="isViewAnnualThemeSelected() ? 'nav-link active': 'nav-link'">
+            VIEW ANNUAL THEME
+          </a>
+        </button>
+
+        <button ngbDropdownItem *ngIf="isAdmin">
+          <a class="nav-link" (click)="navigated('quarterly')"
+             [className]="isQuarterlyThemeSelected() ? 'nav-link active': 'nav-link'">
+            CREATE QUARTERLY THEME
+          </a>
+        </button>
+
+        <button ngbDropdownItem>
+          <a class="nav-link" (click)="navigated('preview-quarterly')"
+             [className]="isViewQuarterlyThemeSelected() ? 'nav-link active': 'nav-link'">
+            VIEW QUARTERLY THEME
+          </a>
+        </button>
+      </div>
+    </div>
+
+    <div class="print-pdf-mobile" *ngIf="isViewQuarterlyThemeSelected() || isViewAnnualThemeSelected()">
+      <div class="right-btn-mobile pdf-mobile cursor-pointer" (click)="exportPdf()">
+        <!-- <app-icon icon="pdf" size="sm" type="white" class="icon-save"></app-icon> -->
+        <svg _ngcontent-omo-c3="" fill="none" height="16" viewBox="0 0 16 16" width="16"
+             xmlns="http://www.w3.org/2000/svg">
+          <path _ngcontent-omo-c3=""
+                d="M12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V3.33333C2 2.97971 2.14048 2.64057 2.39052 2.39052C2.64057 2.14048 2.97971 2 3.33333 2H10.6667L14 5.33333V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14Z"
+                stroke="#252733" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path _ngcontent-omo-c3="" d="M11.3334 14.0003V8.66699H4.66675V14.0003" stroke="#252733"
+                stroke-linecap="round" stroke-linejoin="round"></path>
+          <path _ngcontent-omo-c3="" d="M4.66675 2V5.33333H10.0001" stroke="#252733" stroke-linecap="round"
+                stroke-linejoin="round"></path>
+        </svg>
+        <span class="ml-1">PDF</span>
+      </div>
+      <div class="right-btn-mobile print-mobile cursor-pointer" (click)="print()">
+        <!-- <app-icon icon="printer" size="sm" type="white" class="icon-save"></app-icon> -->
+        <svg _ngcontent-mfc-c3="" fill="none" height="16" viewBox="0 0 16 16" width="16"
+             xmlns="http://www.w3.org/2000/svg">
+          <path _ngcontent-mfc-c3="" d="M4 5.99967V1.33301H12V5.99967" stroke="#252733" stroke-linecap="round"
+                stroke-linejoin="round"></path>
+          <path _ngcontent-mfc-c3=""
+                d="M3.99992 12H2.66659C2.31296 12 1.97382 11.8595 1.72378 11.6095C1.47373 11.3594 1.33325 11.0203 1.33325 10.6667V7.33333C1.33325 6.97971 1.47373 6.64057 1.72378 6.39052C1.97382 6.14048 2.31296 6 2.66659 6H13.3333C13.6869 6 14.026 6.14048 14.2761 6.39052C14.5261 6.64057 14.6666 6.97971 14.6666 7.33333V10.6667C14.6666 11.0203 14.5261 11.3594 14.2761 11.6095C14.026 11.8595 13.6869 12 13.3333 12H11.9999"
+                stroke="#252733" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path _ngcontent-mfc-c3="" d="M12 9.33301H4V14.6663H12V9.33301Z" stroke="#252733" stroke-linecap="round"
+                stroke-linejoin="round"></path>
+        </svg>
+        <span class="ml-1">PRINT</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <div *ngIf="isAdmin && isAnnualThemeSelected() && !showPreview" role="tabpanel" class="tab-pane active">
+      <div class="mb-4">
+        <div class="initiative-card">
+          <form [formGroup]="annualThemeFormGroup" id="annual-theme-form">
+            <div class="row mb-3">
+              <p class="initiative-card__header pt-4">
+                <span class="pr-3">Creating Annual Theme for</span>
+              <div ngbDropdown class="mx-2 year-dropdown">
+                <button type="button" class="btn single-button" ngbDropdownToggle>
+                  {{ currentSelectedYear }}
+                </button>
+                <div ngbDropdownMenu class="initiative-card__header-filter__dropdown-menu">
+                  <a ngbDropdownItem class="year-dropdown-item"
+                     *ngFor="let year of annualYearListing" (click)="onYearChange(year)">
+                    {{year}}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="initiative-card__form">
+              <ng-container>
+                <div class="mb-3 mt-4">
+                  <app-card>
+                    <div class="d-flex  flex-row">
+                      <div class=" flex-grow-1 ml-sm-5">
+                        <div class="d-flex flex-row">
+                          <div class="d-flex flex-column flex-fill theme-form">
+                            <app-input formControlName="title" type="textarea"
+                                       [id]="'annual_theme_title'"
+                                       placeholder="Annual theme title..."
+                                       class="title"
+                                       (keyup)="auto_grow('annual_theme_title')"
+                                       (click)="auto_grow('annual_theme_title')"
+                                       [fixedHeight]="false"
+                            ></app-input>
+                            <app-input formControlName="description" type="textarea"
+                                       class="theme-description"
+                                       [id]="'annual_theme_description'"
+                                       (keyup)="auto_grow('annual_theme_description')"
+                                       (click)="auto_grow('annual_theme_description')"
+                                       [fixedHeight]="false"
+                                       placeholder="+ Annual theme description..."
+                            ></app-input>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </app-card>
+                </div>
+              </ng-container>
+            </div>
+            <button type="button" class="btn goals-btn__primary-btn mt-4 col-xs-3"
+                    [ngClass]="!(currentSelectedYear && annualThemeFormGroup.valid)
+                     ? 'goals-btn__disabled-primary-btn' : 'goals-btn__enabled-primary-btn'"
+                    (click)="submit('preview')"
+                    [disabled]="!(currentSelectedYear && annualThemeFormGroup.valid)">PREVIEW
+            </button>
+            <button type="button" class="btn goals-btn__sec-btn mt-4 col-xs-5"
+                    [ngClass]="!(currentSelectedYear && annualThemeFormGroup.valid) ? 'goals-btn__disabled-sec-btn'
+                     : 'goals-btn__enabled-sec-btn'"
+                    (click)="submit('draft')"
+                    [disabled]="!(currentSelectedYear && annualThemeFormGroup.valid)">
+              SAVE AS DRAFT
+            </button>
+            <button type="button" class="btn goals-btn__sec-btn mt-4 col-xs-3 publish-button"
+                    [ngClass]="!(currentSelectedYear && annualThemeFormGroup.valid) ? 'goals-btn__disabled-sec-btn'
+                    : 'goals-btn__enabled-sec-btn'"
+                    (click)="open(publishContent)"
+                    [disabled]="!(currentSelectedYear && annualThemeFormGroup.valid)"
+            >PUBLISH
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="isAdmin && isQuarterlyThemeSelected() && !showPreview" role="tabpanel" class="tab-pane active">
+      <div class="mb-4">
+        <div class="initiative-card">
+          <form [formGroup]="quarterlyThemeFormGroup" id="quarterly-theme-form">
+            <div class="row mb-3">
+              <p class="initiative-card__header pt-4">
+                <span class="pr-3">Creating Quarterly Theme for</span>
+              <div ngbDropdown class="mx-2 year-dropdown">
+                <button type="button" class="btn single-button" ngbDropdownToggle>
+                  {{ currentSelectedYear }}
+                </button>
+                <div ngbDropdownMenu class="initiative-card__header-filter__dropdown-menu">
+                  <a ngbDropdownItem class="year-dropdown-item"
+                     *ngFor="let year of quarterlyYearListing" (click)="onYearChange(year)">
+                    {{year}}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="initiative-card__form">
+              <ng-container>
+                <div class="mb-sm-3">
+                  <div class="mt-sm-4" *ngFor="let control of getQuarterlyFormArray(); let i = index;"
+                       formArrayName="details"
+                       (click)="edited(i + 1)">
+                    <app-card [className]="i + 1 === currentlyEditing? '' : 'focused'" [id]="'card-' + i">
+                      <div class="d-flex  flex-row">
+                        <div class=" flex-grow-1 ml-5">
+                          <div class="d-flex flex-row">
+                            <div class="d-flex flex-column flex-fill" [formGroupName]="i">
+                              <div class="d-flex">
+                                <div class="q-number">Q{{i + 1}}</div>
+                                <app-input formControlName="title" type="textarea"
+                                           [id]="'quarterly_theme_title' + i"
+                                           (keyup)="auto_grow('quarterly_theme_title' + i)"
+                                           (click)="auto_grow('quarterly_theme_title' + i)"
+                                           placeholder="Click to edit the title of your quarterly theme"
+                                           (focusin)="edited(i+1)"
+                                           [readonly]="shouldDisableQuarterlyThemeEdit(getQuarterlyFormArray(), i)"
+                                           class="title pl-3 quarterly_theme_title"></app-input>
+                                <div class="col-auto quarterly-theme viewable-switch">
+                                  <app-switch class="quarterly-theme"
+                                              [disableInput]="shouldDisableQuarterlyThemeEdit(getQuarterlyFormArray(), i)"
+                                              [formControl]="getQuarterlyFormArray()[i].controls['viewable']"
+                                  ></app-switch>
+                                </div>
+
+                                <div class="float-right mt-3 option-dot-menu" ngbDropdown placement="bottom-right">
+                                  <div ngbDropdownToggle>
+                                    <span class="badge">
+                                    <app-icon icon='dotMenuGray' *ngIf="shouldShowDotMenu(i)">
+                                    </app-icon>
+                                    </span>
+                                  </div>
+                                  <div ngbDropdownMenu class="quarterly-theme-option-menu">
+                                    <button
+                                      class="d-flex align-items-center dropdown-item quarterly-theme-edit-buttons"
+                                      ngbDropdownItem>
+                                      <span class="float-right text-uppercase text-muted">EDIT</span>
+                                    </button>
+                                    <button (click)="deleteQuarterlyTheme(i)"
+                                            class="d-flex align-items-center dropdown-item quarterly-theme-edit-buttons"
+                                            ngbDropdownItem>
+                                      <span class="float-right text-uppercase text-muted">DELETE</span>
+                                    </button>
+                                    <button (click)="duplicateQuarterlyTheme(i)"
+                                            class="d-flex align-items-center dropdown-item quarterly-theme-edit-buttons"
+                                            ngbDropdownItem>
+                                      <span class="float-right text-uppercase text-muted">DUPLICATE</span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                              <app-input formControlName="description" type="textarea"
+                                         class="quarterly-theme-description"
+                                         [id]="'quarterly_theme_description_' + i"
+                                         (keyup)="auto_grow('quarterly_theme_description_' + i)"
+                                         (click)="auto_grow('quarterly_theme_description_' + i)"
+                                         (focusin)="edited(i+1)"
+                                         [readonly]="shouldDisableQuarterlyThemeEdit(getQuarterlyFormArray(), i)"
+                                         placeholder="If you would like to include a rational and motivational excerpt for the theme add it here."
+                              ></app-input>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </app-card>
+                  </div>
+
+                  <div class="mt-4">
+                    <button type="button" class="btn goals-btn__primary-btn mt-4 col-xs-3" (click)="submit('preview')"
+                            [ngClass]="shouldDisableQuarterlyThemeForm() ? 'goals-btn__disabled-primary-btn' :
+                             'goals-btn__enabled-primary-btn'"
+                            [disabled]="shouldDisableQuarterlyThemeForm()">PREVIEW
+                    </button>
+                    <button type="button" class="btn goals-btn__sec-btn mt-4 col-xs-5"
+                            [ngClass]="shouldDisableQuarterlyThemeForm() ? 'goals-btn__disabled-sec-btn'
+                     : 'goals-btn__enabled-sec-btn'"
+                            [disabled]="shouldDisableQuarterlyThemeForm()" (click)="submit('draft')">
+                      SAVE AS DRAFT
+                    </button>
+                    <button type="button"
+                            [disabled]="shouldDisableQuarterlyThemeForm()"
+                            class="btn goals-btn__sec-btn mt-4 col-xs-3 publish-button"
+                            [ngClass]="shouldDisableQuarterlyThemeForm() ? 'goals-btn__disabled-sec-btn'
+                    : 'goals-btn__enabled-sec-btn'"
+                            (click)="open(publishContent)">PUBLISH
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="isViewAnnualThemeSelected() || isViewQuarterlyThemeSelected() || showPreview">
+      <app-preview-theme [theme]="currentTheme"
+                         [showPreview]="showPreview"
+                         [annualTheme]="annualTheme"
+                         [companyName]="companyName"
+                         [quarterlyTheme]="quarterlyTheme"
+                         [currentlySelectedView]="selectedTheme"
+                         [currentlySelectedYear]="currentSelectedYear"
+                         [currentFormGroup]="currentFormGroup"
+                         (savedAsDraft)="saveClickedFromDraft($event)"
+                         (published)="published($event)"
+                         (editClicked)="editClicked()"
+                         (yearChanged)="yearChanged($event)"
+                         [yearsToDisplay]="yearsToDisplay"
+      ></app-preview-theme>
+    </div>
+  </div>
+</div>
+
+<ng-template #publishContent let-modal>
+  <div style="background:  #f2f2f2" class="rounded" *ngIf="isViewAnnualThemeSelected() || isAnnualThemeSelected()">
+    <div class="yellow-warning">
+      <app-icon icon="circular-yellow-warning" size="xxxl"></app-icon>
+    </div>
+    <h6 class="text-center about-to-publish-text">You are about to publish</h6>
+    <div class="text-center px-3 publish-info publish-note">All members of the company will be able to see
+      this once published.
+    </div>
+    <div class="theme-publish-buttons annual-theme-publish-action-buttons">
+      <button type="button" class="btn btn-xs btn-primary bg-white text-dark border-white publish-button-modal"
+              (click)="modal.close('cancel')">CANCEL
+      </button>
+      <button type="button" class="btn btn-xs btn-primary text-white ml-3 publish-button-modal"
+              (click)="modal.close('confirm-annual')">
+        CONFIRM
+      </button>
+    </div>
+  </div>
+
+  <div style="background:  #f2f2f2" class="quarterly-theme-publish-modal"
+       *ngIf="isViewQuarterlyThemeSelected() || isQuarterlyThemeSelected()">
+    <div class="yellow-warning">
+      <app-icon icon="circular-yellow-warning" size="xxxl"></app-icon>
+    </div>
+    <h6 class="text-center about-to-publish-text">You are about to publish</h6>
+    <div class="text-center quarterly-theme-publish-font publish-note">This will be viewable to everyone.</div>
+    <div class="text-center quarterly-theme-publish-font publish-note">Select which themes to publish and select "Confirm".</div>
+    <form class="ml-3 mr-3 quarterly-theme-form" [formGroup]="quarterlyThemeFormGroupToPublish">
+      <ul class="list-group mb-4 bg-white ">
+        <li class="d-flex list-group-item quarterly-theme-publish-font">
+          <span class="theme-heading">THEME</span>
+          <span class="ml-auto theme-heading align-right">IN PUBLISHED VIEW?</span>
+        </li>
+        <li
+          *ngFor="let control of getQuarterlyFormArrayToPublish(); let i = index;"
+          formArrayName="details"
+          class="list-group-item quarterly-theme-publish-font d-flex">
+          <div
+            [classList]="'w-100 d-flex ' + (control.value.viewable == false ? 'text-muted' : '')"
+          >
+            <span class="q-numbering">Q{{i + 1}}</span>
+            <span class="pl-2 font-weight-bold">{{ control.value.title || 'Not available' }}</span>
+          </div>
+          <div class="col-auto quarterly-theme flex-shrink-1 quarterly-theme-publish app-switch
+          quarterly-theme-publish-switch" [formGroupName]="i">
+            <app-switch formControlName="viewable" [disableInput]=
+              "!control.value.title || shouldDisableQuarterlyThemeEdit(getQuarterlyFormArrayToPublish(), i)">
+            </app-switch>
+          </div>
+        </li>
+      </ul>
+      <div class="mb-3 quarterly-theme-publish-action-buttons">
+        <button type="button" class="btn btn-xs btn-primary bg-white text-dark border-white px-4 theme-publish-buttons"
+                (click)="modal.close('cancel')">CANCEL
+        </button>
+        <button type="button" class="btn btn-xs btn-primary text-white ml-3 px-4 theme-publish-buttons"
+                (click)="modal.close('confirm-quarterly')">
+          CONFIRM
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>

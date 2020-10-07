@@ -1,0 +1,78 @@
+<ng-container *ngIf="!emptyUser">
+  <div [class.user-card--active]="active && !emptyUser" [class.user-card--empty-active]="active && emptyUser"
+       [class.user-card--empty]="emptyUser"
+       [class.user-card--assignment-needed]="!user?.id || (user?.id && dragging &&  draggedId === user?.id)"
+       class="user-card" >
+    <div class="not-dragging" *ngIf="(!user?.id) || !dragging ||(dragging && user?.id !== draggedId ) ">
+    <div class="row align-items-center no-gutters" (mouseenter)="showAddOption()" (mouseleave)="hideAddOption()">
+      <div *ngIf="draggable" class="col-1">
+        <app-icon class="sidebar__nav-icon" icon="drag" type="gray"></app-icon>
+      </div>
+      <ng-container *ngIf="!emptyUser">
+        <div class="col-auto">
+          <div *ngIf="user?.profilePic" [style.backgroundImage]="'url(' + user?.profilePic + ')'"
+               class="profile-image mr-3 rounded-circle"></div>
+          <div *ngIf="!user?.profilePic && !showAddContent" class="profile-image mr-3"></div>
+          <div *ngIf="showAddContent" class="mr-3">
+            <app-icon icon="circularAdd" size="xl"></app-icon>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="user?.id">
+        <div (click)="openUserModal(user)" class="col">
+          <div class="user-card__name">{{ user?.fullName }}</div>
+          <div class="user-card__position">{{ user?.profile?.jobTitle }}</div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!user?.id">
+        <div (click)="openUserModal(user)" *ngIf="!showAddContent" class="col">
+          <div class="user-card__name">Assignment Needed</div>
+          <div class="user-card__position">{{ user?.profile?.jobTitle }}</div>
+        </div>
+        <div (click)="openUserModal(user)" *ngIf="showAddContent" class="col">
+          <div class="user-card__name text-uppercase">Empty - click to add</div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="isStructurePage()  && user?.id && shouldShowTrashButton && (active || hoveredCardId === user?.id)">
+            <span class="structure-column__delete">
+              <app-icon icon="trash" type="gray" size="sm" (click)="trashClicked()"></app-icon>
+            </span>
+      </ng-container>
+      <div *ngIf="draggable" class="col-auto">
+        <div (click)="userAction(user)" class="custom-control custom-checkbox">
+          <input [defaultChecked]="selected" [id]="user?.id" class="custom-control-input" disabled="disabled"
+                 type="checkbox"/>
+          <label [for]="user?.id" class="custom-control-label"></label>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="dragging" *ngIf="user?.id && dragging &&  draggedId === user?.id">
+      <div class="row align-items-center no-gutters">
+        <ng-container>
+          <div class="col-auto">
+            <div  class="profile-image profile-image--white mr-3"></div>
+          </div>
+        </ng-container>
+        <ng-container >
+          <div class="col">
+            <div class="user-card__name user-card__name-white">MOVING ROLE</div>
+            <div class="user-card__position"></div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="emptyUser">
+  <div (click)="openUserModal(user)" *ngIf="emptyUser" class="text-muted">
+    <app-button [block]="true" block="true" size="fullwidth" type="light">
+      <span *ngIf="!active">ADD USER</span>
+      <span *ngIf="active">ADD USER FROM SIDEBAR
+            <app-icon class="float-right" icon="longArrowRight" type="gray" size="sm"></app-icon>
+      </span>
+    </app-button>
+  </div>
+</ng-container>

@@ -1,0 +1,48 @@
+<div [formGroup]="form" class="container">
+  
+  <div class="mb-2">
+    <label>TOC 1</label>
+    <app-input id="toc1" formControlName="toc1Title" type="text" placeholder="Title"></app-input>
+    <app-input id="toc1Page" formControlName="toc1Page" type="text" placeholder="Page Number"></app-input>
+  </div>
+  <div class="mb-2">
+    <label>TOC 2</label>
+    <app-input id="toc2" formControlName="toc2Title" type="text" placeholder="Title"></app-input>
+    <app-input id="toc2Page" formControlName="toc2Page" type="text" placeholder="Page Number"></app-input>
+  </div>
+  <div class="mb-2">
+    <label>TOC 3</label>
+    <app-input id="toc3" formControlName="toc3Title" type="text" placeholder="Title"></app-input>
+    <app-input id="toc3Page" formControlName="toc3Page" type="text" placeholder="Page Number"></app-input>
+  </div>
+  <div class="mb-2">
+    <label>TOC 4</label>
+    <app-input id="toc4" formControlName="toc4Title" type="text" placeholder="Title"></app-input>
+    <app-input id="toc4Page" formControlName="toc4Page" type="text" placeholder="Page Number"></app-input>
+  </div>
+  <div class="mb-2">
+    <label>TOC 5</label>
+    <app-input id="toc5" formControlName="toc5Title" type="text" placeholder="Title"></app-input>
+    <app-input id="toc5Page" formControlName="toc5Page" type="text" placeholder="Page Number"></app-input>
+  </div>
+  <div class="mb-2">
+    <label>TOC 6</label>
+    <app-input id="toc6" formControlName="toc6Title" type="text" placeholder="Title"></app-input>
+    <app-input id="toc6Page" formControlName="toc6Page" type="text" placeholder="Page Number"></app-input>
+  </div>
+  <div class="mb-2">
+    <label>TOC 7</label>
+    <app-input id="toc7" formControlName="toc7Title" type="text" placeholder="Title"></app-input>
+    <app-input id="toc7Page" formControlName="toc7Page" type="text" placeholder="Page Number"></app-input>
+  </div>
+  <div class="mb-2">
+    <label>TOC 8</label>
+    <app-input id="toc8" formControlName="toc8Title" type="text" placeholder="Title"></app-input>
+    <app-input id="toc8Page" formControlName="toc8Page" type="text" placeholder="Page Number"></app-input>
+  </div>
+
+  <div class="my-2 text-right ">
+    <app-button type="link" (click)="cancel()" class="cancel-btn">Cancel</app-button>
+    <app-button (click)="save()" class="save-btn">Save</app-button>
+  </div>
+</div>

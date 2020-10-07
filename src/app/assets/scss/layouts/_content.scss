@@ -1,0 +1,31 @@
+.content {
+  //min-height: 100%;
+
+  &__fixed-height {
+    height: calc(100vh - #{$header-height});
+
+    > .row {
+      height: 100%;
+    }
+  }
+
+  &--has-header {
+    margin-top: $header-height;
+  }
+
+  &--sidebar-lg {
+    margin-left: $sidebar-width-lg;
+  }
+
+  &--sidebar-md {
+    margin-left: $sidebar-width;
+  }
+
+  &--sidebar-sm {
+    margin-left: $sidebar-width-sm;
+  }
+
+  &--sidebar-collapsed {
+    margin-left: $sidebar-width-collapsed;
+  }
+}

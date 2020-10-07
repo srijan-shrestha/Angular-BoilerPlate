@@ -1,0 +1,20 @@
+.custom-file {
+    height: auto !important;
+    &-input {
+        height: 1.4rem !important;
+    }
+
+    &:hover {
+        label {
+            color: rgb(0, 132, 255) !important;
+        }
+        
+    }
+
+    &:active {
+        label {
+            color: rgb(0, 83, 160) !important;
+        }
+        
+    }
+}

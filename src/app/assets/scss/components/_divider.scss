@@ -1,0 +1,36 @@
+.divider {
+  $divider-color: $gray-500;
+  $divider-dark-color: $gray-700;
+  $divider-light-color: #DADEEB;
+
+  display: block;
+  min-height: 1px;
+  margin: {
+    top: 0.5* $spacer;
+    bottom: 0.5 * $spacer;
+  }
+  border: 0;
+  border-color: $divider-color;
+  border-bottom: 1px solid $divider-color;
+  box-sizing: content-box;
+
+  &--dark {
+    border-color: $divider-dark-color;
+  }
+
+  &--light {
+    border-color: $divider-light-color;
+  }
+
+
+  &-vertical {
+    &--right {
+      border-right: 1px solid $divider-color;
+    }
+
+    &--left {
+      border-left: 1px solid $divider-color;
+    }
+  }
+}
+

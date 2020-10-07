@@ -1,0 +1,555 @@
+<div class="py-4 page-profile">
+  <div class="py-4">
+    <div class="page-company-profile">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12 pr-4">
+
+          <h6 style="font-size: 1.2rem;">Add Company Branding</h6>
+
+          <div class="card my-4 p-2 px-3 pb-5">
+            <div class="card-body">
+              <div class="card-title pb-2">
+                Logos and Marks
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 pr-5" style="height: 300px;">
+                  <div class="form-group">
+                    <div class="align-items-center">
+                      <!-- <div *ngIf="!hasLogoMark">
+                        <input type=file id="companyLogoMark" placeholder="select company logo Mark"
+                               (change)="selectedMarkImage($event)">
+                        <div></div>
+                      </div> -->
+                      <div class="align-items-center main-logo">
+                        <div class="company-color-box small">
+                          <span class="field-title">MAIN LOGO</span>
+                          <!-- <a (click)="changeMarkImage()" class="edit-btn"> EDIT</a> -->
+                          <div (click)="changeMarkImage()" class="btn btn-light
+                          text-uppercase edit-btn"> edit
+                          </div>
+                        </div>
+
+                        <div class="underline"></div>
+                        <label class="my-3 small align-items-center"
+                               for="companyLogoMark" style="font-size: 11px;">140 x 140
+                          PX <span *ngIf="!hasLogoMark">(.JPG OR .PNG)</span> </label>
+
+                        <div style="width: 100%; display: flex; justify-content:
+                        center;">
+                          <div class="box my-3">
+                            <div class="ribbon ribbon-top-left"></div>
+                            <div class="ribbon ribbon-top-right"></div>
+                            <div class="ribbon ribbon-bottom-left"></div>
+                            <div class="ribbon ribbon-bottom-right"></div>
+                            <!-- <span> Hello </span> -->
+                            <div *ngIf="!hasLogoMark">
+                              <div class="add-photo-wrapper d-flex
+                              justify-content-center align-items-center">
+                                <div class="add-photo-btn add-photo-btn-big">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <app-icon icon="upload-v2" size="md"></app-icon>
+                                    <div>
+                                      ADD LOGO
+                                    </div>
+                                  </div>
+                                </div>
+                                <input (change)="selectedMarkImage($event)" id="companyLogoMark"
+                                       placeholder="select company logo Mark"
+                                       type=file>
+                              </div>
+
+                            </div>
+
+                            <div *ngIf="hasLogoMark" class="col p-0">
+                              <!-- {{logoMarkName}} -->
+                              <div [formGroup]="imageUploadForm"
+                                   class="my-profile-img d-flex
+                              justify-content-center align-items-center"
+                                   style="height: 140px; overflow: hidden;">
+                                <img (data)='onPicChange($event)' *ngIf="logoMarkURL"
+                                     [src]="logoMarkURL" width="140px">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 pl-5" style="height: 300px;">
+                  <div class="form-group">
+                    <div class="align-items-center">
+                      <div class="align-items-center main-logo">
+                        <div class="company-color-box small">
+                          <span class="field-title">LOGO MARK</span>
+                          <!-- <a (click)="changeLogoImage()" class="edit-btn"> EDIT</a> -->
+                          <div (click)="changeLogoImage()" class="btn btn-light
+                          text-uppercase edit-btn"> edit
+                          </div>
+                        </div>
+
+                        <div class="underline"></div>
+
+                        <label class="my-3 small align-items-center"
+                               for="companyLogoMark" style="font-size: 11px;">50 x 50 PX
+                          <span *ngIf="!hasLogo">(.JPG OR .PNG)</span> </label>
+
+                        <div style="width: 100%; display: flex; justify-content:
+                        center;">
+                          <div class="box my-3">
+                            <div class="ribbon ribbon-top-left"></div>
+                            <div class="ribbon ribbon-top-right"></div>
+                            <div class="ribbon ribbon-bottom-left"></div>
+                            <div class="ribbon ribbon-bottom-right"></div>
+                            <!-- <span> Hello </span> -->
+                            <div *ngIf="!hasLogo">
+
+                              <div class="add-photo-wrapper d-flex
+                              justify-content-center align-items-center">
+                                <div class="add-photo-btn add-photo-btn-small">
+                                  <div class="d-flex flex-column align-items-center">
+                                    <app-icon icon="upload-v2" size="sm"></app-icon>
+                                    <div>
+                                      ADD
+                                    </div>
+                                  </div>
+                                </div>
+                                <input (change)="selectedLogoImage($event)" id="companyLogo"
+                                       placeholder="select company logo"
+                                       type=file>
+                              </div>
+                            </div>
+
+                            <div *ngIf="hasLogo" class="col p-0">
+                              <!-- {{logoMarkName}} -->
+                              <div [formGroup]="imageUploadForm"
+                                   class="my-profile-img d-flex
+                              justify-content-center align-item-center"
+                                   style="height: 50px; overflow: hidden;">
+                                <img (data)='onPicChange($event)' *ngIf="logoURL" [src]="logoURL"
+                                     width="50px">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 pr-5" style="height: 250px;">
+                  <div class="card-title">
+                    Company Colors
+                  </div>
+
+                  <div class="form-group">
+                    <div class="form-row align-items-center">
+                      <div class="col-md-12">
+
+                        <div class="row py-2">
+                          <div class="col-md-12">
+                            <div class="company-color-box small">
+                              <span class="field-title">MAIN COLOR</span>
+                              <!-- <a class="edit-btn" [cpOKButton]="true"
+                                cpPosition="bottom"
+                                (colorPickerChange)="updateSaveColor()"
+                                (cpSliderChange)="updateSaveColor()"
+                                (colorPickerSelect)="updateSaveColor()"
+                                [(colorPicker)]="colorPrimary"> EDIT</a> -->
+                              <div class="btn btn-light
+                            text-uppercase edit-btn" [cpOKButton]="true" [cpCancelButton]="true"
+                                   cpPosition="bottom" [cpAlphaChannel]="'disabled'"
+                                   (colorPickerSelect)="updateSaveColor()"
+                                   [(colorPicker)]="colorPrimary"> edit
+                              </div>
+                            </div>
+                            <div class="underline"></div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="secondary-color-box">
+                              <div class="color-box color-input"
+                                   [style.background]="colorPrimary"></div>
+                              <!-- <div class="hex-value">{{colorPrimary}}</div> -->
+                              <input style="border: none; outline: none; box-shadow: none;
+                          background: transparent; padding: 0 4px; text-align: center;" class="hex-value"
+                                     type="text" [value]="colorPrimary" (input)="colorPrimaryInput($event)"
+                                     maxlength="7">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row py-2">
+                          <div class="col-md-12">
+                            <div class="company-color-box small">
+                              <span class="field-title">ACCENT COLOR</span>
+                              <!-- <a class="edit-btn" [cpOKButton]="true"
+                                cpPosition="bottom"
+                                (colorPickerChange)="updateSaveColor()"
+                                (cpSliderChange)="updateSaveColor()"
+                                (colorPickerSelect)="updateSaveColor()"
+                                [(colorPicker)]="colorSecondary"> EDIT</a> -->
+                              <div class="btn btn-light
+                            text-uppercase edit-btn" [cpOKButton]="true" [cpCancelButton]="true"
+                                   cpPosition="bottom" [cpAlphaChannel]="'disabled'"
+                                   (colorPickerSelect)="updateSaveColor()"
+                                   [(colorPicker)]="colorSecondary"> edit
+                              </div>
+
+                            </div>
+                            <div class="underline"></div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="secondary-color-box">
+                              <div class="color-box color-input"
+                                   [style.background]="colorSecondary"></div>
+                              <!-- <div class="hex-value">{{colorSecondary}}</div> -->
+                              <input style="border: none; outline: none; box-shadow: none;
+                          background: transparent; padding: 0 4px; text-align: center;" class="hex-value"
+                                     type="text" [value]="colorSecondary" (input)="colorSecondaryInput($event)"
+                                     maxlength="7">
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-md-6 pl-5" style="height: 250px;">
+                  <div class="card-title">
+                    Navbar display
+                  </div>
+
+                  <div class="form-group">
+                    <div class="form-row align-items-center">
+                      <div class="col-md-12">
+
+                        <div class="row py-2">
+                          <div class="col-md-12">
+                            <div class="company-color-box small">
+                              <span class="field-title">GRADIENT</span>
+                              <!-- <a class="edit-btn" (click)="show=!show"> EDIT</a> -->
+                              <div (click)="show=!show;" class="btn btn-light
+                              text-uppercase edit-btn"> edit
+                              </div>
+                            </div>
+
+                            <div class="underline"></div>
+
+                            <div *ngIf="show" class="gradient-editor-box mb-3" id="gradient-element-box">
+                              <div class="box-head">
+                                <span class="text-uppercase">gradient editor</span>
+                                <span style="cursor: pointer;" (click)="show = false">
+                              <app-icon icon="xcross" size="sm"></app-icon></span>
+                              </div>
+                              <div class="box-body py-2">
+                                <div class="gradient-input"
+                                     [style.background]="this.sanitizer.bypassSecurityTrustStyle('linear-gradient(90deg,'+
+                              navColorPrimary +' '+ '-0.02%,'+
+                              navColorSecondary+' 64.46%)')"></div>
+                                <div class="row py-2">
+                                  <div class="col-md-6">
+                                    <label class="float-right">HEX</label>
+                                    <div class="color-data color-data-left">
+                                      <div [cpOKButton] = "true"
+                                           [cpCancelButton]="true" [cpToggle]="true"
+                                           [cpSaveClickOutside]="false"
+                                           [cpCloseClickOutside]="false"
+                                           [cpAlphaChannel]="'disabled'"
+                                           [cpPosition]="'bottom'"
+                                           (colorPickerClose)="gradientEditorToggled('closed')"
+                                           (colorPickerOpen)="gradientEditorToggled('opened')"
+                                           cpPosition="bottom"
+                                           (colorPickerSelect) = "this.colorValueChangeOk = true"
+                                           (colorPickerCancel) = "this.colorValueChangeCancel = true"
+                                           cpWidth = "258px"
+                                           [(colorPicker)]="navColorPrimary"
+                                           class="color-box color-input-gradient"
+                                           [style.background]="navColorPrimary"></div>
+                                      <input class="hex-value-gradient" type="text" [value]="navColorPrimary"
+                                      maxlength="7" style="border: none; outline: none; box-shadow: none;
+                                      background: transparent; padding: 0 4px; text-align: center;" readonly>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-md-6">
+                                    <label>HEX</label>
+                                    <div class="color-data color-data-right">
+                                      <div class="hex-value-gradient">{{navColorSecondary}}</div>
+                                      <div [cpOKButton] = "true"
+                                           [cpCancelButton] = "true"
+                                           [cpSaveClickOutside]="false"
+                                           [cpCloseClickOutside]="false"
+                                           [cpAlphaChannel]="'disabled'"
+                                           [cpPosition]="'bottom'"
+                                           (colorPickerClose)="gradientEditorToggled('closed')"
+                                           (colorPickerOpen)="gradientEditorToggled('opened')"
+                                           (colorPickerSelect) = "this.colorValueChangeOk = true"
+                                           (colorPickerCancel) = "this.colorValueChangeCancel = true"
+                                           cpWidth = "258px"
+                                           [(colorPicker)]="navColorSecondary"
+                                           [style.background]="navColorSecondary"
+                                           class="color-box color-input-gradient
+                                      color-input-gradient-right"></div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="apply-navcolor-btn"
+                                     *ngIf="showApplyBtn">
+                                  <button (click)="changesreset()"
+                                          class="btn btn-cancel mx-1">
+                                    Cancel
+                                  </button>
+
+                                  <button (click)="updateSaveColor()"
+                                          class="btn btn-primary">
+                                    Apply Changes
+                                  </button>
+                                </div>
+
+                              </div>
+                            </div>
+
+                          </div>
+                          <div class="col-md">
+                            <!-- <input [cpOKButton]="true" cpPosition="bottom" [(colorPicker)]="colorPrimary"
+                                    class="border-0 gradient-input"/> -->
+                            <div [style.background]="this.sanitizer.bypassSecurityTrustStyle('linear-gradient(90deg,'+
+                            navColorPrimary +' '+ '-0.02%,'+ navColorSecondary+'
+                            64.46%)')"
+                                 class="gradient-input"></div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12 pl-4 company-detail">
+          <h6 style="font-size: 19px;">
+            Company Details
+          </h6>
+
+          <form [formGroup]="companyProfileForm">
+
+            <div class="row my-4">
+              <div class="col-md-12 pl-4">
+
+                <div class="form-group">
+                  <div class="form-row align-items-center">
+                    <div class="col-md-12">
+                      <label class="m-0 small" for="companyName">Company Name</label>
+                    </div>
+                    <div class="col-md-12">
+                      <app-input formControlName="name" id="companyName" placeholder="Company Name Here"
+                                 type="text"></app-input>
+                    </div>
+                  </div>
+                </div>
+
+                <div formGroupName="profile">
+                  <div class="form-group">
+                    <div class="form-row align-items-center">
+                      <div class="col-md-12">
+                        <label class="m-0 small" for="timezone">Timezone</label>
+                      </div>
+                      <div class="col-md-12">
+                        <app-select formControlName="timezone" id="timezone"
+                                    placeholder="Select Timezone">
+                          <option *ngFor="let timezone of timezones"
+                                  [selected]="companyProfile?.profile?.timezone.id ===
+                          timezone.id"
+                                  [value]="timezone.id">
+                            {{timezone.name}}
+                          </option>
+                        </app-select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-row align-items-center">
+                      <div class="col-md-12">
+                        <label class="m-0" for="corporatePhoneNumber">Corporate
+                          Phone</label>
+                      </div>
+                      <div class="col-md-12">
+                        <app-input formControlName="phoneNumber" id="corporatePhoneNumber"
+                                   placeholder="(xxx) xxx-xxxx" [maskData]="'(000) 000-0000'"
+                                   type="text"></app-input>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group">
+                      <div class="form-row align-items-center">
+                        <div class="col-md-12">
+                          <label class="m-0" for="licenses">Liscense</label>
+                        </div>
+                        <div class="col-md-12">
+                          <app-input type="text" id="licenses" formControlName="licenses"
+                                     placeholder="Using 348 of 500 paid seats"></app-input>
+                        </div>
+                      </div>
+                    </div> -->
+                </div>
+
+                <div formArrayName="emailExtension">
+                  <div *ngFor="let emailExtension of
+                  emailExtensions.controls; let i=index" [formGroupName]="i"
+                       class="form-group">
+                    <div class="form-row align-items-center">
+                      <div class="col-md-12">
+                        <label class="m-0">Email Extentions</label>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-row">
+                          <div (blur)="hideEmailExtensionCross()" (click)="showEmailExtensionCross()"
+                               class="col-md-12">
+                            <app-input [formControlName]="'emailExtension'" id="emailExt"
+                                       placeholder="@company.com" type="text"></app-input>
+                          </div>
+                          <div class="col-md-1 mt-2" class="email-ext-close">
+                            <div (click)="deleteEmailExtention(i)"
+                                 *ngIf="emailExtensionCross && i>=0">
+                              <app-icon icon="xcross" size="xs" type="gray"></app-icon>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row float-left mt-n4">
+                  <div class="col mt-4">
+                    <div (click)="addEmailExtention()"
+                         class="btn btn-outline-primary px-4 py-2 text-uppercase">+ Add Email
+                      Extension
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="underline"></div>
+                <h6 class="my-3" style="font-size: 19px;">
+                  Address
+                </h6>
+              </div>
+
+              <div class="col-md-12 pl-4">
+                <div formGroupName="profile">
+                  <div class="form-group">
+                    <div class="form-row align-items-center">
+                      <div class="col-md-12">
+                        <label class="m-0" for="corporateAddress1">Corporate Address
+                          #1</label>
+                      </div>
+                      <div class="col-md-12">
+                        <app-input formControlName="address1" id="corporateAddress1"
+                                   placeholder="123 S Smith Street"
+                                   type="text"></app-input>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-row align-items-center">
+                      <div class="col-md-12">
+                        <label class="m-0" for="corporateAddress1">Address #2</label>
+                      </div>
+                      <div class="col-md-12">
+                        <app-input formControlName="address2" id="address2"
+                                   placeholder="Suite 123" type="text">
+                        </app-input>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-5 pr-0">
+                      <div class="form-group">
+                        <div class="form-row align-items-center">
+                          <div class="col-md-12">
+                            <label class="m-0" for="city">City</label>
+                          </div>
+                          <div class="col-md-12">
+                            <app-input type="text" id="city" formControlName="city"
+                                       placeholder=""></app-input>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <div class="form-row align-items-center">
+                          <div class="col-md-12">
+                            <label class="m-0" for="state">State</label>
+                          </div>
+                          <div class="col-md-12">
+                            <app-select formControlName="state" id="state"
+                                        [placeholder]="'Select State'">
+                              <option *ngFor="let state of states"
+                                      [value]="state.id"
+                                      [selected]="companyProfile?.profile?.state.id ===
+                            state.id">
+                                {{state.name}}
+                              </option>
+                            </app-select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-0">
+                      <div class="form-group">
+                        <div class="form-row align-items-center">
+                          <div class="col-md-12">
+                            <label class="m-0" for="postalCode">ZIP</label>
+                          </div>
+                          <div class="col-md-12">
+                            <app-input type="text" id="postalCode"
+                                       formControlName="postalCode" placeholder="12345">
+                            </app-input>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="text-center float-right">
+                    <app-button (click)="updateCompanyProfile()" [disabled]="companyProfileForm.invalid"
+                                [loading]="loading"
+                                size="lg" type="primary">
+                      SUBMIT CHANGES
+                    </app-button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

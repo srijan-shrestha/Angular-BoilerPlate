@@ -1,0 +1,254 @@
+@import url("https://fonts.googleapis.com/css?family=Heebo:300,400,500,700,800&display=swap");
+
+.sidenav-head {
+  height: 60px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidenav-logo {
+  font-size: 18px;
+  font-weight: 700;
+  color: #252733;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+}
+
+.sidenav-close {
+  height: 24px;
+  width: 18px;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+.sidenav-body {
+  padding-top: 20px;
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.company-name {
+  font-size: 12px;
+  margin-top: -25px;
+}
+
+.wizard {
+  color: #d55d22;
+  letter-spacing: 4.5px;
+  font-size: 9px;
+  font-weight: 400;
+}
+
+.menu-group {
+  &-title {
+    color: #1666cc;
+  }
+}
+
+.sideNav-show {
+  transform: translate(0px, 0px);
+}
+
+.sideNav-hide {
+  transform: translate(24.75rem, 0px);
+}
+
+.vertical-nav {
+  min-width: 18.75rem;
+  width: 18.75rem;
+  overflow: hidden;
+  height: 93vh;
+  position: fixed;
+  top: 58px;
+  right: 0;
+  box-shadow: 4px 0px 20px rgba(153, 159, 183, 0.5);
+  border-radius: 30px 0px 0px 30px;
+  overflow: hidden;
+  transition: all 0.4s;
+  z-index: 5000;
+}
+
+#sidebar.active {
+  margin-left: -17rem;
+}
+
+#content.active {
+  width: 100%;
+  margin: 0;
+}
+
+// nav-tabs pills starts
+
+.sidenav-body ::ng-deep .nav-tabs {
+  width: 85%;
+  border: 1px solid #dadeeb;
+  padding: 3px;
+  margin: auto;
+  border-radius: 20px;
+
+  .nav-item {
+    margin-bottom: 0px;
+    width: 33.333%;
+  }
+
+  .nav-link {
+    font-size: 10px;
+    line-height: 20px;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    text-align: center;
+    color: #9599aa;
+
+    &.active {
+      color: #fff;
+      background-color: #9599aa;
+    }
+  }
+}
+
+.sidenav-footer {
+  position: fixed;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+
+  .footer-img {
+    width: 70px;
+    height: 22px;
+    background-size: contain;
+    background-position: left;
+  }
+
+  .copyright {
+    color: #9599AA;
+  }
+
+}
+
+@media only screen and (min-width: 1400px) {
+  ::ng-deep {
+    .principle-popover {
+      .arrow::before,
+      .arrow::after,
+      .bs-popover-left > .principle-popover .arrow::after {
+        top: -1.9rem !important;
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 1400px) {
+  .sidenav-body ::ng-deep .nav-tabs {
+    li {
+      margin: 0 0rem !important;
+    }
+  }
+}
+
+.sidenav-body {
+  &__overall-score--heavy-weight {
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: -16px;
+
+    &--border-bottom {
+      border-bottom: 1px solid #cccccc45;
+    }
+  }
+
+  &__overall-score-label--font-changes {
+    font-size: 10px;
+    font-weight: 600;
+    color: #9599AA;
+  }
+}
+
+::ng-deep {
+  .custom-slider {
+    margin-top: -25px;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-bar {
+    background-image: linear-gradient(90deg, #C23535 13.85%, #F2994A 92.2%);
+    height: 5px;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-bubble {
+    display: none;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-pointer {
+    width: 12px;
+    height: 12px;
+    border: 1px solid orange;
+    margin-top: 10px;
+    background-color: white;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-pointer:after {
+    display: none;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-full-bar {
+    padding-right: auto;
+    padding-left: auto;
+  }
+}
+
+.principle-title {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.pl-30 {
+  padding-left: 30px;
+}
+
+.overall_score {
+  font-size: 24px;
+}
+
+::ng-deep .popover {
+  border-radius: 8px !important;
+  font-family: "Heebo";
+
+  .popover-header {
+    padding-top: 14px;
+    background: white;
+    border-bottom: 0px solid black;
+    border-radius: 16px 10px 0 0 !important;
+    color: #52575C;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .popover-body {
+    max-height: 100px;
+    overflow-y: auto;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.1px;
+    color: #52575C;
+  }
+}
+
+.temperature-text {
+  font-size: 10px;
+  font-weight: 400;
+}

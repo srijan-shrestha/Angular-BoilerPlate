@@ -1,0 +1,245 @@
+<div class="container-fluid py-4" style="padding-left: 3.5rem; padding-right: 3.5rem;">
+  <div class="row">
+    <div class="col">
+      <h3>Mission & Values</h3>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <app-card shadow="md">
+        <div class="edit-button" *ngIf="!extraCompanyInfoEdit">
+          <app-button type="link" (click)="editExtraInfo()">
+            <app-icon size="sm" type="grey" icon="pencil-edit"></app-icon>
+          </app-button>
+        </div>
+        <div class="row">
+          <div class="image-wrapper" [style.backgroundImage]="companyData?.companyLogo ? 'url(' + companyData?.companyLogo  + ')' : ''">
+          </div>
+          <div class="col ml-3">
+            <div><strong>{{companyData?.name | uppercase}}</strong></div>
+            <div class="small"> {{companyData?.profile?.address1}} </div>
+            <div class="small"> {{companyData?.profile?.city}}</div>
+            <div class="row my-2" *ngIf="!extraCompanyInfoEdit">
+              <div class="col-lg-4 col-md-12 col-sm-12 my-1">
+                <div class="row">
+                  <div class="col">Headquarters</div>
+                  <div class="col font-weight-bold">{{extraCompanyInfo?.headquarter}}</div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-12 col-sm-12 my-1">
+                <div class="row">
+                  <div class="col">Company Size</div>
+                  <div class="col font-weight-bold">{{extraCompanyInfo?.companySize}}</div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-12 col-sm-12 my-1">
+                <div class="row">
+                  <div class="col">Annual Revenue</div>
+                  <div class="col font-weight-bold">{{extraCompanyInfo?.annualRevenue}}</div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-12 col-sm-12 my-1">
+                <div class="row">
+                  <div class="col">Total Customer</div>
+                  <div class="col font-weight-bold">{{extraCompanyInfo?.totalCustomer}}</div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-12 col-sm-12 my-1">
+                <div class="row">
+                  <div class="col">Industry</div>
+                  <div class="col font-weight-bold">{{extraCompanyInfo?.industry}}</div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-12 col-sm-12 my-1">
+                <div class="row">
+                  <div class="col">Established</div>
+                  <div class="col font-weight-bold">{{extraCompanyInfo?.established}}</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row py-2" *ngIf="extraCompanyInfoEdit">
+              <div class="col">
+                <div class="my-2">
+                  <strong>Extra Information Form</strong>
+                </div>
+                <form [formGroup]="extraInformationForm">
+                  <div class="form-group">
+                    <label>Headquarter</label>
+                    <app-input type="text" formControlName="headquarter" placeholder="Headquarter">
+                    </app-input>
+                  </div>
+                  <div class="form-group">
+                    <label>Established </label>
+                    <app-input type="date" formControlName="established" placeholder="Established">
+                    </app-input>
+                  </div>
+                  <div class="form-group">
+                    <label>Industry </label>
+                    <app-input type="text" formControlName="industry" placeholder="Industry">
+                    </app-input>
+                  </div>
+                  <div class="form-group">
+                    <label>Annual Revenue</label>
+                    <app-input type="text" formControlName="annualRevenue" placeholder="Annual Revenue">
+                    </app-input>
+                  </div>
+                  <div class="form-group">
+                    <label>Total Customer </label>
+                    <app-input type="text" formControlName="totalCustomer" placeholder="Total Customer">
+                    </app-input>
+                  </div>
+                  <div class="form-group">
+                    <label>Company Size </label>
+                    <app-input type="text" formControlName="companySize" placeholder="Company Size">
+                    </app-input>
+                  </div>
+                  <div class="text-right">
+                    <app-button class="pr-2" type="outline-primary" size="lg" (click)="extraCompanyInfoEdit = false">
+                      Cancel
+                    </app-button>
+                    <app-button type="primary" size="lg" (click)="postExtraInfo()" [loading]="loading">
+                      Save
+                    </app-button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div>
+        <app-card [background]="'secondary'" style="color: white;" shadow="md">
+          <div class="edit-button" *ngIf="!missionEdit">
+            <app-button type="link" (click)="editMission()">
+              <app-icon size="sm" type="white" icon="pencil-edit"></app-icon>
+            </app-button>
+          </div>
+          <div class="row">
+            <div class="col">
+              <strong>Mission Statement</strong>
+            </div>
+          </div>
+          <div *ngIf="!missionEdit" class="pt-3">
+            {{mission}}
+          </div>
+          <div *ngIf="missionEdit">
+            <form [formGroup]="missionForm">
+              <div class="form-group py-2">
+                <label>Company Mission </label>
+                <app-input type="textarea" formControlName="mission" placeholder="Company Mission">
+                </app-input>
+              </div>
+              <div class="text-right">
+                <app-button class="pr-2" type="outline-primary" size="lg" (click)="missionEdit = false">
+                  Cancel
+                </app-button>
+                <app-button type="primary" size="lg" (click)="postMission()" [loading]="loading">
+                  Save
+                </app-button>
+              </div>
+            </form>
+          </div>
+        </app-card>
+      </div>
+
+      <div class="mt-4">
+        <app-card shadow="md">
+          <div class="edit-button" *ngIf="!aboutUsEdit">
+            <app-button type="link" (click)="editAboutUs()">
+              <app-icon size="sm" type="grey" icon="pencil-edit"></app-icon>
+            </app-button>
+          </div>
+          <div class="row">
+            <div class="col">
+              <strong>About us</strong>
+            </div>
+          </div>
+          <div *ngIf="!aboutUsEdit" class="pt-3"> {{aboutUs}}</div>
+          <div *ngIf="aboutUsEdit">
+            <form [formGroup]="aboutUsForm">
+              <div class="form-group py-2">
+                <label>About Us </label>
+                <app-input type="textarea" formControlName="content" placeholder="About Us">
+                </app-input>
+              </div>
+              <div class="text-right">
+                <app-button class="pr-2" type="outline-primary" size="lg" (click)="aboutUsEdit = false">
+                  Cancel
+                </app-button>
+                <app-button type="primary" size="lg" (click)="postAboutUs()" [loading]="loading">
+                  Save
+                </app-button>
+              </div>
+            </form>
+          </div>
+        </app-card>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 values-card">
+      <app-card shadow="md">
+        <div class="edit-button" *ngIf="!valueEdit">
+          <app-button type="link" (click)="editValue()">
+            <app-icon size="sm" type="grey" icon="pencil-edit"></app-icon>
+          </app-button>
+        </div>
+        <div class="row">
+          <div class="col">
+            <strong>Values</strong>
+          </div>
+        </div>
+        <div *ngIf="!valueEdit">
+          <div *ngFor="let value of values?.values" class="my-2 border-bottom py-2">
+            <div class="row px-4 pt-3">
+              <div class="col-auto">
+                <div class="custom-bullet"></div>
+              </div>
+              <div class="col">
+                {{value}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="valueEdit">
+          <form [formGroup]="companyValuesForm">
+            <div formArrayName="values">
+              <div class="form-group" *ngFor="let companyValue of companyValues.controls; let i=index">
+                <label>Company Value #{{ i + 1 }}</label>
+                <div class="form-row">
+                  <div class="col">
+                    <app-input type="text" placeholder="Company Value" [formControlName]="i"></app-input>
+                  </div>
+                  <div class="col-auto" *ngIf="companyValues.controls.length > 3">
+                    <app-button (click)="removeCompanyValue(i)">X</app-button>
+                  </div>
+                </div>
+              </div>
+              <div class="text-right">
+                <app-button type="flat" (click)="addCompanyValue()">+ Add Company Value</app-button>
+              </div>
+            </div>
+          </form>
+          <div class="text-right">
+            <app-button class="pr-2" type="outline-primary" size="lg" (click)="valueEdit = false">
+              Cancel
+            </app-button>
+            <app-button type="primary" size="lg" (click)="postValues()" [loading]="loading">
+              Save
+            </app-button>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+</div>
+

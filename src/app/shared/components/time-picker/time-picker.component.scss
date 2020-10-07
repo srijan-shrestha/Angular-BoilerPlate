@@ -1,0 +1,11 @@
+
+.clock{
+ position: absolute;
+ right: 0;
+ top: 0;
+ z-index: 100;
+}
+
+.dropdown-toggle::after {
+  display: none;
+ }

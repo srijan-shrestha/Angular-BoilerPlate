@@ -1,0 +1,43 @@
+<div class="container-fluid">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-md-4 col-xl-4 mt-5">
+          <div class="text-center">
+            <h1 class="h2">Create Company</h1>
+
+            <form class="my-4" [formGroup]="companyCreateForm" (ngSubmit)="companyCreateFormSubmit()">
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col">
+                    <app-input type="text" formControlName="name" placeholder="Company Name" size="lg"
+                                (keyup)="setDomainName($event)"></app-input>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col">
+                    <app-input type="text" formControlName="workspace" placeholder="company-name"
+                               size="lg" align="right" readonly="True">
+                    </app-input>
+                  </div>
+                  <div class="col-auto col-form-label col-form-label-lg">
+                    <strong>.blaast.com</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col">
+                    <app-input type="email" formControlName="email" placeholder="Email" size="lg"></app-input>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <app-button type="primary" [block]="true" size="lg" [disabled]="companyCreateForm.invalid" [loading]="loading">Create
+                </app-button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</div>

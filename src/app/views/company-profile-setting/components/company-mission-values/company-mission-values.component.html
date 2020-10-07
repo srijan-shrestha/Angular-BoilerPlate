@@ -1,0 +1,125 @@
+<div class="py-4 page-profile">
+  <div class="py-4">
+    <div class="row">
+      <div class="col-lg-3 col-md-12 col-sm-12">
+        <app-extra-information></app-extra-information>
+      </div>
+      <div class="col-lg-9 col-md-12 col-sm-12">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <h4 class="mb-3 divider">
+                About Us
+                <app-button type="gray" class="edit-btn" size="sm" textTransform="uppercase" (click)="onEdit('about')"
+                            *ngIf="!editing.about && companyDetails.about && companyDetails.about.content">
+                  Edit
+                </app-button>
+                <div class="float-right" *ngIf="editing.about">
+                  <app-button class="mx-1" type="gray" size="sm" (click)="stopEdit('about')" textTransform="uppercase"
+                              >
+                    Cancel
+                  </app-button>
+                  <app-button type="gray" size="xs" (click)="saveAbout()" textTransform="uppercase"
+                              [loading]="loading.about">
+                    Save
+                  </app-button>
+                </div>
+              </h4>
+              <div class=" mb-4">
+                <form [formGroup]="aboutForm" *ngIf="editing.about">
+                  <div class="form-group">
+                    <quill-editor formControlName="content" placeholder="Enter About Us here" required
+                                  [modules]="quillOptions" (onEditorCreated)="setFocus($event)"
+                                  [styles]="{'border-radius':'0 0 10px 10px', 'background-color': '#FFF'}">
+                    </quill-editor>
+                  </div>
+                </form>
+                <div *ngIf="!editing.about && companyDetails.about && companyDetails.about.content"
+                     class="detail" [innerHtml]="companyDetails.about.content">
+                </div>
+                <div *ngIf="!editing.about && (!companyDetails.about || !companyDetails.about.content)"
+                     class="empty-detail text-uppercase" (click)="onEdit('about')" >
+                  + Add Detail
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <h4 class="mb-3 divider">
+                Values
+                <app-button class="edit-btn" type="gray" size="sm" (click)="onEdit('values')" textTransform="uppercase"
+                            *ngIf="!editing.values && companyDetails.values && companyDetails.values.values">
+                  Edit
+                </app-button>
+                <div class="float-right"  *ngIf="editing.values">
+                  <app-button type="gray" class="mx-1" (click)="stopEdit('values')" size="sm"
+                              textTransform="uppercase">
+                    Cancel
+                  </app-button>
+                  <app-button type="gray" class="" (click)="saveValues()" size="sm"  textTransform="uppercase"
+                              [loading]="loading.values">
+                    Save
+                  </app-button>
+                </div>
+              </h4>
+              <div class="mb-4">
+                <form [formGroup]="valuesForm" *ngIf="editing.values">
+                  <div class="form-group">
+                    <quill-editor formControlName="values"  placeholder="Enter Company Values here" required
+                                  [modules]="quillOptions" (onEditorCreated)="setFocus($event)"
+                                  [styles]="{'border-radius':'0 0 10px 10px', 'background-color': '#FFF'}">
+                    </quill-editor>
+                  </div>
+                </form>
+                <div *ngIf="!editing.values && companyDetails.values && companyDetails.values.values"
+                     class="values-list detail" [innerHtml]="companyDetails.values.values">
+                </div>
+                <div *ngIf="!editing.values && (!companyDetails.values || !companyDetails.values.values)"
+                     class="empty-detail text-uppercase" (click)="onEdit('values')" >
+                  + Add Detail
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              <h4 class="mb-3 divider">
+                Mission &amp; Vision
+                <app-button class="edit-btn" type="gray" size="sm" (click)="onEdit('mission')" textTransform="uppercase"
+                            *ngIf="!editing.mission && companyDetails.mission && companyDetails.mission.mission">
+                  Edit
+                </app-button>
+                <div class="float-right" *ngIf="editing.mission">
+                  <app-button type="gray" class="mx-1" (click)="stopEdit('mission')" size="sm" textTransform="uppercase">
+                    Cancel
+                  </app-button>
+                  <app-button type="gray" (click)="saveMission()" size="sm"  textTransform="uppercase"
+                              [loading]="loading.mission">
+                    Save
+                  </app-button>
+                </div>
+              </h4>
+              <div class="mb-4">
+                <form [formGroup]="missionForm" *ngIf="editing.mission">
+                  <div class="form-group">
+                    <quill-editor formControlName="mission"  placeholder="Enter Company Mission & Vision here" required
+                                  [modules]="quillOptions" (onEditorCreated)="setFocus($event)"
+                                  [styles]="{'border-radius':'0 0 10px 10px', 'background-color': '#FFF'}">
+                    </quill-editor>
+                  </div>
+                </form>
+                <div *ngIf="!editing.mission && companyDetails.mission && companyDetails.mission.mission"
+                     class="detail" [innerHtml]="companyDetails.mission.mission">
+                </div>
+                <div *ngIf="!editing.mission && (!companyDetails.mission || !companyDetails.mission.mission)"
+                     class="empty-detail text-uppercase" (click)="onEdit('mission')" >
+                  + Add Detail
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+              &nbsp;
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

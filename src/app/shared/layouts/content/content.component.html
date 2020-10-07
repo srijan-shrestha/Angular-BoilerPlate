@@ -1,0 +1,9 @@
+<div
+  class="content"
+  [class.content--sidebar-collapsed]="sidebarCollapsed || !sidebarState"
+  [class.content--sidebar-lg]="sidebar==='lg'"
+  [class.content--sidebar-sm]="sidebar==='sm'"
+  [class.content--sidebar-md]="sidebar==='md'"
+>
+  <ng-content></ng-content>
+</div>

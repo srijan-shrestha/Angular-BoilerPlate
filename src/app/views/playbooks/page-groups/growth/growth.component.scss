@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,800&display=swap');
+
+.grw-bg-container {
+  font-family: 'Heebo', sans-serif;
+}
+
+.bg-img {
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+}
+
+.title {
+  position: absolute;
+  top: 18%;
+  left: 6%;
+  padding-left: 8pt;
+  font-size: 120pt;
+  text-transform: uppercase;
+
+}
+
+.g-first {
+  position: absolute;
+  left: 54%;
+  top: 5%;
+  width: 20%;
+}
+
+.g-second {
+  position: absolute;
+  left: 7%;
+  top: 38%;
+  width: 20%;
+  z-index: 1;
+}
+
+.g-title {
+  text-transform: uppercase;
+  font-size: 24pt;
+  // font-family: fantasy;
+}
+
+.newTitle {
+  font-size: 115pt;
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+  letter-spacing: 5pt;
+  color: transparent;
+  font-weight: 800;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1pt rgb(0, 0, 0);
+  line-height: 1;
+}
+
+.newTitle1 {
+  font-size: 30pt;
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+  letter-spacing: 2pt;
+  color: #000000;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 2;
+}
+
+.newTitle2 {
+  font-size: 30pt;
+  font-family: 'Poppins', sans-serif;
+  text-align: left;
+  letter-spacing: 2pt;
+  color: #000000;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 2;
+}
+
+.page-tag {
+  background: darkolivegreen;
+  color: #fff;
+  position: absolute;
+  right: 50pt;
+  top: 0;
+  font-size: 9pt;
+  padding: 20pt 4pt;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 4pt;
+}
+
+.g-description {
+  font-size: 11pt;
+  padding-top: 2pt;
+}
+
+.img1-container {
+  cursor: pointer;
+  top: 45%;
+  left: 21%;
+  position: absolute;
+  width: 26%;
+  height: 50%;
+  z-index: 0;
+}
+
+.g-graph1 {
+  width: 1000px;
+  height: 720px;
+  margin-top: 2vh;
+  margin-left: -7vw;
+}
+
+.g-img1 {
+  height: 100%;
+  width: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.g-img2 {
+  background-position: center center;
+  height: 100%;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.img2-container {
+  position: absolute;
+  cursor: pointer;
+  top: 8%;
+  left: 45%;
+  width: 54%;
+  height: 83%;
+  z-index: 0;
+}
+
+.growth-footer {
+  position: absolute;
+  display: flex;
+  flex-flow: row nowrap;
+  bottom: 0;
+  width: 100%;
+  height: 40pt;
+  z-index: 3;
+  font-size: 8pt;
+
+  .growth-footer-left {
+    height: 100%;
+    width: 50%;
+    padding: 1% 3%;
+    text-transform: uppercase;
+  }
+
+  .growth-footer-right {
+    height: 100%;
+    width: 50%;
+    padding: 1% 3%;
+    text-transform: uppercase;
+    text-align: right;
+  }
+}
+
+.boxy {
+  width: 16%;
+  color: #fff;
+  display: inline-block;
+  padding: 2px;
+}
+
+.boxy-description {
+  font-size: 8pt;
+  padding: 3pt 0;
+  text-align: left;
+}
+
+.boxy-title {
+  font-size: 9pt;
+  font-weight: 600;
+}
+
+.graph-title {
+  position: absolute;
+  height: 12mm;
+  width: 70mm;
+  padding: 2%;
+  font-family: 'Heebo', sans-serif;
+  font-size: 15pt;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.gt-1 {
+  top: 0;
+  left: 50%;
+}
+
+.gt-2 {
+  top: 10%;
+  left: 30%;
+}
+
+.gt-3 {
+  top: 19%;
+  left: 12%;
+}
+
+.gt-4 {
+  top: 29%;
+  left: -7%;
+}
+
+.gt-5 {
+  top: 39%;
+  left: -26%;
+}
+
+.graph-number {
+  position: absolute;
+  height: 30mm;
+  width: 20mm;
+  text-align: center;
+  color: white;
+  line-height: 30mm;
+  font-weight: bold;
+}
+
+.graph-num-1 {
+  left: 2%;
+  bottom: 0;
+}
+
+.graph-num-2 {
+  left: 20%;
+  bottom: 6%;
+}
+
+.graph-num-3 {
+  left: 39%;
+  bottom: 14%;
+}
+
+.graph-num-4 {
+  left: 58%;
+  bottom: 21%;
+}
+
+.graph-num-5 {
+  left: 78%;
+  bottom: 27%;
+}
+
+.future-chart-info {
+  position: absolute;
+  height: 35mm;
+  width: 30mm;
+  color: white;
+}
+
+.chart-info1 {
+  left: 16%;
+  bottom: 12%;
+}
+
+.chart-info2 {
+  left: 30.5%;
+  bottom: 12%;
+}
+
+.chart-info3 {
+  left: 45%;
+  bottom: 12%;
+}
+
+.chart-info4 {
+  left: 59.5%;
+  bottom: 12%;
+}
+
+.chart-info5 {
+  left: 74.3%;
+  bottom: 12%;
+}
+
+.future-chart-info-title {
+  font-weight: bold;
+  font-size: 9pt;
+  padding: 1%;
+}
+
+.future-chart-info-content {
+  font-size: 8pt;
+  padding: 1%;
+}
+
+.future-graph-tag {
+  position: absolute;
+  border-radius: 50%;
+  width: 13mm;
+  height: 13mm;
+  background-color: #EAEAEA;
+  text-align: center;
+  line-height: 14mm;
+  font-size: 22pt;
+  font-weight: bold;
+}
+
+.tag1 {
+  top: 55%;
+  left: 31%;
+  color: #963438;
+}
+
+.tag2 {
+  top: 55%;
+  left: 40%;
+  color: #729A7C;
+}
+
+.tag3 {
+  top: 55%;
+  left: 48.5%;
+  color: #766D72;
+}
+
+.tag4 {
+  top: 55%;
+  left: 56.5%;
+  color: #9DA6AD;
+}
+
+.tag5 {
+  top: 55%;
+  left: 65%;
+  color: #1D7E7D;
+}

@@ -1,0 +1,31 @@
+.page-login {
+  min-height: 100vh;
+
+  &__background {
+    background-color: $gray-300;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  a {
+    color: $red;
+    font-weight: $font-weight-bold;
+  }
+
+  &__logo {
+    height: 60px;
+    width: 200px;
+    position: absolute;
+    top: $spacer*2;
+    left: $spacer*2;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &__content {
+    padding-top: 80px;
+    padding-bottom: 20px;
+    height: 100%;
+  }
+}
