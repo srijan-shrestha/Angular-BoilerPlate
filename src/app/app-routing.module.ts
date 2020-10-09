@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {BlankComponent} from './shared/layouts/blank/blank.component';
 import {FullComponent} from './shared/layouts/full/full.component';
-import {AdminGuard} from './shared/guards/admin.guard';
 
 const routes: Routes = [
   {
