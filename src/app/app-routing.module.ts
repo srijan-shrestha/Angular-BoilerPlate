@@ -26,49 +26,6 @@ const routes: Routes = [
         loadChildren: './views/dashboard/dashboard.module#DashboardModule',
         canActivate: []
       },
-      {
-        path: 'admin',
-        loadChildren: './views/admin-company/admin-company.module#AdminCompanyModule',
-        canActivate: []
-      },
-      {
-        path: 'my-settings',
-        loadChildren: './views/profile-setting/profile-setting.module#ProfileSettingModule',
-      },
-      {
-        path: 'playbooks',
-        loadChildren: './views/playbooks/playbooks-wrapper.module#PlaybooksWrapperModule',
-        canActivate: [],
-      },
-      {
-        path: 'company-settings',
-        loadChildren: './views/company-profile-setting/company-profile-setting.module#CompanyProfileSettingModule',
-        canActivate: [AdminGuard]
-      },
-      {
-        path: 'employee-directory',
-        loadChildren: './views/company-profile-setting/company-profile-setting.module#CompanyProfileSettingModule',
-      },
-      {
-        path: 'company',
-        loadChildren: './views/company/company.module#CompanyModule',
-      },
-      {
-        path: 'planning-execution',
-        loadChildren: './views/planning-and-execution/planning-and-execution.module#PlanningAndExecutionModule',
-      },
-      {
-        path: 'cultural-photos',
-        loadChildren: './views/cultural-photos/cultural-photos.module#CulturalPhotosModule',
-      },
-      {
-        path: '',
-        loadChildren: './views/quarterly-goals/quarterly-goals.module#QuarterlyGoalsModule',
-      },
-      {
-        path: 'department-team-execution',
-        loadChildren: './views/company/company.module#CompanyModule',
-      },
     ]
   },
 ];
