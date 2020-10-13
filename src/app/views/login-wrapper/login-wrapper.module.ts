@@ -13,8 +13,6 @@ import {VerifyEmailComponent} from './components/verify-email/verify-email.compo
 
 @NgModule({
   declarations: [
-    AdminLoginComponent,
-    WorkspaceLoginComponent,
     UserLoginComponent,
     LoginComponent,
     LoginWrapperComponent,
