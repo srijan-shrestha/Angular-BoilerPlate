@@ -6,13 +6,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LayoutsModule} from './layouts/layouts.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {TextColorDirective} from './directive/text-color.directive';
-import {BackgroundColorDirective} from './directive/background-color.directive';
 import {CdkStepperModule} from '@angular/cdk/stepper';
-import { NumberSuffixPipe } from './pipes/number-suffix.pipe';
 
 @NgModule({
-  declarations: [TextColorDirective, BackgroundColorDirective, NumberSuffixPipe],
+  declarations: [],
   imports: [
     CommonModule,
     FormsModule,
@@ -33,9 +30,6 @@ import { NumberSuffixPipe } from './pipes/number-suffix.pipe';
     LayoutsModule,
     NgbModule,
     DragDropModule,
-    TextColorDirective,
-    BackgroundColorDirective,
-    NumberSuffixPipe
   ]
 })
 export class SharedModule {

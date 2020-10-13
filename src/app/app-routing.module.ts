@@ -9,10 +9,6 @@ const routes: Routes = [
     component: BlankComponent,
     children: [
       {path: '', loadChildren: './views/login-wrapper/login-wrapper.module#LoginWrapperModule'},
-      {
-        path: 'onboarding',
-        loadChildren: './views/onboarding/onboarding.module#OnboardingModule'
-      }
     ]
   },
   {

@@ -42,7 +42,6 @@ import {GlobalErrorHandler} from './shared/interceptors/global-error-handler.ser
     AngularFontAwesomeModule,
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: CamelCaseInterceptor, multi: true},
     {provide: ErrorHandler, useClass: GlobalErrorHandler}
