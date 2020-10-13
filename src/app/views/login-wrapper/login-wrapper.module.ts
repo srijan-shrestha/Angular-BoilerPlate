@@ -7,12 +7,10 @@ import { UserLoginComponent } from './components/user-login/user-login.component
 import { LoginComponent } from './components/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { FindWorkspaceComponent } from './components/find-workspace/find-workspace.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import {LoginWrapperComponent} from './login-wrapper.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ListWorkspaceComponent } from './components/list-workspace/list-workspace.component';
 import {VerifyEmailComponent} from './components/verify-email/verify-email.component';
 
 @NgModule({
@@ -21,11 +19,9 @@ import {VerifyEmailComponent} from './components/verify-email/verify-email.compo
     WorkspaceLoginComponent,
     UserLoginComponent,
     LoginComponent,
-    FindWorkspaceComponent,
     LoginWrapperComponent,
     ForgotPasswordComponent,
     PasswordResetComponent,
-    ListWorkspaceComponent,
     VerifyEmailComponent
   ],
   imports: [
