@@ -1,7 +1,5 @@
 import { Component, OnInit, forwardRef, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl, AbstractControl, ControlContainer } from '@angular/forms';
-import { PasswordStrengthMeterService } from '../../services/password-strength-meter.service';
-import { MaskApplierService } from 'ngx-mask/app/ngx-mask/mask-applier.service';
 
 @Component({
   selector: 'app-input',
@@ -84,7 +82,6 @@ export class InputComponent implements OnInit {
 
   constructor(
     private controlContainer: ControlContainer,
-    private passwordStrengthMeterService: PasswordStrengthMeterService,
     private el: ElementRef
   ) { }
 
@@ -203,51 +200,6 @@ export class InputComponent implements OnInit {
 
     switch (this.type) {
       case 'password': {
-        // // TODO validation logic optimization
-        // if (!this.password) {
-        //   this.passwordStrength = null;
-        // } else if (this.password && this.password.length < this.minPasswordLength) {
-        // // } else if (this.password && this.password.length < this.minPasswordLength) {
-        //   this.passwordStrength = 0;
-        // } else {
-        //   if (this.enableFeedback) {
-        //     const result = this.passwordStrengthMeterService.scoreWithFeedback(
-        //       this.password
-        //     );
-        //     this.passwordStrength = result.score;
-        //     this.feedback = result.feedback;
-        //   } else {
-        //     this.passwordStrength = this.passwordStrengthMeterService.score(
-        //       this.password
-        //     );
-        //     this.feedback = null;
-        //   }
-        // }
-
-
-        const result = this.passwordStrengthMeterService.scoreWithFeedback(
-          c.value
-        );
-
-        if (!result.score) {
-          return {
-            fieldError: [result.feedback.warning]
-          };
-        }
-
-
-
-
-
-        // if (!this.defaultValidator.required && c.value === '') {
-        //   return null;
-        // }
-
-        // if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(c.value)) {
-        //   return {
-        //     fieldError: 'Enter a strong password with minimum eight characters, at least one letter, one number and one special character.'
-        //   };
-        // }
         break;
       }
       case 'workspace': {
