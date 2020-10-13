@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 
 import { LoginWrapperRoutingModule } from './login-wrapper-routing.module';
-import { AdminLoginComponent } from './components/admin-login/admin-login.component';
-import { WorkspaceLoginComponent } from './components/workspace-login/workspace-login.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
