@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ButtonComponent} from './button/button.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {ProgressBarComponent} from './progress-bar/progress-bar.component';
 import {InputComponent} from './input/input.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TableHeaderDirective} from './table/table-header.directive';
@@ -20,8 +19,6 @@ import {ConfirmationApproveDialogComponent} from './confirmation-approve-dialog/
   declarations: [
     ButtonComponent,
     InputComponent,
-    ProgressBarComponent,
-    ProgressBarComponent,
     TableHeaderDirective,
     TableDirective,
     TableComponent,
