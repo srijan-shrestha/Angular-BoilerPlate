@@ -37,7 +37,6 @@ import {ConfirmationApproveDialogComponent} from './confirmation-approve-dialog/
   exports: [
     ButtonComponent,
     InputComponent,
-    ProgressBarComponent,
     TableComponent,
     TableHeaderDirective,
     TimePickerComponent,
