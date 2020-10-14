@@ -8,7 +8,7 @@
           Sorry, your email or password seem to be incorrect
         </div>
         <div class="text-center">
-          <h1 class="h2">Sign into Company</h1>
+          <h1 class="h2">Sign</h1>
           <p>{{ workspaceName }}</p>
         </div>
         <form class="my-4 form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" #elLoginForm
@@ -25,7 +25,7 @@
           </div>
         </form>
 
-        <form class="my-4 form" [formGroup]="twoFAForm" (ngSubmit)="onTwoFASubmit()" *ngIf="enableTwoFactorSignIn">
+        <form class="my-4 form" [formGroup]="twoFAForm" *ngIf="enableTwoFactorSignIn">
           <div class="form-group">
             <label for="otp">Please check your phone for the authentication passcode</label>
             <app-input id="otp" type="text" formControlName="otp" placeholder="Passcode"
@@ -61,10 +61,10 @@
           </div>
           <div class="row my-4">
             <div class="col-auto">
-              <a routerLink="/forgot-password" appTextColor="primary"><u>Forgot Password</u></a>
+              <a routerLink="" appTextColor="primary"><u>Forgot Password</u></a>
             </div>
             <div class="col text-right">
-              <a [href]="forgotEmailLink" appTextColor="primary"><u>Forgot your email address</u></a>
+              <a [href]="" appTextColor="primary"><u>Forgot your email address</u></a>
             </div>
           </div>
         </ng-container>
