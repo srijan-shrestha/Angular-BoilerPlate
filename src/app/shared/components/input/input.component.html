@@ -19,7 +19,6 @@
     (change)="onChange($event)"
     [attr.disabled]="disabled ? '' : null"
     [readOnly]="readonly"
-    [mask] = "maskData"
     [class.text-white]="theme==='dark'"
     [class.border-white]="theme==='dark'"
     *ngIf="type!=='textarea' && type!=='date'"

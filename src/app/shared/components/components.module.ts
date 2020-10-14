@@ -13,12 +13,14 @@ import {CdkStepperModule} from '@angular/cdk/stepper';
 import {TimePickerComponent} from './time-picker/time-picker.component';
 import {RouterModule} from '@angular/router';
 import {ConfirmationApproveDialogComponent} from './confirmation-approve-dialog/confirmation-approve-dialog.component';
+import { IconComponent } from './icon/icon.component';
 
 
 @NgModule({
   declarations: [
     ButtonComponent,
     InputComponent,
+    IconComponent,
     TableHeaderDirective,
     TableDirective,
     TableComponent,
@@ -40,7 +42,7 @@ import {ConfirmationApproveDialogComponent} from './confirmation-approve-dialog/
     TableComponent,
     TableHeaderDirective,
     TimePickerComponent,
-
+    IconComponent
   ],
   entryComponents: [
     ConfirmationDialogComponent,
