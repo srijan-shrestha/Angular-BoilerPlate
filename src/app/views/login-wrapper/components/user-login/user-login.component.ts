@@ -3,7 +3,6 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {environment} from 'src/environments/environment';
 import {AuthService} from 'src/app/shared/services/auth.service';
 import {Router} from '@angular/router';
-import {GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider} from 'angularx-social-login';
 import {ToastrService} from 'ngx-toastr';
 @Component({
   selector: 'app-user-login',
@@ -18,13 +17,13 @@ export class UserLoginComponent implements OnInit {
 
   workspaceName: string;
   validate = false; // set to true once user clicks submit.
-
+  companyLogo = '';
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
   rememberMe = new FormControl(false);
-  // forgotEmailLink = '//' + environment.HOST + '/forgot-email';
+  forgotEmailLink = '//' + environment.HOST + '/forgot-email';
   twoFAForm = new FormGroup({
     otp: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
   });
