@@ -202,19 +202,6 @@ export class InputComponent implements OnInit {
       case 'password': {
         break;
       }
-      case 'workspace': {
-        if (c.value && c.value.length < 2) {
-          return {
-            fieldError: ['Workspace name is too short']
-          };
-        }
-        if (c.value && c.value.length > 30) {
-          return {
-            fieldError: ['Workspace name is too long']
-          };
-        }
-        break;
-      }
       case 'name': {
         if (c.value && c.value.length >= 100) {
           return {
