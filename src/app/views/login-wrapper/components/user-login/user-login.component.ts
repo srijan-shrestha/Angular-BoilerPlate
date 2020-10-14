@@ -41,23 +41,12 @@ export class UserLoginComponent implements OnInit {
 
   }
 
-  onTwoFASubmit() {
-    this.authService.verifyTwoFAPasscode({otp: this.twoFAForm.value.otp}).subscribe(res => {
-      this.session = res;
-      this.setSession();
-      this.router.navigateByUrl('dashboard');
-    }, err => {
-      this.toastrService.error('Login unsuccessful. Invalid code.');
-    });
-  }
-
   onSubmit() {
   }
 
   setSession() {
     const data = this.session;
     this.authService.setAccessToken(data.token, this.rememberMe.value);
-    this.authService.setDeviceId(data.device_id);
     this.authService.setRefreshToken(data.refresh_token);
 
   }
@@ -71,20 +60,11 @@ export class UserLoginComponent implements OnInit {
     this.socialLogin();
   }
 
-
   socialLogin() {
     const data = {
       token: 'token', // Token from respective social login platform
       provider: 'provider' // Nmae of respective social login site (facebook, google, twitter etc..)
     };
-    this.authService.requestAccessToken(data).subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log(err);
-      }
-    );
   }
 
 }
