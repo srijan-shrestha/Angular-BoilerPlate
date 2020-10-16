@@ -21,53 +21,9 @@
                        size="lg"></app-input>
           </div>
           <div class="form-group">
-            <app-button [block]="true" size="lg" [disabled]="loginForm.invalid" [loading]="loading">Sign In</app-button>
+            <app-button  size="lg" [disabled]="loginForm.invalid" [loading]="loading">Sign In</app-button>
           </div>
         </form>
-
-        <form class="my-4 form" [formGroup]="twoFAForm" *ngIf="enableTwoFactorSignIn">
-          <div class="form-group">
-            <label for="otp">Please check your phone for the authentication passcode</label>
-            <app-input id="otp" type="text" formControlName="otp" placeholder="Passcode"
-                       [disableValidation]="true"
-                       size="lg"></app-input>
-          </div>
-          <div class="form-group">
-            <app-button [block]="true" size="lg" [disabled]="twoFAForm.invalid" [loading]="loading">Sign In</app-button>
-          </div>
-        </form>
-
-        <!-- <div class="row">
-            <div class="col-auto">
-                <button class="button btn-primary">Sign in with apple</button>
-            </div>
-            <div class="col text-right">
-                <button class="button btn-primary" (click)="signInWithGoogle()">Sign in With Google </button>
-            </div>
-        </div> -->
-        <ng-container *ngIf="!enableTwoFactorSignIn">
-          <div class="row my-2">
-            <div class="col-auto">
-
-              <div class="custom-control custom-checkbox checkbox-left">
-                <input type="checkbox" class="custom-control-input" [formControl]="rememberMe" id="userLoginRememberMe">
-                <label class="custom-control-label" for="userLoginRememberMe">Remember Me</label>
-              </div>
-              <!-- <label class="checkbox-inline"><input type="checkbox" value=""> Remember me</label> -->
-            </div>
-            <div class="col text-right">
-              <!-- <button class="button btn-primary" (click)="signInWithFB()">Login with Facebook </button> -->
-            </div>
-          </div>
-          <div class="row my-4">
-            <div class="col-auto">
-              <a routerLink="" appTextColor="primary"><u>Forgot Password</u></a>
-            </div>
-            <div class="col text-right">
-              <a [href]="" appTextColor="primary"><u>Forgot your email address</u></a>
-            </div>
-          </div>
-        </ng-container>
       </div>
     </div>
   </div>
