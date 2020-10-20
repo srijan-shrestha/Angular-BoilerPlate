@@ -44,4 +44,8 @@ export class PasswordResetComponent implements OnInit {
     });
   }
 
+  passwordResetFormSubmit() {
+
+  }
+
 }
