@@ -11,7 +11,6 @@ import { ToastrService } from 'ngx-toastr';
 export class ForgotPasswordComponent implements OnInit {
   forgotPasswordForm: FormGroup;
   workspace: any;
-  companyLogo = 'app/assets/images/blaastlogo.svg';
   findWorkspaceLink = '';
   submitting = false;
 
